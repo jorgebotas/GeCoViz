@@ -29,7 +29,6 @@ def get_context(request, datatype, query, cutoff):
     analysis = gmgcFam_query(query)
     return JsonResponse(analysis)
 
-
 def get_tree(request, cluster):
     try:
         with open(RESULTS_PATH +

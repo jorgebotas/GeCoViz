@@ -5,11 +5,11 @@ from ete3 import Tree
 from json import dumps
 import pickle
 
-from .src.get_context import get_context as eggnog_query
+from .src.getContext import launch_analysis as eggnog_query
 
 
-STATIC_PATH = settings.BASE_DIR + '/static/geco/'
-RESULTS_PATH = settings.BASE_DIR + '/progenomes/src/Progenomes/tmp/'
+STATIC_PATH = settings.BASE_DIR + '/static/gecoviz/'
+RESULTS_PATH = settings.BASE_DIR + '/progenomes/tmp/'
 
 def get_context(request, query):
     analysis = eggnog_query(query, 2)

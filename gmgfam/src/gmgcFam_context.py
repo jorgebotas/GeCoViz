@@ -1,7 +1,5 @@
 from pymongo import MongoClient
 
-
-
 def mongo_connect():
     client = MongoClient('10.0.3.1', 27017, maxPoolSize=10)
     db = client.novel_fam
