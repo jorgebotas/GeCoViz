@@ -24,7 +24,7 @@ def formatContext(context):
     """
     newFormat = []
     for anchor, v in context.items():
-        neighborhood = v['neihgbourhood']
+        neighborhood = v['neighbourhood']
         for pos, neigh in neihgborhood:
             gene = neigh['gene']
             geneName = neigh['preferred_name']
@@ -70,7 +70,6 @@ def formatContext(context):
                 'eggnog' : eggnog,
                 'domains' : domains
             })
-
 
 def get_context(query):
     gf, gmgcv1_neighs = mongo_connect()
