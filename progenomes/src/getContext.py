@@ -6,7 +6,7 @@ import json
 import os.path
 import re
 
-from mongoClient import mongoConnect
+from .mongoClient import mongoConnect
 
 def getPickle(filePath):
     """

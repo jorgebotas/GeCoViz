@@ -1,4 +1,5 @@
 from pymongo import MongoClient
+
 def mongoConnect():
     """
     Connect to eggNOG database using pymongo
