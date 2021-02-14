@@ -36,7 +36,8 @@ def get_taxLevel(level, taxDict):
         description = taxDict[level]
     except:
         # description = ""
-        description = taxDict[int(level)]
+        # description = taxDict[int(level)]
+        print(taxDict)
     return description
 
 def get_eggDescription(eggnog, client):
