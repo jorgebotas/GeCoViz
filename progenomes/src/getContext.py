@@ -8,7 +8,7 @@ import re
 
 from .mongoClient import mongoConnect
 
-STATIC_PATH = settings.BASE_DIR + '/static/geco/'
+STATIC_PATH = settings.BASE_DIR + '/static/gecoviz/'
 RESULTS_PATH = settings.BASE_DIR + '/progenomes/tmp/'
 
 def getPickle(filePath):
