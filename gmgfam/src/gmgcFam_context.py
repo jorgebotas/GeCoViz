@@ -15,8 +15,67 @@ def mongo_connect():
            # earth_mags_neighs, \
            # tara_euk_mags_neighs
 
+def formatContext(context):
+    """Format context to fit new format
+
+    :context: old format context
+    :returns: new format context
+
+    """
+    newFormat = []
+    for anchor, v in context.items():
+        neighborhood = v['neihgbourhood']
+        for pos, neigh in neihgborhood:
+            gene = neigh['gene']
+            geneName = neigh['preferred_name']
+            strand = neigh['strand']
+            start = neigh['start']
+            end = neigh['end']
+            tax = neigh['tax_prediction']
+            taxonomy = []
+            for vals in tax.values():
+                preds = vals[0].values()
+                taxonomy.append({
+                    'id' : p['id'],
+                    'level' : p['rank'],
+                    'description' : p['description']
+                })
+            ks = neigh['KEGG']
+            kegg = []
+            for id_, desc in ks.items():
+                kegg.append({
+                    'id' : id_,
+                    'description' : desc['description']
+                })
+            eggs = neigh['eggNOG']
+            eggnog
+            for lev, val in eggs.items():
+                id_, desc = val.items()
+                eggnog.append({
+                    'id' : id_,
+                    'level' : lev,
+                    'description' : desc['description']
+                })
+            domains = neigh['domains']
+            newFormat.append({
+                'anchor' : anchor,
+                'pos' : pos,
+                'gene' : gene,
+                'showName' : geneName,
+                'strand' : strand,
+                'start' : start,
+                'end' : end,
+                'taxonomy' : taxonomy,
+                'kegg' : kegg,
+                'eggnog' : eggnog,
+                'domains' : domains
+            })
+
+
 def get_context(query):
     gf, gmgcv1_neighs = mongo_connect()
     gfam = gf.find({"gfn" : int(query)})[0]["gf"]
     context = gmgcv1_neighs.find({"gf" : int(gfam)})[0]['neigh']
+    context = formatContext(context)
+    print(context)
     return context

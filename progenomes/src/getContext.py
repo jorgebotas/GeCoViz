@@ -264,7 +264,7 @@ def launch_analysis(query, nNeigh, tmpDir=False):
     # Sort files by modification date
     fileList.sort(key=os.path.getmtime, reverse=True)
     # No need to recompute if file already in "cache"
-    # if os.path.isfile(neighData_file): return tsvToJson(neighData_file)
+    if os.path.isfile(neighData_file): return tsvToJson(neighData_file)
     # Remove files in tmpDir if too many
     while len(fileList) > cacheLimit:
         os.remove(tmpDir + fileList.pop())
@@ -272,11 +272,11 @@ def launch_analysis(query, nNeigh, tmpDir=False):
     client, db = mongoConnect()
     # Get tree
     tree_file = tmpDir + "{}_tree.nwx".format(query)
-    # try:
-    get_eggNOG_tree(query, tree_file, db)
-#     except:
-        # print("\nNo tree found for {}\n".format(query))
-#     # Get neighborhood data
+    try:
+        get_eggNOG_tree(query, tree_file, db)
+    except:
+        print("\nNo tree found for {}\n".format(query))
+    # Get neighborhood data
     members = getMembers(query, db)
     neighDict = getNeighbors(members, nNeigh, db)
     neighData = getNeighData(neighDict, client, db)
