@@ -1,8 +1,8 @@
-{% extends 'geco/base_context.html' %}
-{% block geco-script %}
+{% extends 'gecoviz/base_context.html' %}
+{% block gecoviz-script %}
     <script charset="utf-8">
-      async function custom_geco(selector) {
-        var colors_file = "/static/geco/txt/colors.txt";
+      async function custom_gecoviz(selector) {
+        var colors_file = "/static/gecoviz/txt/colors.txt";
         var colors;
         await fetch(colors_file)
             .then(response => response.text())
@@ -15,7 +15,7 @@
             .then(txt => inputfile = JSON.parse(txt))
         let newick;
         // GET NEWICK IF PROVIDED IN URL...
-        await window.launch_GeCo(selector,
+        await window.launch_gecoviz(selector,
                                  inputfile, 
                                  newick,
                                  41, 
@@ -24,7 +24,7 @@
             .style('visibility', 'visible')
             .style('opacity', 1);
     }
-    custom_geco("body")
-    $('.geco-progress').hide();
+    custom_gecoviz("body")
+    $('.gecoviz-progress').hide();
   </script>
 {% endblock %}

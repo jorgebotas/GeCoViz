@@ -1,19 +1,19 @@
-{% extends 'geco/base.html' %}
+{% extends 'gecoviz/base.html' %}
 {% block content %}
 {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static '/geco/css/geco.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static '/geco/css/scrollbar.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static '/geco/css/forms.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static '/geco/css/params.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static '/geco/css/popper.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static '/geco/css/select_box.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/gecoviz/css/gecoviz.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/gecoviz/css/scrollbar.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/gecoviz/css/forms.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/gecoviz/css/params.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/gecoviz/css/popper.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static '/gecoviz/css/select_box.css' %}"/>
   <div class="h2 my-4 text-center font-weight-bold">
      {{ query }}
   </div>
-  {% include "geco/geco.html" %}
+  {% include "gecoviz/gecoviz.html" %}
 {% endblock %}
 {% block scripts %}
-    <script src="{% static "geco/js/geco.js" %}"></script>
-    {% block geco-script %}
+    <script src="{% static "gecoviz/js/gecoviz.js" %}"></script>
+    {% block gecoviz-script %}
     {% endblock %}
 {% endblock %}

@@ -1,5 +1,5 @@
-{% extends 'geco/base_context.html' %}
-{% block geco-script %}
+{% extends 'gecoviz/base_context.html' %}
+{% block gecoviz-script %}
   <script charset="utf-8">
     async function get_context(query,
                             isCluster,
@@ -19,14 +19,14 @@
         } else {
             url_path  = url_root + query + "/" + cutoff + "/";
         }
-        $('.geco-progress').show();
+        $('.gecoviz-progress').show();
         data = await $.ajax({
           url: url_path,
           complete: function(){
-            $('.geco-progress').hide();
+            $('.gecoviz-progress').hide();
           },
           error: function() {
-              $('.geco-progress').hide();
+              $('.gecoviz-progress').hide();
               alert("Incorrect cluster identifier")
           }
         })
@@ -49,7 +49,7 @@
                             cutoff, 
                             nenv,
                             queryList) {
-        var colors_file = "/static/geco/txt/colors.txt";
+        var colors_file = "/static/gecoviz/txt/colors.txt";
         var colors;
         await fetch(colors_file)
             .then(response => response.text())
@@ -77,8 +77,8 @@
             })
             eggNOG_levels = JSON.parse(levels);
         } catch { eggNOG_levels = undefined }
-        // Launch GeCo which is a window global from geco.js
-        window.launch_GeCo(selector,
+        // Launch gecoviz which is a window global from gecoviz.js
+        window.launch_gecoviz(selector,
                        data,
                        newick,
                        nenv,
@@ -86,7 +86,7 @@
                        eggNOG_levels)
     }
 
-    async function gmgfam_geco(selector) {
+    async function gmgfam_gecoviz(selector) {
         var nenv = 41;
         var urlPath  = window.location.pathname.split("/");
         var context  = urlPath[2]
@@ -110,6 +110,6 @@
             .style('opacity', 1);
     }
 
-    gmgfam_geco("body");
+    gmgfam_gecoviz("body");
   </script>
 {% endblock %}
