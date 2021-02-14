@@ -1,0 +1,3 @@
+[submodule "gecoviz/gecoviz/static/gecoviz/js/GeCoVizjs"]
+	path = gecoviz/gecoviz/static/gecoviz/js/GeCoVizjs
+	url = https://github.com/jorgebotas/GeCoViz.js
