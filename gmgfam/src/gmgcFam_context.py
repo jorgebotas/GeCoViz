@@ -25,7 +25,7 @@ def formatContext(context):
     newFormat = []
     for anchor, v in context.items():
         neighborhood = v['neighbourhood']
-        for pos, neigh in neihgborhood:
+        for pos, neigh in neighborhood:
             gene = neigh['gene']
             geneName = neigh['preferred_name']
             strand = neigh['strand']
