@@ -156,13 +156,14 @@ def getGeneData(gene, client, db, taxDict, keggDict):
                 eggList = eggnog.split(",")
                 for e in eggList:
                     e = e.split('@')
-                    if taxDict: level = get_taxLevel(e[1], taxDict)
-                    else: level = e[1]
-                    eggJSON.append({
+                    level = e[1]
+                    eggInfo = {
                         'id' : e[0],
                         'level' : level,
                         'description' : get_eggDescription(e[0], client)
-                    })
+                    }
+                    if taxDict: eggInfo['levelDesc'] = get_taxLevel(e[1], taxDict)
+                    eggJSON.append(eggInfo)
         else:
             geneName, keggJSON, eggJSON = "", "", ""
         taxonomy, gene = gene.split('.');

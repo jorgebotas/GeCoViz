@@ -24,28 +24,15 @@ def get_pickle(filepath):
 
 def get_tree(request, query):
     try:
-        with open(RESULTS_PATH + "tree.nwx") as handle:
-            tree = str(handle.read())
-        t = Tree(tree)
-        tax_path = STATIC_PATH + "pickle/TAX_LEVELS.pickle"
-        tax_dict = get_pickle(tax_path)
-        print(tax_dict['1224318'])
-        for node in t:
-            name = str(node.name).split(".")
-            try:
-                tax = tax_dict[name[0]]
-                tax = tax.replace(".", "").strip().split(" ")
-                tax_s = "_".join(tax[:2])
-                tax_l = "_".join(tax)
-                node.name = ".".join([tax_s] + name[:1] + [tax_l] + name[1:])
-            except: pass
-        newick = t.write()
+        with open(RESULTS_PATH + query + "_tree.nwx") as handle:
+            newick = str(handle.read())
         return HttpResponse(newick, content_type='text/plain')
     except:
         print("NO TREE for specified query: " + str(query))
     return HttpResponseNotFound()
 
 def get_eggNOG_levels(request):
+    return HttpResponseNotFound
     with open(RESULTS_PATH + 'eggNOG_LEVELS.txt') as handle:
         eggs = str(handle.read())
     return HttpResponse(eggs, content_type='text/plain')
