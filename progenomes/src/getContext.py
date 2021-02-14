@@ -1,4 +1,4 @@
-# from django.conf import settings
+from django.conf import settings
 from csv import DictReader
 from ete3 import Tree
 from glob import glob
@@ -6,7 +6,7 @@ import json
 import os.path
 import re
 
-from mongoClient import mongoConnect
+from .mongoClient import mongoConnect
 
 def getPickle(filePath):
     """
@@ -227,8 +227,7 @@ def launch_analysis(query, nNeigh, tmpDir=False):
     :nNeigh: number of neighborhood genes at each side
     """
     if not tmpDir:
-        # tmpDir = settings.BASE_DIR +  "/eggnog/src/Progenomes/tmp/"
-        tmpDir = "./tmp/"
+        tmpDir = settings.BASE_DIR +  "/progenomes/tmp/"
     cacheLimit = 50 # Max number of files in tmpDir
     query = query.split('@')[0].strip()
     neighData_file = tmpDir + "{}_{}_neighData.tsv".format(query, nNeigh)
@@ -276,6 +275,6 @@ def launch_analysis(query, nNeigh, tmpDir=False):
                 handle.write("\t".join(line) + "\n")
     return tsvToJson(neighData_file)
 
-with open('./tmp/43PAE_2_neighData.json', 'w') as handle:
-    jsonDump = json.dumps(launch_analysis("43PAE", 2),indent=2)
-    handle.write(jsonDump)
+# with open('./tmp/43PAE_2_neighData.json', 'w') as handle:
+    # jsonDump = json.dumps(launch_analysis("43PAE", 2),indent=2)
+    # handle.write(jsonDump)
