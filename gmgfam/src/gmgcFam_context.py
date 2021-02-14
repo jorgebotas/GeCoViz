@@ -61,7 +61,7 @@ def formatContext(context):
                         'description' : desc['description']
                     })
                 except:
-                    console.log(val)
+                    print(val)
             geneInfo = {
                 'anchor' : anchor,
                 'pos' : pos,
