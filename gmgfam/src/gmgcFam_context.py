@@ -34,7 +34,7 @@ def formatContext(context):
             tax = neigh['tax_prediction']
             taxonomy = []
             for vals in tax.values():
-                preds = vals[0].values()
+                p = vals.values()[0]
                 taxonomy.append({
                     'id' : p['id'],
                     'level' : p['rank'],
