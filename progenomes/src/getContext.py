@@ -1,4 +1,4 @@
-from django.conf import settings
+# from django.conf import settings
 from csv import DictReader
 from ete3 import Tree
 from glob import glob
@@ -6,7 +6,7 @@ import json
 import os.path
 import re
 
-from .mongoClient import mongoConnect
+from mongoClient import mongoConnect
 
 def getPickle(filePath):
     """
@@ -106,11 +106,11 @@ def getNeighbors(members, nNeigh, db):
                     gene = "_".join([contig, gene])
                 else:
                     # Not present in contig
-                    gene = "NIcontig"
+                    gene = "noContig"
             else:
                 if len(orf) != len(gene):
                     gene = gene.zfill(len(orf))
-                gene = contig + str(gene)
+                gene = contig + "_" + str(gene)
             ordered_genes.append(gene)
         neighDict[m] = ordered_genes
     return neighDict
@@ -156,14 +156,13 @@ def getGeneData(gene, client, db, taxDict, keggDict):
                 eggList = eggnog.split(",")
                 for e in eggList:
                     e = e.split('@')
-                    level = e[1]
-                    eggInfo = {
+                    if taxDict: level = get_taxLevel(e[1], taxDict)
+                    else: level = e[1]
+                    eggJSON.append({
                         'id' : e[0],
                         'level' : level,
                         'description' : get_eggDescription(e[0], client)
-                    }
-                    if taxDict: eggInfo['levelDesc'] = get_taxLevel(e[1], taxDict)
-                    eggJSON.append(eggInfo)
+                    })
         else:
             geneName, keggJSON, eggJSON = "", "", ""
         taxonomy, gene = gene.split('.');
@@ -228,7 +227,8 @@ def launch_analysis(query, nNeigh, tmpDir=False):
     :nNeigh: number of neighborhood genes at each side
     """
     if not tmpDir:
-        tmpDir = settings.BASE_DIR +  "/progenomes/tmp/"
+        # tmpDir = settings.BASE_DIR +  "/eggnog/src/Progenomes/tmp/"
+        tmpDir = "./tmp/"
     cacheLimit = 50 # Max number of files in tmpDir
     query = query.split('@')[0].strip()
     neighData_file = tmpDir + "{}_{}_neighData.tsv".format(query, nNeigh)
@@ -246,9 +246,9 @@ def launch_analysis(query, nNeigh, tmpDir=False):
     tree_file = tmpDir + "{}_tree.nwx".format(query)
     # try:
     get_eggNOG_tree(query, tree_file, db)
-    # except:
+#     except:
         # print("\nNo tree found for {}\n".format(query))
-    # Get neighborhood data
+#     # Get neighborhood data
     members = getMembers(query, db)
     neighDict = getNeighbors(members, nNeigh, db)
     neighData = getNeighData(neighDict, client, db)
@@ -276,6 +276,6 @@ def launch_analysis(query, nNeigh, tmpDir=False):
                 handle.write("\t".join(line) + "\n")
     return tsvToJson(neighData_file)
 
-# with open('./tmp/43PAE_2_neighData.json', 'w') as handle:
-    # jsonDump = json.dumps(launch_analysis("43PAE", 2),indent=2)
-    # handle.write(jsonDump)
+with open('./tmp/43PAE_2_neighData.json', 'w') as handle:
+    jsonDump = json.dumps(launch_analysis("43PAE", 2),indent=2)
+    handle.write(jsonDump)
