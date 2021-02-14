@@ -33,11 +33,9 @@ def get_taxLevel(level, taxDict):
               empty string if not found
     """
     try:
-        description = taxDict[level]
+        description = taxDict[str(level)]
     except:
-        # description = ""
-        # description = taxDict[int(level)]
-        print(taxDict)
+        description = ""
     return description
 
 def get_eggDescription(eggnog, client):
