@@ -17,7 +17,17 @@
                   alert("Incorrect eggNOG identifier")
               }
             })
-            return data;
+            var formattedData = [];
+            data.forEach(d => {
+                let newD = Object.assign({}, d)
+                Object.keys(d).forEach(k => {
+                    try {
+                        newD[k] = JSON.parse(d[k])
+                    } catch {};
+                })
+                formattedData.push(newD);
+            })
+            return formattedData;
         }
 
         async function get_newick(url) {
@@ -58,8 +68,6 @@
             d3.select(selector) 
                 .style('opacity', 1)
                 .style('visibility', 'visible');
-            console.log(JSON.parse(data))
-
         }
         launchGeCoViz('.GeCoViz');
   </script>
