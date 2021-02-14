@@ -30,6 +30,7 @@ def formatContext(context):
         for pos, neigh in neighborhood.items():
             gene = neigh['gene']
             geneName = neigh['code']
+            if geneName = 'UNKNOWN': geneName = ''
             strand = neigh['strand']
             start = neigh['start']
             end = neigh['end']
