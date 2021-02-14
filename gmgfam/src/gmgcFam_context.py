@@ -11,7 +11,7 @@ def mongo_connect():
     # tara_mags_neighs = db.tara_mags_neighs
     # earth_mags_neighs = db.earth_mags_neighs
     # tara_euk_mags_neighs = db.tara_euk_MAGs
-    return gf, gmgcv1_neighs
+    return client, gf, gmgcv1_neighs
            # human_gut_neighs, \
            # tara_mags_neighs, \
            # earth_mags_neighs, \
@@ -79,7 +79,8 @@ def formatContext(context):
             newFormat.append(geneInfo)
     return newFormat
 
-def get_newick(query, client):
+def get_newick(query):
+    client = mongo_connect()[0]
     treedb = client.trees
     fs = gridfs.GridFS(treedb)
     tfile = fs.find_one({"filename":query})
@@ -95,15 +96,9 @@ def get_newick(query, client):
     return newick
 
 def get_context(query):
-    gf, gmgcv1_neighs = mongo_connect()
+    client, gf, gmgcv1_neighs = mongo_connect()
     gfam = query
     # gfam = gf.find({"gfn" : int(query)})[0]["gf"]
-    try:
-        client = mongo_connect()[0]
-        tree = get_newick(gfam, client)
-        return HttpResponse(tree, content_type='text/plain')
-    except:
-        print("NO TREE for specified cluster: " + str(query))
     context = gmgcv1_neighs.find({"gf" : int(gfam)})[0]['neigh']
     context = formatContext(context)
     return context

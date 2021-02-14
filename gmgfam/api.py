@@ -4,6 +4,7 @@ from json import dumps
 
 from .src.get_context import launch_analysis as gmgfam_query
 from .src.gmgcFam_context import get_context as gmgcFam_query
+from .src.gmgcFam_context import get_newick as gmgcFam_tree
 
 
 RESULTS_PATH = settings.BASE_DIR + '/gmgfam/results.tmp/'
@@ -31,10 +32,7 @@ def get_context(request, datatype, query, cutoff):
 
 def get_tree(request, cluster):
     try:
-        with open(RESULTS_PATH +
-                  cluster + "_newick.txt") as handle:
-            tree = str(handle.read())
-
+        tree = gmgcFam_tree(cluster)
         return HttpResponse(tree, content_type='text/plain')
     except:
         print("NO TREE for specified cluster: " + str(cluster))
