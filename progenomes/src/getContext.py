@@ -4,6 +4,7 @@ from ete3 import Tree
 from glob import glob
 import json
 import os.path
+import pickle
 import re
 
 from .mongoClient import mongoConnect
