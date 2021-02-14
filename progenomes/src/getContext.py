@@ -72,6 +72,8 @@ def get_eggNOG_tree(query, tree_file, db):
         name = str(node.name).split(".")
         try: tax = taxDict[name[0]]
         except:  tax = name[0]
+        taxD = get_taxLevel(name[0], taxDict)
+        if taxD != "": tax = taxD
         tax = tax.replace(".", "").strip().split(" ")
         tax_s = "_".join(tax[:2])
         tax_l = "_".join(tax)
