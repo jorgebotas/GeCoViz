@@ -48,7 +48,7 @@ def formatContext(context):
                     'description' : desc['description']
                 })
             eggs = neigh['eggNOG']
-            eggnog
+            eggnog = []
             for lev, val in eggs.items():
                 id_, desc = val.items()
                 eggnog.append({
