@@ -42,7 +42,9 @@
                 newick = await get_newick(newick_url);
 
             } catch { newick = undefined; }
-            console.log(d3.json(API_URL + "getcontext/" + query + "/"))
+            d3.json(API_URL + "getcontext/" + query + "/", d => {
+                console.log(d)
+            })
             var fields = ['showName',
                         'tax_id', 
                         'tax_desc',
