@@ -163,14 +163,19 @@ def getGeneData(gene, client, db, taxDict, keggDict):
             if kegg != "":
                 keggList = kegg.split(",")
                 for k in keggList:
-                    try:
-                        desc = keggDict[k]
-                    except:
-                        desc = ""
-                    keggJSON.append({
-                        'id' : k,
-                        'description' : desc
-                    })
+                    if keggDict:
+                        try:
+                            desc = keggDict[k]
+                            keggJSON.append({
+                                'id' : k,
+                                'description' : desc
+                            })
+                        except:
+                            pass
+                    else:
+                        keggJSON.append({
+                            'id' : k,
+                        })
             eggnog = geneInfo_fromAnnotation[0]["enog"]
             eggJSON = []
             if eggnog != "":
@@ -209,14 +214,14 @@ def getNeighData(neighDict, client, db):
     :returns:
     """
     neighData = {}
-    # try:
-    taxDict = getPickle(STATIC_PATH + "pickle/TAX_LEVELS.pickle")
-    # except:
-        # taxDict = False
-    # try:
-    keggDict = getPickle(STATIC_PATH + "pickle/KEGG_DESCRIPTION.pickle")
-    # except:
-        # keggDict = False
+    try:
+        taxDict = getPickle(STATIC_PATH + "pickle/TAX_LEVELS.pickle")
+    except:
+        taxDict = False
+    try:
+        keggDict = getPickle(STATIC_PATH + "pickle/KEGG_DESCRIPTION.pickle")
+    except:
+        keggDict = False
     for member, neighs in neighDict.items():
         neighList = []
         for n in neighs:
