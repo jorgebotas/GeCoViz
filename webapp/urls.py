@@ -1,4 +1,4 @@
-"""bs URL Configuration
+"""webapp URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/2.2/topics/http/urls/
@@ -20,7 +20,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('geco.urls')),
+    path('', include('gecoviz.urls')),
     path('gmgfam/', include('gmgfam.urls')),
     path('progenomes/', include('progenomes.urls')),
 ]

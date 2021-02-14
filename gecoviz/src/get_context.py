@@ -13,8 +13,8 @@ from django.conf import settings
 from .mongodb import mongo_connect
 
 
-STATIC_PATH = settings.BASE_DIR + '/static/geco/'
-RESULTS_PATH = settings.BASE_DIR + '/geco/results.tmp/'
+STATIC_PATH = settings.BASE_DIR + '/static/gecoviz/'
+RESULTS_PATH = settings.BASE_DIR + '/gecoviz/results.tmp/'
 
 
 
