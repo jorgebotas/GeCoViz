@@ -74,7 +74,7 @@ text.geneName {
 path.stroke {
   fill: none;
   stroke: var(--black);
-  stroke-width: 2px;
+  stroke-width: 2.3px;
   z-index: 3;
   outline: none;
   transition: opacity 0.3s;
@@ -89,7 +89,8 @@ path.light-stroke {
 }
 
 .anchor path.light-stroke {
-    stroke-width: 1.5px;
+  stroke: var(--black);
+    stroke-width: 2px;
 }
 
 
