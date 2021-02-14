@@ -1,4 +1,4 @@
-{% extends 'gecoviz/base_context.html' %}
+{% extends 'gecoviz/baseContext.html' %}
 {% block gecoviz-script %}
   <script charset="utf-8">
       const API_URL = "/progenomes/api/"
@@ -42,6 +42,7 @@
                 newick = await get_newick(newick_url);
 
             } catch { newick = undefined; }
+            console.log(d3.json(API_URL + "getcontext/" + query + "/"))
             var fields = ['showName',
                         'tax_id', 
                         'tax_desc',
