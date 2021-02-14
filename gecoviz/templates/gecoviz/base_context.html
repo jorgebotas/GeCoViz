@@ -1,18 +1,35 @@
 {% extends 'gecoviz/base.html' %}
 {% block content %}
 {% load static %}
-    <link rel="stylesheet" type="text/css" href="{% static '/gecoviz/css/gecoviz.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static '/gecoviz/css/scrollbar.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static '/gecoviz/css/forms.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static '/gecoviz/css/params.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static '/gecoviz/css/popper.css' %}"/>
-    <link rel="stylesheet" type="text/css" href="{% static '/gecoviz/css/select_box.css' %}"/>
+    <link rel="stylesheet" type="text/css" 
+        href="{% static "gecoviz/assets/tabler/css/tabler-vendors.min.css" %}"/>
+    <link rel="stylesheet" type="text/css" 
+        href="{% static "gecoviz/css/scrollbar.css" %}"/>
+    <link rel="stylesheet" type="text/css" 
+        href="{% static "gecoviz/css/selectBox.css" %}"/>
+    <link rel="stylesheet" type="text/css" 
+        href="{% static "gecoviz/css/customBar.css" %}"/>
+    <link rel="stylesheet" type="text/css" 
+        href="{% static "gecoviz/css/popper.css" %}"/>
+    <link rel="stylesheet" type="text/css" 
+        href="{% static "gecoviz/css/gecoviz.css" %}"/>
   <div class="h2 my-4 text-center font-weight-bold">
      {{ query }}
   </div>
-  {% include "gecoviz/gecoviz.html" %}
+  <div class=".GeCoViz"></div>
 {% endblock %}
 {% block scripts %}
+    <script src = "https://d3js.org/d3.v6.min.js"></script>
+    <script src = "https://unpkg.com/@popperjs/core@2"></script>
+    <script src="{% static "gecoviz/assets/tabler/libs/nouislider/distribute/nouislider.min.js" %}"></script>
+    <script src="{% static "gecoviz/js/palette.js" %}"></script>
+    <script src="{% static "gecoviz/js/helpers.js" %}"></script>
+    <script src="{% static "gecoviz/js/selectBox.js" %}"></script>
+    <script src="{% static "gecoviz/js/slider.js" %}"></script>
+    <script src="{% static "gecoviz/js/customBar.js" %}"></script>
+    <script src="{% static "gecoviz/js/popper.js" %}"></script>
+    <script src="{% static "gecoviz/js/newick.js" %}"></script>
+    <script src="{% static "gecoviz/js/tree.js" %}"></script>
     <script src="{% static "gecoviz/js/gecoviz.js" %}"></script>
     {% block gecoviz-script %}
     {% endblock %}
