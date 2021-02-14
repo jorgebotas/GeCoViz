@@ -8,6 +8,9 @@ import re
 
 from .mongoClient import mongoConnect
 
+STATIC_PATH = settings.BASE_DIR + '/static/geco/'
+RESULTS_PATH = settings.BASE_DIR + '/progenomes/tmp/'
+
 def getPickle(filePath):
     """
     Return dict contained in pickle file
@@ -189,10 +192,10 @@ def getNeighData(neighDict, client, db):
         taxDict = getPickle(STATIC_PATH + "pickle/TAX_LEVELS.pickle")
     except:
         taxDict = False
-    # try:
-    keggDict = getPickle(STATIC_PATH + "pickle/KEGG_DESCRIPTION.pickle")
-    # except:
-        # keggDict = False
+    try:
+        keggDict = getPickle(STATIC_PATH + "pickle/KEGG_DESCRIPTION.pickle")
+    except:
+        keggDict = False
     for member, neighs in neighDict.items():
         neighList = []
         for n in neighs:
@@ -227,7 +230,7 @@ def launch_analysis(query, nNeigh, tmpDir=False):
     :nNeigh: number of neighborhood genes at each side
     """
     if not tmpDir:
-        tmpDir = settings.BASE_DIR +  "/progenomes/tmp/"
+        tmpDir = RESULTS_PATH
     cacheLimit = 50 # Max number of files in tmpDir
     query = query.split('@')[0].strip()
     neighData_file = tmpDir + "{}_{}_neighData.tsv".format(query, nNeigh)
