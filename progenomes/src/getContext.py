@@ -23,6 +23,21 @@ def getPickle(filePath):
         pdict = pickle.load(pickle_in)
     return pdict
 
+def get_taxLevel(level, taxDict):
+    """
+    Get taxonomic level description
+
+    :level: taxonomic level
+    :taxDict: dictionary with descriptions
+    :returns: string with description,
+              empty string if not found
+    """
+    try:
+        description = taxDict[level]
+    except:
+        description = ""
+    return description
+
 def get_eggDescription(eggnog, client):
     """
     Get eggnog OG description
