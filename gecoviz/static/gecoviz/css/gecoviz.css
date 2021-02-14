@@ -88,12 +88,8 @@ path.light-stroke {
   outline: none;
 }
 
-path.anchor-stroke {
-    fill: none;
-    stroke: var(--dark-gray);
+.anchor path.light-stroke {
     stroke-width: 1.5px;
-    z-index: 2;
-    outline: none;
 }
 
 
