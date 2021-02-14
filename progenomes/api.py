@@ -14,7 +14,7 @@ RESULTS_PATH = settings.BASE_DIR + '/progenomes/tmp/'
 def get_context(request, query):
     analysis = eggnog_query(query, 2)
     # print(analysis)
-    return JsonResponse(analysis)
+    return JsonResponse(analysis, False)
 
 def get_pickle(filepath):
     """ read dictionary from pickle file """
