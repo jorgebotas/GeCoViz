@@ -50,12 +50,14 @@ def formatContext(context):
             eggs = neigh['eggNOG']
             eggnog = []
             for lev, val in eggs.items():
-                id_, desc = val.items()
-                eggnog.append({
-                    'id' : id_,
-                    'level' : lev,
-                    'description' : desc['description']
-                })
+                try:
+                    id_, desc = val.items()
+                    eggnog.append({
+                        'id' : id_,
+                        'level' : lev,
+                        'description' : desc['description']
+                    })
+                except: pass
             geneInfo = {
                 'anchor' : anchor,
                 'pos' : pos,
