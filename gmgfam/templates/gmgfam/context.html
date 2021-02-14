@@ -59,10 +59,7 @@
             newick = await get_newick(newick_url);
 
         } catch { newick = undefined; }
-        var fields = ['showName',
-                    'tax_id', 
-                    'tax_desc',
-                    'name'];
+        var fields = ['name'];
         var c = GeCoViz(selector)
                     .data(data)
                     .nSide(2)
