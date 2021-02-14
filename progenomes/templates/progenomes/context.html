@@ -22,7 +22,7 @@
                 let newD = Object.assign({}, d)
                 Object.keys(d).forEach(k => {
                     try {
-                        newD[k] = JSON.parse(d[k])
+                        newD[k] = eval(d[k])
                     } catch {};
                 })
                 formattedData.push(newD);
