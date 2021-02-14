@@ -62,7 +62,8 @@ svg.scale g {
 }
 
 text.geneName {
-  fill: var(--sand);
+  fill: var(--white);
+  font-weight: bold;
   transition: fill 0.3s;
   font-size: 1em;
   text-align: center;

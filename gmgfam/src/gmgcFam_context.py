@@ -60,7 +60,8 @@ def formatContext(context):
                         'level' : lev,
                         'description' : desc['description']
                     })
-                except: pass
+                except:
+                    console.log(val)
             geneInfo = {
                 'anchor' : anchor,
                 'pos' : pos,
