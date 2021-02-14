@@ -1,4 +1,6 @@
 from pymongo import MongoClient
+from ete3 import Tree
+import gridfs
 
 def mongo_connect():
     client = MongoClient('10.0.3.1', 27017, maxPoolSize=10)
@@ -27,7 +29,7 @@ def formatContext(context):
         neighborhood = v['neighbourhood']
         for pos, neigh in neighborhood.items():
             gene = neigh['gene']
-            geneName = neigh['preferred_name']
+            geneName = neigh['code']
             strand = neigh['strand']
             start = neigh['start']
             end = neigh['end']
@@ -77,9 +79,31 @@ def formatContext(context):
             newFormat.append(geneInfo)
     return newFormat
 
+def get_newick(query, client):
+    treedb = client.trees
+    fs = gridfs.GridFS(treedb)
+    tfile = fs.find_one({"filename":query})
+    treedata = fs.get(tfile._id)
+
+    orig_newick = str(treedata.read(), "utf-8:")
+
+    #Clean up newick
+    t = Tree(orig_newick)
+    for node in t:
+        node.name = node.name.split('.')[1]
+    newick = t.write()
+    return newick
+
 def get_context(query):
     gf, gmgcv1_neighs = mongo_connect()
-    gfam = gf.find({"gfn" : int(query)})[0]["gf"]
+    gfam = query
+    # gfam = gf.find({"gfn" : int(query)})[0]["gf"]
+    try:
+        client = mongo_connect()[0]
+        tree = get_newick(gfam, client)
+        return HttpResponse(tree, content_type='text/plain')
+    except:
+        print("NO TREE for specified cluster: " + str(query))
     context = gmgcv1_neighs.find({"gf" : int(gfam)})[0]['neigh']
     context = formatContext(context)
     return context
