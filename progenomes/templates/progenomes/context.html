@@ -58,7 +58,7 @@
                         'name'];
             var c = GeCoViz(selector)
                         .data(data)
-                        .nSide(2)
+                        .nSide(0)
                         .tree(newick, fields);
             d3.select(selector)
                      .call(c);
@@ -68,6 +68,8 @@
             d3.select(selector) 
                 .style('opacity', 1)
                 .style('visibility', 'visible');
+            await new Promise(r => setTimeout(r, 1000));
+                        .nSide(2)
         }
         launchGeCoViz('.GeCoViz');
   </script>
