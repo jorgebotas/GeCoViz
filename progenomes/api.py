@@ -32,7 +32,7 @@ def get_tree(request, query):
     return HttpResponseNotFound()
 
 def get_eggNOG_levels(request):
-    return HttpResponseNotFound
+    return HttpResponseNotFound()
     with open(RESULTS_PATH + 'eggNOG_LEVELS.txt') as handle:
         eggs = str(handle.read())
     return HttpResponse(eggs, content_type='text/plain')
