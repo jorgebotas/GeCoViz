@@ -188,14 +188,14 @@ def getNeighData(neighDict, client, db):
     :returns:
     """
     neighData = {}
-    try:
-        taxDict = getPickle(STATIC_PATH + "pickle/TAX_LEVELS.pickle")
-    except:
-        taxDict = False
-    try:
-        keggDict = getPickle(STATIC_PATH + "pickle/KEGG_DESCRIPTION.pickle")
-    except:
-        keggDict = False
+    # try:
+    taxDict = getPickle(STATIC_PATH + "pickle/TAX_LEVELS.pickle")
+    # except:
+        # taxDict = False
+    # try:
+    keggDict = getPickle(STATIC_PATH + "pickle/KEGG_DESCRIPTION.pickle")
+    # except:
+        # keggDict = False
     for member, neighs in neighDict.items():
         neighList = []
         for n in neighs:
