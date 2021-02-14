@@ -1,0 +1,22 @@
+body {
+  background-color: #3f4c61;
+  color: lightgray;
+}
+
+a {
+  color: #8c97da;
+}
+
+.card input, .card textarea {
+  background-color: #3f4c61 !important;
+  color: lightgray !important;
+}
+
+.card {
+  background: #354052;
+  color: lightgray;
+}
+
+.link-secondary:hover {
+  color: lightgray;
+}

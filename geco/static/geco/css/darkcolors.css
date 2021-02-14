@@ -1,0 +1,28 @@
+:root {
+  --dark: #354052;
+  --l-dark: #3f4c61;
+
+  --nodata: #5d5d5d;
+  --highlight: #ff8c00;
+  --black: #fefcf8;
+
+  --gray: var(--dark);
+  --dark-gray: lightgray;
+
+  --sand: #3f4c61;
+
+  --orange: #ff8c00;
+
+  --dark-red: #ed6f88;
+
+  --green: #A3C398;
+  --dark-green: #A3C398;
+
+  --indigo: #6574cd;
+  --dark-indigo: #3849ad;
+
+  --purple: var(--indigo);
+  --dark-purple: var(--dark-indigo);
+
+  --body-bg: var(--l-dark);
+}

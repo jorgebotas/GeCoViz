@@ -1,0 +1,18 @@
+{% extends 'geco/input.html' %}
+{% block steps %}
+Enter eggNOG identifier <em>e.g. <a
+        href="/progenomes/context/1S6AH/" 
+        target="_self">1S6A0H</a></em>
+{% endblock %}
+{% block options %}
+<div class="card col-md-7 mx-auto">
+    <div class="col-md-12">
+        <div class="card-header">
+            <h4 class="card-title">eggNOG</h4>
+        </div>
+        <div class="card-body">
+            {{ eggnog_form.as_p }}
+        </div>
+    </div>
+</div>
+{% endblock %}

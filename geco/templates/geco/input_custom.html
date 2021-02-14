@@ -1,0 +1,79 @@
+{% extends 'geco/input.html' %}
+{% block steps %}
+Upload a .json file containing genomic information in
+    <a class="" 
+                           data-toggle="collapse" 
+                           href="#jsonFormat" 
+                           aria-expanded="false" 
+                           aria-controls="jsonFormat"
+                           >this format</a>
+        <div class="language-plaintext highlighter-rouge collapse" id="jsonFormat">
+           <div class="highlight">
+               <pre class="p-0 m-3" style="background:var(--sand);">
+                    <code>
+        cluster : { 
+            gene : {
+                neighborhood : {
+                    [pos : int] : { // [-nLeft, nRight]
+                        gene : str,
+                        preferred_name : str,
+                        strand : ['+', '-'],
+                        start : int,
+                        end : int,
+                        size : int,
+                        frequency : int,
+                        n_contig : int,
+                        // Functional assignation
+                        KEGG : {
+                            id : {
+                                description : str,
+                            }
+                        }, 
+                        eggNOG : {
+                            level : {
+                                id : {
+                                    description : str,
+                                }
+                            }
+                        },
+                    }, 
+                }
+            }
+        }
+                </code>
+               </pre>
+           </div> 
+        </div>
+
+{% endblock %}
+{% block options %}
+<div class="card col-md-7 mx-auto">
+<div class="col-md-12">
+    <div class="card-header">
+    <input type="radio" value="file" name="input_choice" id="input_choice"
+           checked/>
+    <label for="input_choice" class="h4">Upload file</label>
+    </div>
+    <div class='input_file'>
+    <label for='input_file' 
+           class='input_file btn btn-sm btn-secondary mx-2'>Browse</label>
+    {{ file_form.as_p }}
+    <div class='inputfilename'>No file selected.</div>
+    </div>
+</div>
+</div>
+{% endblock %}
+{% block scripts %}
+<script charset="utf-8">
+     let input = document.getElementById('input_file')
+     input.addEventListener('change', (e) => {
+     console.log(input.files[0].name)
+            // Display input file upon selection
+            d3.select("div.inputfilename")
+              .style("opacity", 0);
+            d3.select("div.inputfilename")
+              .html(input.files[0].name)
+              .style("opacity", 1);
+     });
+</script>
+{% endblock %}

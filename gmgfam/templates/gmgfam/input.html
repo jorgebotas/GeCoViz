@@ -1,0 +1,25 @@
+{% extends 'geco/input.html' %}
+{% block steps %}
+<p>GMGCFam is a metagenomic catalog containing more than 200,000
+uncharacterized gene families</p>
+<p>Enter a number from 1 to 200,000 to browse gene families. <em>E.g. <a
+        href="/gmgc/clustercontext/7/" target="_self">7</a>
+    </em>
+</p>
+{% endblock %}
+{% block options %}
+<div class="card col-md-7 mx-auto">
+    <div class="col-md-12">
+        <div class="card-header">
+        <input type="radio" value="cluster" name="input_choice" id="input_choice"
+               checked/>
+        <label for="input_choice" class="h4 input_choice">GMGCFam cluster</label>
+        </div>
+        <div class="card-body">
+        {{ novelFam_form.as_p }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block scripts %}
+{% endblock %}

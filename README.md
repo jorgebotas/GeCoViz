@@ -1,2 +1,3 @@
 # GeCoViz
-Web application for genome context visualization
+
+Gene Context Visualizer

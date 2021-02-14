@@ -1,0 +1,9 @@
+.geco-title {
+   color: var(--indigo); 
+   font-style: normal;
+   font-weight: bold;
+}
+
+.start-cards .card, .start-cards .card-footer {
+    background-color: var(--body-bg);
+}

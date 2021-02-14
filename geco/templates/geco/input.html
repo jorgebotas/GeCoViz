@@ -1,0 +1,29 @@
+{% extends 'geco/base.html' %}
+{% block content %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'geco/css/input_data.css' %}"
+      type="text/css" charset="utf-8">
+
+<div class="card col-md-7 mx-auto mt-4 mb-5">
+    <div class="card-body">
+        {% block steps %}
+        {% endblock %}
+    </div>
+</div>
+
+<div class='options'>
+<form action="" 
+      enctype="multipart/form-data"
+      method="post" 
+      name="input_choice" 
+      accept-charset="utf-8"
+      class="text-center">{% csrf_token %}
+{% block options %}
+{% endblock %}
+    <button class="btn btn-primary my-2" type="submit">
+        Go!
+    </button>
+</form>
+</div>
+    
+{% endblock  %}

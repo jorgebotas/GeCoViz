@@ -1,0 +1,86 @@
+{% extends 'geco/base.html' %}
+{% block content %}
+{% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static '/geco/css/start.css' %}"/>
+        <div class="card mt-4 col-md-7 mx-auto">
+        <div class="card-body text-center">
+            <img class="m-4"
+                 width=50%
+                 src="{% static 'geco/img/geco.png' %}"/>
+            <div class="pt-3">
+            <div class="pb-3">
+            <div class="h1">
+                <em class="geco-title">Ge</em>nomic 
+                <em class="geco-title">Co</em>ntext 
+                <em class="geco-title">Viz</em>ualizer
+            </div>
+            <div>
+                <em>GeCoViz</em> is an interactive tool that visualizes genomic
+                and metagenomic context across phylogeny. 
+                <p> Code for gene context visualization  is available in GitHub at 
+                <code class="language-plaintext highlighter-rouge">
+                    <a href="https://github.com/jorgebotas/GeCo.js"
+                       target="_blank">
+                        https://github.com/jorgebotas/GeCo.js</a>
+                </code>
+                </p>
+                    <p>
+                        Choose data for gene context visualization:
+                    </p>
+                    <div class='start-cards row justify-content-center'>
+                        <div class='card col-md-3 m-2 p-0'>
+                            <div class="card-header mx-auto">
+                                Metagenomic data
+                            </div>
+                           <div class='card-body'>GMGFam: 200,000 curated novel gene families from
+                           metagenomic data</div> 
+                           <div class='card-footer'>
+                            <a class="btn btn-primary" href="/gmgfam/input/">GMGFam</a>
+                           </div>
+                        </div>
+                        <div class='card col-md-3 m-2 p-0'>
+                            <div class="card-header mx-auto">
+                                Genomic data
+                            </div>
+                           <div class='card-body'>eggNOG: one of the most comprehensive databases for
+                                orthologs and their functional annotation</div> 
+                           <div class='card-footer'>
+                            <a class="btn btn-primary" href="/eggnog/input/">eggNOG</a>
+                            </div>
+                        </div>
+                        <div class='card col-md-3 m-2 p-0'>
+                            <div class="card-header mx-auto">
+                                Custom data
+                            </div>
+                           <div class='card-body'>Custom: input custom data for
+                               visualization</div> 
+                           <div class='card-footer'>
+                            <a class="btn btn-primary" href="/custom/input/">Custom</a>
+                           </div>
+                        </div>
+                    
+                </div>
+
+            </div>
+            </div>
+
+            </div>
+        </div>
+        </div>
+{% endblock %}
+{% block scripts %}
+  <script charset="utf-8">
+    window.onload = () => {
+        d3.select("img").style("visibility", "visible").style("opacity", 1);
+        d3.selectAll("em.title")
+            .style("visibility", "visible")
+            .style("opacity",1);
+        d3.selectAll("div.startBtn")
+            .style("visibility", "visible")
+            .style("opacity",1);
+        d3.select("ul.navbar")
+            .style("visibility", "visible")
+            .style("opacity",1);
+    }
+  </script>
+{% endblock %}

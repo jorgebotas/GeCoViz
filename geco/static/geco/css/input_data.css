@@ -1,0 +1,77 @@
+input[type=radio] {
+    margin: 0 auto !important;
+    margin-top: -8px !important;
+}
+
+input[type=radio]::checked {
+    color: var(--dark-gray) !important;
+    background-color: var(--dark-gray) !important;
+}
+
+div.option {
+    width: 30% !important;
+    margin: 30px auto !important;
+    border: solid var(--dark-gray) 1px !important;
+    border-radius: 5px !important;
+}
+
+button#go {
+    width: 100px !important;
+}
+
+label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    display: block;
+    color: var(--dark-gray);
+    text-align: left;
+    margin-bottom: 0.5rem;
+}
+
+input#input_choice {
+    position: absolute !important;
+    top: 15px !important;
+    width: 130px !important;
+    height: 30px !important;
+    cursor: pointer !important;
+    opacity: 0 !important;
+    z-index: 3 !important;
+}
+
+label.input_choice {
+    color: var(--black) !important;
+    opacity: 0.3;
+    transition: opacity 0.5s;
+    cursor: pointer;
+}
+
+input#input_choice:checked ~ label {
+    opacity: 1;
+}
+
+
+input[type="file"] {
+    display: none !important;
+}
+
+label.input_file ~ p {
+    display: none !important;
+}
+
+div.input_file {
+    text-align: center !important;
+    padding: 10px !important;
+    border-radius: 5px !important;
+    margin: 10px auto !important;
+}
+
+
+div.inputfilename {
+    display: inline-block !important;
+    margin: 5px !important;
+    transition: opacity 1s !important;
+}
+
+label {
+    font-size: 80%;
+}

@@ -1,0 +1,80 @@
+{% extends 'geco/base_context.html' %}
+{% block geco-script %}
+  <script charset="utf-8">
+      const API_URL = "/progenomes/api/"
+
+        async function get_context(query) {
+            var url_path = API_URL + "getcontext/" + query + "/";
+            let data;
+            $('.geco-progress').show();
+            data = await $.ajax({
+              url: url_path,
+              complete: function(){
+                $('.geco-progress').hide();
+              },
+              error: function() {
+                  $('.geco-progress').hide();
+                  alert("Incorrect eggNOG identifier")
+              }
+            })
+            return data;
+        }
+
+        async function get_newick(url) {
+            var newick = await $.ajax({
+              url: url,
+              error: function() {
+                  console.log("No tree found")
+              }
+            })
+            return newick
+        }
+
+
+        async function launch_analysis(selector,
+                                query,
+                                nenv) {
+            var colors_file = "/static/geco/txt/colors.txt";
+            var colors;
+            await fetch(colors_file)
+                .then(response => response.text())
+                .then(hex => colors = eval(hex))
+            // ASYNC CALL TO MONGO SERVER
+            var data= await get_context(query);
+            // Get tree in Newick format
+            var newick;
+            try {
+                let newick_url = API_URL + "tree/" + query + "/";
+                newick = await get_newick(newick_url);
+
+            } catch { newick = undefined; }
+            var eggNOG_levels;
+            try {
+                var levels = await $.ajax({
+                    url: API_URL + 'egglevels/',
+                })
+                console.log(levels)
+                eggNOG_levels = JSON.parse(levels);
+                console.log(eggNOG_levels)
+            } catch { eggNOG_levels = undefined }
+            // Launch GeCo which is a window global from geco.js
+            window.launch_GeCo(selector,
+                           data,
+                           newick,
+                           nenv,
+                           colors,
+                           eggNOG_levels)
+        }
+
+        async function eggnog_geco(selector) {
+            var nenv = 41;
+            var urlPath = window.location.pathname.split("/");
+            var query = urlPath[3];
+            await launch_analysis(selector, query, nenv)
+            d3.select('ul.navbar')
+                .style('visibility', 'visible')
+                .style('opacity', 1);
+        }
+        eggnog_geco("body");
+  </script>
+{% endblock %} 
