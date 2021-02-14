@@ -16,7 +16,7 @@ def start(request):
         set_nightmode(request)
     except:
         pass
-    return render(request, 'geco/start.html', {})
+    return render(request, 'gecoviz/start.html', {})
 
 def input_custom(request):
     try:
@@ -39,13 +39,13 @@ def input_custom(request):
     context = {
         'file_form' : FileForm()
     }
-    return render(request, 'geco/input_custom.html', context)
+    return render(request, 'gecoviz/input_custom.html', context)
 
 def file_context(request, uploaded_url):
     try:
         set_nightmode(request)
     except:
         pass
-    return render(request, 'geco/context.html', {
+    return render(request, 'gecoviz/context.html', {
                                             'uploaded_url' : uploaded_url,
                                                  })
