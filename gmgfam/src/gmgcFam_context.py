@@ -56,8 +56,7 @@ def formatContext(context):
                     'level' : lev,
                     'description' : desc['description']
                 })
-            domains = neigh['domains']
-            newFormat.append({
+            geneInfo = {
                 'anchor' : anchor,
                 'pos' : pos,
                 'gene' : gene,
@@ -68,8 +67,13 @@ def formatContext(context):
                 'taxonomy' : taxonomy,
                 'kegg' : kegg,
                 'eggnog' : eggnog,
-                'domains' : domains
-            })
+            }
+            try:
+                domains = neigh['domains']
+                geneInfo['domains'] = domains
+            except: pass
+            newFormat.append(geneInfo)
+
 
 def get_context(query):
     gf, gmgcv1_neighs = mongo_connect()
