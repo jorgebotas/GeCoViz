@@ -243,10 +243,10 @@ def launch_analysis(query, nNeigh, tmpDir=False):
     client, db = mongoConnect()
     # Get tree
     tree_file = tmpDir + "{}_tree.nwx".format(query)
-    try:
-        get_eggNOG_tree(query, tree_file, db)
-    except:
-        print("\nNo tree found for {}\n".format(query))
+    # try:
+    get_eggNOG_tree(query, tree_file, db)
+    # except:
+        # print("\nNo tree found for {}\n".format(query))
     # Get neighborhood data
     members = getMembers(query, db)
     neighDict = getNeighbors(members, nNeigh, db)
