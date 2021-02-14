@@ -4,7 +4,7 @@ from django.core.files.storage import FileSystemStorage
 from .forms import FileForm
 
 def set_nightmode(request):
-    request.session['nightmode'] = request.session.get('nightmode', True)
+    request.session['nightmode'] = request.session.get('nightmode', False)
     mode = request.session['nightmode']
     if request.method == 'POST':
         request.POST['nightmode']

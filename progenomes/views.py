@@ -5,7 +5,7 @@ from .forms import EggnogForm
 
 
 def set_nightmode(request):
-    request.session['nightmode'] = request.session.get('nightmode', True)
+    request.session['nightmode'] = request.session.get('nightmode', False)
     mode = request.session['nightmode']
     if request.method == 'POST':
         request.POST['nightmode']
