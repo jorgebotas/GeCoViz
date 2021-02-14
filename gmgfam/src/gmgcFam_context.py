@@ -77,11 +77,9 @@ def formatContext(context):
             newFormat.append(geneInfo)
     return newFormat
 
-
 def get_context(query):
     gf, gmgcv1_neighs = mongo_connect()
     gfam = gf.find({"gfn" : int(query)})[0]["gf"]
     context = gmgcv1_neighs.find({"gf" : int(gfam)})[0]['neigh']
     context = formatContext(context)
-    print(context)
     return context
