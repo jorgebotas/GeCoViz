@@ -75,6 +75,7 @@ def formatContext(context):
                 geneInfo['domains'] = domains
             except: pass
             newFormat.append(geneInfo)
+    return newFormat
 
 
 def get_context(query):

@@ -27,7 +27,7 @@ RESULTS_PATH = settings.BASE_DIR + '/gmgfam/results.tmp/'
 
 def get_context(request, datatype, query, cutoff):
     analysis = gmgcFam_query(query)
-    return JsonResponse(analysis)
+    return JsonResponse(analysis, safe=False)
 
 def get_tree(request, cluster):
     try:
