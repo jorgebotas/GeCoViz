@@ -42,9 +42,6 @@
                 newick = await get_newick(newick_url);
 
             } catch { newick = undefined; }
-            d3.json(API_URL + "getcontext/" + query + "/", d => {
-                console.log(d)
-            })
             var fields = ['showName',
                         'tax_id', 
                         'tax_desc',
@@ -61,6 +58,7 @@
             d3.select(selector) 
                 .style('opacity', 1)
                 .style('visibility', 'visible');
+            console.log(JSON.parse(data))
 
         }
         launchGeCoViz('.GeCoViz');
