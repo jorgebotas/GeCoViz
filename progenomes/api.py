@@ -12,7 +12,7 @@ STATIC_PATH = settings.BASE_DIR + '/static/gecoviz/'
 RESULTS_PATH = settings.BASE_DIR + '/progenomes/tmp/'
 
 def get_context(request, query):
-    analysis = eggnog_query(query, 2)
+    analysis = eggnog_query(query, 10)
     # print(analysis)
     return JsonResponse(analysis, safe=False)
 
