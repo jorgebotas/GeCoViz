@@ -1,4 +1,4 @@
-{% extends 'gecoviz/base_context.html' %}
+{% extends 'gecoviz/baseContext.html' %}
 {% block gecoviz-script %}
   <script charset="utf-8">
     async function get_context(query,
@@ -43,26 +43,15 @@
         return newick
     }
 
-    async function launch_analysis(selector,
-                            query,
-                            isCluster,
-                            cutoff, 
-                            nenv,
-                            queryList) {
-        var colors_file = "/static/gecoviz/txt/colors.txt";
-        var colors;
-        await fetch(colors_file)
-            .then(response => response.text())
-            .then(hex => colors = eval(hex))
+    async function launchGeCoViz(selector) {
+        var nenv = 41;
+        var urlPath  = window.location.pathname.split("/");
+        var context  = urlPath[2]
+        var query  = urlPath[3];
+        var cutoff  = +urlPath[4];
         // ASYNC CALL TO MONGO SERVER
         var data;
-         if(queryList){
-            let url = '/getcontext/list/' + queryList.join(",") + "/" + cutoff;
-            data = await get_context(query, isCluster, cutoff, url);
-
-        } else {
-            data = await get_context(query, isCluster, cutoff);
-        }
+        data = await get_context(query, true, cutoff);
         // Get tree in Newick format
         var newick;
         try {
@@ -70,46 +59,26 @@
             newick = await get_newick(newick_url);
 
         } catch { newick = undefined; }
-        var eggNOG_levels;
-        try {
-            var levels = await $.ajax({
-                url: API_URL + 'egglevels/',
-            })
-            eggNOG_levels = JSON.parse(levels);
-        } catch { eggNOG_levels = undefined }
-        // Launch gecoviz which is a window global from gecoviz.js
-        window.launch_gecoviz(selector,
-                       data,
-                       newick,
-                       nenv,
-                       colors,
-                       eggNOG_levels)
-    }
-
-    async function gmgfam_gecoviz(selector) {
-        var nenv = 41;
-        var urlPath  = window.location.pathname.split("/");
-        var context  = urlPath[2]
-        var query  = urlPath[3];
-        var cutoff  = +urlPath[4];
-        if (context == "clustercontext") {
-            await launch_analysis(selector, query, true, cutoff, nenv);
-        } else if (context == "genecontext") {
-            await launch_analysis(selector, query, false, cutoff, nenv);
-        } else if (context == "listcontext"){
-            let genelist  = String(urlPath[3]).split(",");
-            await launch_analysis(selector,
-                            undefined, 
-                            false,
-                            cutoff,
-                            nenv,
-                            genelist)
-        } 
+        var fields = ['showName',
+                    'tax_id', 
+                    'tax_desc',
+                    'name'];
+        var c = GeCoViz(selector)
+                    .data(data)
+                    .nSide(2)
+                    .tree(newick, fields);
+        d3.select(selector)
+                 .call(c);
         d3.select('ul.navbar')
             .style('visibility', 'visible')
             .style('opacity', 1);
+        d3.select(selector) 
+            .style('opacity', 1)
+            .style('visibility', 'visible');
+        await new Promise(r => setTimeout(r, 1000))
+        c.nSide(2);
     }
 
-    gmgfam_gecoviz("body");
+    launchGeCoViz('.GeCoViz');
   </script>
 {% endblock %}
