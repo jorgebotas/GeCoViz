@@ -17,6 +17,28 @@ def mongo_connect():
            # earth_mags_neighs, \
            # tara_euk_mags_neighs
 
+def getDomains(query, db):
+    """Retrieve pfam domains
+
+    :query: unigene
+    :db: MongoDB
+    :returns: array of dicts with domain description
+
+    """
+    try:
+        dms = db.pfam.find({'u' : query})[0]['pf']
+        doms = []
+        for d in dms:
+            doms.append({
+                     'class' : d['n'],
+                     'start' : d['s'],
+                     'end' : d['e'],
+                     'shape' : 'rect'
+                    })
+    except:
+        doms = False
+    return doms
+
 def formatContext(context):
     """Format context to fit new format
 
@@ -70,14 +92,13 @@ def formatContext(context):
                 'strand' : strand,
                 'start' : start,
                 'end' : end,
-                'taxonomy' : taxonomy,
                 'kegg' : kegg,
                 'eggnog' : eggnog,
+                'taxonomic prediction' : taxonomy,
             }
-            try:
-                domains = neigh['domains']
+            domains = getDomains(gene, db)
+            if domains:
                 geneInfo['domains'] = domains
-            except: pass
             newFormat.append(geneInfo)
     return newFormat
 
