@@ -21,5 +21,5 @@ div.customBar > div {
 }
 
 .noUi-target {
-    color: var(--indigo);
+    color: var(--indigo) !important;
 }
