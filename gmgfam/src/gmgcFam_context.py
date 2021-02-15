@@ -11,7 +11,7 @@ def mongo_connect():
     # tara_mags_neighs = db.tara_mags_neighs
     # earth_mags_neighs = db.earth_mags_neighs
     # tara_euk_mags_neighs = db.tara_euk_MAGs
-    return client, gf, gmgcv1_neighs
+    return client, db, gf, gmgcv1_neighs
            # human_gut_neighs, \
            # tara_mags_neighs, \
            # earth_mags_neighs, \
@@ -39,7 +39,8 @@ def getDomains(query, db):
         doms = False
     return doms
 
-def formatContext(context):
+
+def formatContext(context, db):
     """Format context to fit new format
 
     :context: old format context
@@ -119,9 +120,9 @@ def get_newick(query):
     return newick
 
 def get_context(query):
-    client, gf, gmgcv1_neighs = mongo_connect()
+    client, db,  gf, gmgcv1_neighs = mongo_connect()
     gfam = query
     # gfam = gf.find({"gfn" : int(query)})[0]["gf"]
     context = gmgcv1_neighs.find({"gf" : int(gfam)})[0]['neigh']
-    context = formatContext(context)
+    context = formatContext(context, db)
     return context
