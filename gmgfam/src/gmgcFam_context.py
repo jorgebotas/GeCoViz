@@ -34,7 +34,8 @@ def getDomains(query, client):
                      'id' : d['n'],
                      'start' : d['s'],
                      'end' : d['e'],
-                     'shape' : 'rect'
+                     'shape' : 'rect',
+                     'description' : ''
                     })
     except:
         doms = False
