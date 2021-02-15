@@ -54,7 +54,7 @@ def formatContext(context):
             eggnog = []
             for lev, val in eggs.items():
                 try:
-                    id_, desc = val.items()
+                    for id_, desc in val.items()
                     eggnog.append({
                         'id' : id_,
                         'level' : lev,
