@@ -31,7 +31,7 @@ def getDomains(query, client):
         doms = []
         for d in dms:
             doms.append({
-                     'class' : d['n'],
+                     'id' : d['n'],
                      'start' : d['s'],
                      'end' : d['e'],
                      'shape' : 'rect'
