@@ -19,3 +19,7 @@ div.customBar > div {
    display: inline-block;
    margin: 10px 0 0 20px; 
 }
+
+.noUi-target {
+    color: var(--indigo);
+}
