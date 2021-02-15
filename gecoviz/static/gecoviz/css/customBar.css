@@ -22,10 +22,6 @@ div.customBar > div {
    margin: 10px 0 0 20px; 
 }
 
-.nSideSlider::parent {
-    margin-top: 1rem;
-}
-
 .noUi-target {
     color: var(--indigo) !important;
 }
