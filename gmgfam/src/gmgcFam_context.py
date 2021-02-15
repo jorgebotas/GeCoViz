@@ -55,11 +55,11 @@ def formatContext(context):
             for lev, val in eggs.items():
                 try:
                     for id_, desc in val.items():
-                    eggnog.append({
-                        'id' : id_,
-                        'level' : lev,
-                        'description' : desc['description']
-                    })
+                        eggnog.append({
+                            'id' : id_,
+                            'level' : lev,
+                            'description' : desc['description']
+                        })
                 except:
                     print(val)
             geneInfo = {
