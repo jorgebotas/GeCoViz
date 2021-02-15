@@ -11,13 +11,13 @@ def mongo_connect():
     # tara_mags_neighs = db.tara_mags_neighs
     # earth_mags_neighs = db.earth_mags_neighs
     # tara_euk_mags_neighs = db.tara_euk_MAGs
-    return client, db, gf, gmgcv1_neighs
+    return client,  gf, gmgcv1_neighs
            # human_gut_neighs, \
            # tara_mags_neighs, \
            # earth_mags_neighs, \
            # tara_euk_mags_neighs
 
-def getDomains(query, db):
+def getDomains(query, client):
     """Retrieve pfam domains
 
     :query: unigene
@@ -26,7 +26,8 @@ def getDomains(query, db):
 
     """
     try:
-        dms = db.pfam.find({'u' : query})[0]['pf']
+        dms = client.gmgc_unigenes.pfam.find({
+            'u' : query})[0]['pf']
         doms = []
         for d in dms:
             doms.append({
@@ -40,7 +41,7 @@ def getDomains(query, db):
     return doms
 
 
-def formatContext(context, db):
+def formatContext(context, client):
     """Format context to fit new format
 
     :context: old format context
@@ -97,7 +98,7 @@ def formatContext(context, db):
                 'eggnog' : eggnog,
                 'taxonomic prediction' : taxonomy,
             }
-            domains = getDomains(gene, db)
+            domains = getDomains(gene, client)
             if domains:
                 geneInfo['domains'] = domains
             newFormat.append(geneInfo)
@@ -120,9 +121,9 @@ def get_newick(query):
     return newick
 
 def get_context(query):
-    client, db,  gf, gmgcv1_neighs = mongo_connect()
+    client,  gf, gmgcv1_neighs = mongo_connect()
     gfam = query
     # gfam = gf.find({"gfn" : int(query)})[0]["gf"]
     context = gmgcv1_neighs.find({"gf" : int(gfam)})[0]['neigh']
-    context = formatContext(context, db)
+    context = formatContext(context, client)
     return context
