@@ -101,7 +101,7 @@ def formatContext(context, client):
             }
             domains = getDomains(gene, client)
             if domains:
-                geneInfo['domains'] = domains
+                geneInfo['pfam'] = domains
             newFormat.append(geneInfo)
     return newFormat
 
