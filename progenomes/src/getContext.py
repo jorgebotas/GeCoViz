@@ -202,7 +202,11 @@ def getGeneData(gene, client, db, taxDict, keggDict):
                     keggJSON, eggJSON]
     else:
         # Gene info not found
-        taxonomy, gene = gene.split('.');
+        geneSplit = gene.split('.')
+        if len(geneSplit) > 1:
+            taxonomy, gene = gene.split('.');
+        else:
+            taxonomy = ""
         geneInfo = [gene, "", "", "", "", "", taxonomy,  "", ""]
     return geneInfo
 
