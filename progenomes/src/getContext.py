@@ -121,7 +121,8 @@ def getNeighbors(members, nNeigh, db):
                 prefix, number = re.search('([^0-9]+)(\d+)$', orf).groups()
                 gene = prefix + str(int(number) + int(pos))
             except:
-                gene = str(int(orf) + int(pos))
+                try: gene = str(int(orf) + int(pos))
+                except: continue
             if "gene" in m:
                 if gene in seqs:
                     gene = "_".join([contig, gene])
