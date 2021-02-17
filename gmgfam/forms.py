@@ -29,11 +29,11 @@ class ListForm(forms.Form):
                                 required=False)
 
 class NovelFamForm(forms.Form):
-    unigene_cluster = forms.CharField(max_length=6,
+    unigene_cluster = forms.CharField(max_length=11,
                                       label="",
                                       label_suffix="",
                                       required=False,
                                       widget=forms.TextInput(attrs={
-                                          'placeholder' : 'XXXXX',
+                                          'placeholder' : 'XXX_XXX_XXX | XXXXX',
                                           'class' : 'form-control'
                                       }))
