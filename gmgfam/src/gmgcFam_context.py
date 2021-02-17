@@ -96,7 +96,7 @@ def formatContext(context, client):
                 'end' : end,
                 'kegg' : kegg,
                 'eggnog' : eggnog,
-                'taxonomic prediction' : taxonomy,
+                'taxonomy' : taxonomy,
             }
             domains = getDomains(gene, client)
             if domains:
