@@ -90,7 +90,7 @@ def formatContext(context, client):
                 'anchor' : anchor,
                 'pos' : pos,
                 'gene' : gene,
-                'geneName' : geneName,
+                'gene name' : geneName,
                 'strand' : strand,
                 'start' : start,
                 'end' : end,
