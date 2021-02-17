@@ -41,7 +41,6 @@ def getDomains(query, client):
         doms = False
     return doms
 
-
 def formatContext(context, client):
     """Format context to fit new format
 
@@ -91,7 +90,7 @@ def formatContext(context, client):
                 'anchor' : anchor,
                 'pos' : pos,
                 'gene' : gene,
-                'showName' : geneName,
+                'geneName' : geneName,
                 'strand' : strand,
                 'start' : start,
                 'end' : end,

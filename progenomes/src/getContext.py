@@ -286,7 +286,7 @@ def launch_analysis(query, nNeigh, tmpDir=False):
     neighDict = getNeighbors(members, nNeigh, db)
     neighData = getNeighData(neighDict, client, db)
     headers = ["gene", "anchor", "pos",
-               "showName",  "description",
+               "geneName",  "description",
                "strand", "start", "end",
                "taxonomy",
               "kegg", "eggnog"]
