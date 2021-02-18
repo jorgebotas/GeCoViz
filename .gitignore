@@ -127,3 +127,10 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Environment settinggs (django key...)
+.env/*
+
+# MongoDB
+.progenomes/src/mongoConnect.py
+.gmgfam/src/mongoConnect.py

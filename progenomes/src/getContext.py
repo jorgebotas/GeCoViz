@@ -7,7 +7,7 @@ import os.path
 import pickle
 import re
 
-from .mongoClient import mongoConnect
+from .mongoConnect import mongoConnect
 
 STATIC_PATH = settings.BASE_DIR + '/static/gecoviz/'
 RESULTS_PATH = settings.BASE_DIR + '/progenomes/tmp/'

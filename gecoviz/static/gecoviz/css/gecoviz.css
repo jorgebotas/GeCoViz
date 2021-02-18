@@ -34,6 +34,7 @@ g.node {
 
 /*GENE CONTEXT*/
 div.gcontext {
+  min-width: 500px;
   overflow-x: scroll;
   overflow-y: hidden;
   border: solid var(--dark-gray) 1px;

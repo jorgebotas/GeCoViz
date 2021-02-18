@@ -18,12 +18,12 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
+with open('/.env/secretKey.txt') as f:
+    SECRET_KEY = f.read().strip()
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'yay-j5o!p90@o5j3by3+)!!=#pmbi)3lv*bsq&jkiau#my8(xz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1',
                  '.gmgfam.compgenomics.org',
