@@ -4,15 +4,15 @@
     <link rel="stylesheet" type="text/css" 
         href="{% static "gecoviz/assets/tabler/css/tabler-vendors.min.css" %}"/>
     <link rel="stylesheet" type="text/css" 
-        href="{% static "gecoviz/css/scrollbar.css" %}"/>
+        href="{% static "gecoviz/GeCoVizjs/css/scrollbar.css" %}"/>
     <link rel="stylesheet" type="text/css" 
-        href="{% static "gecoviz/css/selectBox.css" %}"/>
+        href="{% static "gecoviz/GeCoVizjs/css/selectBox.css" %}"/>
     <link rel="stylesheet" type="text/css" 
-        href="{% static "gecoviz/css/customBar.css" %}"/>
+        href="{% static "gecoviz/GeCoVizjs/css/customBar.css" %}"/>
     <link rel="stylesheet" type="text/css" 
-        href="{% static "gecoviz/css/popper.css" %}"/>
+        href="{% static "gecoviz/GeCoVizjs/css/popper.css" %}"/>
     <link rel="stylesheet" type="text/css" 
-        href="{% static "gecoviz/css/gecoviz.css" %}"/>
+        href="{% static "gecoviz/GeCoVizjs/css/gecoviz.css" %}"/>
   <div class="h2 my-4 text-center font-weight-bold">
      {{ query }}
   </div>
@@ -28,16 +28,16 @@
     <script src = "https://d3js.org/d3.v6.min.js"></script>
     <script src = "https://unpkg.com/@popperjs/core@2"></script>
     <script src="{% static "gecoviz/assets/tabler/libs/nouislider/distribute/nouislider.min.js" %}"></script>
-    <script src="{% static "gecoviz/js/GeCoVizjs/palette.js" %}"></script>
-    <script src="{% static "gecoviz/js/GeCoVizjs/helpers.js" %}"></script>
-    <script src="{% static "gecoviz/js/GeCoVizjs/selectBox.js" %}"></script>
-    <script src="{% static "gecoviz/js/GeCoVizjs/slider.js" %}"></script>
-    <script src="{% static "gecoviz/js/GeCoVizjs/customBar.js" %}"></script>
-    <script src="{% static "gecoviz/js/GeCoVizjs/domains.js" %}"></script>
-    <script src="{% static "gecoviz/js/GeCoVizjs/popper.js" %}"></script>
-    <script src="{% static "gecoviz/js/GeCoVizjs/newick.js" %}"></script>
-    <script src="{% static "gecoviz/js/GeCoVizjs/tree.js" %}"></script>
-    <script src="{% static "gecoviz/js/GeCoVizjs/gecoviz.js" %}"></script>
+    <script src="{% static "gecoviz/GeCoVizjs/src/palette.js" %}"></script>
+    <script src="{% static "gecoviz/GeCoVizjs/src/helpers.js" %}"></script>
+    <script src="{% static "gecoviz/GeCoVizjs/src/selectBox.js" %}"></script>
+    <script src="{% static "gecoviz/GeCoVizjs/src/slider.js" %}"></script>
+    <script src="{% static "gecoviz/GeCoVizjs/src/customBar.js" %}"></script>
+    <script src="{% static "gecoviz/GeCoVizjs/src/domains.js" %}"></script>
+    <script src="{% static "gecoviz/GeCoVizjs/src/popper.js" %}"></script>
+    <script src="{% static "gecoviz/GeCoVizjs/src/newick.js" %}"></script>
+    <script src="{% static "gecoviz/GeCoVizjs/src/tree.js" %}"></script>
+    <script src="{% static "gecoviz/GeCoVizjs/src/gecoviz.js" %}"></script>
     {% block gecoviz-script %}
     {% endblock %}
 {% endblock %}
