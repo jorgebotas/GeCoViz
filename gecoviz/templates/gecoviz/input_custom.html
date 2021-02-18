@@ -3,47 +3,103 @@
 Upload a .json file containing genomic information in
     <a class="" 
                            data-toggle="collapse" 
-                           href="#jsonFormat" 
+                           href="#inputFormat" 
                            aria-expanded="false" 
-                           aria-controls="jsonFormat"
+                           aria-controls="inputFormat"
                            >this format</a>
-        <div class="language-plaintext highlighter-rouge collapse" id="jsonFormat">
-           <div class="highlight">
-               <pre class="p-0 m-3" style="background:var(--sand);">
-                    <code>
-        cluster : { 
-            gene : {
-                neighborhood : {
-                    [pos : int] : { // [-nLeft, nRight]
-                        gene : str,
-                        preferred_name : str,
-                        strand : ['+', '-'],
-                        start : int,
-                        end : int,
-                        size : int,
-                        frequency : int,
-                        n_contig : int,
-                        // Functional assignation
-                        KEGG : {
-                            id : {
-                                description : str,
-                            }
-                        }, 
-                        eggNOG : {
-                            level : {
-                                id : {
-                                    description : str,
-                                }
-                            }
-                        },
-                    }, 
-                }
-            }
-        }
-                </code>
-               </pre>
-           </div> 
-        </div>
+                   <div class="card p-0 m-2 collapse" 
+                       id='inputFormat' 
+                       style="background:var(--sand);">
+                       <div class="table-responsive">
+                           <table class="table table-vcenter card-table
+                               text-center mb-0">
+                               <thead>
+                                   <tr>
+                                       <th>Anchor</th>
+                                       <th>Pos</th>
+                                       <th>Gene</th>
+                                       <th>Gene name</th>
+                                       <th>Start</th>
+                                       <th>End</th>
+                                       <th>Strand</th>
+                                       <th>Taxonomy</th>
+                                       <th>KEGG</th>
+                                       <th>eggNOG</th>
+                                   </tr>
+                               </thead>
+                               <tbody>
+                                   <tr>
+                                       <th class="p-1">
+                                           Anchor gene (member of studied gene
+                                           family)
+                                       </th>
+                                       <th class="p-1">
+                                           Position relative to anchor gene
+                                           (...-2, -1, 0, ...)
+                                       </th>
+                                       <th class="p-1">
+                                           Start position of genome (bp)
+                                       </th>
+                                       <th class="p-1">
+                                           End position of genome (bp)
+                                       </th>
+                                       <th class="p-1">
+                                           + / -
+                                       </th>
+                                       <th class="p-1">
+                                           Taxonomic assignation
+                                       </th>
+                                       <th class="p-1">
+                                           Functional info example (00260,
+                                           00630...)
+                                       </th>
+                                       <th class="p-1">
+                                           Functional info example (COG404,
+                                           COG0665,...)
+                                       </th>
+                                   </tr>
+                               </tbody>
+                           </table>
+                       </div>
+                   </div>
+
+        {% comment %}<div class="language-plaintext highlighter-rouge collapse" id="jsonFormat">{% endcomment %}
+           {% comment %}<div class="highlight">{% endcomment %}
+               {% comment %}<pre class="p-0 m-3" style="background:var(--sand);">{% endcomment %}
+                    {% comment %}<code>{% endcomment %}
+        {% comment %}cluster : { {% endcomment %}
+            {% comment %}gene : {{% endcomment %}
+                {% comment %}neighborhood : {{% endcomment %}
+                    {% comment %}[pos : int] : { // [-nLeft, nRight]{% endcomment %}
+                        {% comment %}gene : str,{% endcomment %}
+                        {% comment %}preferred_name : str,{% endcomment %}
+                        {% comment %}strand : ['+', '-'],{% endcomment %}
+                        {% comment %}start : int,{% endcomment %}
+                        {% comment %}end : int,{% endcomment %}
+                        {% comment %}size : int,{% endcomment %}
+                        {% comment %}frequency : int,{% endcomment %}
+                        {% comment %}n_contig : int,{% endcomment %}
+                        {% comment %}// Functional assignation{% endcomment %}
+                        {% comment %}KEGG : {{% endcomment %}
+                            {% comment %}id : {{% endcomment %}
+                                {% comment %}description : str,{% endcomment %}
+                            {% comment %}}{% endcomment %}
+                        {% comment %}}, {% endcomment %}
+                        {% comment %}eggNOG : {{% endcomment %}
+                            {% comment %}level : {{% endcomment %}
+                                {% comment %}id : {{% endcomment %}
+                                    {% comment %}description : str,{% endcomment %}
+                                {% comment %}}{% endcomment %}
+                            {% comment %}}{% endcomment %}
+                        {% comment %}},{% endcomment %}
+                    {% comment %}}, {% endcomment %}
+                {% comment %}}{% endcomment %}
+            {% comment %}}{% endcomment %}
+        {% comment %}}{% endcomment %}
+                {% comment %}</code>{% endcomment %}
+               {% comment %}</pre>{% endcomment %}
+           {% comment %}</div> {% endcomment %}
+        {% comment %}</div>{% endcomment %}
 
 {% endblock %}
 {% block options %}
