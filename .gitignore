@@ -132,5 +132,5 @@ dmypy.json
 .env/*
 
 # MongoDB
-.progenomes/src/mongoConnect.py
-.gmgfam/src/mongoConnect.py
+progenomes/src/mongoConnect.py
+gmgfam/src/mongoConnect.py
