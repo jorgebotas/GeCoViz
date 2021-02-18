@@ -14,7 +14,8 @@
     <link rel="stylesheet" type="text/css" 
         href="{% static "gecoviz/GeCoVizjs/static/css/gecoviz.css" %}"/>
   <div class="h2 my-4 text-center font-weight-bold">
-     {{ query }}
+      {% block gecoviz-title %}
+      {% endblock %}
   </div>
   <div class='row justify-content-center'>
   <div class='progress gecoviz-progress w-75 mt-6'>
