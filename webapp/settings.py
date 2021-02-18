@@ -18,7 +18,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
-with open('/.env/secretKey.txt') as f:
+with open(BASE_DIR + '.env/secretKey.txt') as f:
     SECRET_KEY = f.read().strip()
 
 
