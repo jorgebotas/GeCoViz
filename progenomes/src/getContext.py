@@ -309,6 +309,6 @@ def launch_analysis(query, nNeigh, tmpDir=False):
                 handle.write("\t".join(line) + "\n")
     return tsvToJson(neighData_file)
 
-with open(RESULTS_PATH + '43PAE_2_neighData.json', 'w') as handle:
-    jsonDump = json.dumps(launch_analysis("43PAE", 2),indent=2)
-    handle.write(jsonDump)
+# with open(RESULTS_PATH + '43PAE_2_neighData.json', 'w') as handle:
+    # jsonDump = json.dumps(launch_analysis("43PAE", 2) ,indent=2)
+    # handle.write(jsonDump)
