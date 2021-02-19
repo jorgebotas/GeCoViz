@@ -1,7 +1,7 @@
 {% extends 'gecoviz/baseContext.html' %}
 {% block gecoviz-script %}
     <script charset="utf-8">
-      async function custom_gecoviz(selector) {
+      async function launchGeCoViz(selector) {
         var colors_file = "/static/gecoviz/txt/colors.txt";
         var colors;
         await fetch(colors_file)
@@ -9,22 +9,32 @@
             .then(hex => colors = eval(hex))
         var urlPath = window.location.pathname.split("/");
         let uploaded_url = String(urlPath[3]).replaceAll(",", "/");
-        let inputfile;
+        let data;
         await fetch(uploaded_url)
             .then(response => response.text())
-            .then(txt => inputfile = JSON.parse(txt))
-        let newick;
+            .then(txt => data = JSON.parse(txt))
         // GET NEWICK IF PROVIDED IN URL...
-        await window.launch_gecoviz(selector,
-                                 inputfile, 
-                                 newick,
-                                 41, 
-                                 colors);
-        d3.select('ul.navbar')
-            .style('visibility', 'visible')
-            .style('opacity', 1);
+        let newick;
+        var fields = ['showName',
+                        'tax_id', 
+                        'tax_desc',
+                        'name'];
+            var c = GeCoViz(selector)
+                        .data(data)
+                        .nSide(2)
+                        .tree(newick, fields);
+            d3.select(selector)
+                     .call(c);
+            d3.select('ul.navbar')
+                .style('visibility', 'visible')
+                .style('opacity', 1);
+            d3.select(selector) 
+                .style('opacity', 1)
+                .style('visibility', 'visible');
+            await new Promise(r => setTimeout(r, 1000))
+            c.nSide(2);
     }
-    custom_gecoviz("body")
+    launchGeCoViz('.GeCoViz');
     $('.gecoviz-progress').hide();
   </script>
 {% endblock %}
