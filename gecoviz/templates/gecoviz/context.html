@@ -9,10 +9,22 @@
             .then(hex => colors = eval(hex))
         var urlPath = window.location.pathname.split("/");
         let uploaded_url = String(urlPath[3]).replaceAll(",", "/");
-        let data;
+        let data, inputfile;
+            return formattedData;
         await fetch(uploaded_url)
             .then(response => response.text())
-            .then(txt => data = JSON.parse(txt))
+            .then(txt => inputfile = JSON.parse(txt))
+        var data = [];
+        inputfile.forEach(d => {
+            let newD = Object.assign({}, d)
+            Object.keys(d).forEach(k => {
+                try {
+                    newD[k] = eval(d[k])
+                } catch {};
+            })
+            data.push(newD);
+        })
+        console.log(data)
         // GET NEWICK IF PROVIDED IN URL...
         let newick;
         var fields = ['showName',
