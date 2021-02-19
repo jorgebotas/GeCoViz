@@ -10,7 +10,6 @@
         var urlPath = window.location.pathname.split("/");
         let uploaded_url = String(urlPath[3]).replaceAll(",", "/");
         let inputfile;
-            return formattedData;
         await fetch(uploaded_url)
             .then(response => response.text())
             .then(txt => inputfile = JSON.parse(txt))
