@@ -102,6 +102,7 @@ def get_newick(query):
     #Clean up newick
     t = Tree(orig_newick)
     for node in t:
+        print(node.name)
         node.name = node.name.split('.')[1]
     newick = t.write()
     return newick
