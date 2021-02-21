@@ -137,7 +137,7 @@ def get_newick(query, membersTaxonomy):
         taxonomy = membersTaxonomy[name]
         if len(taxonomy) > 0:
             for tax in taxonomy:
-                name += '.{}:{}'.format(tax['level'],
+                name += '.{}@{}'.format(tax['level'],
                                         tax['id'])
         node.name = str(name)
     newick = t.write()
