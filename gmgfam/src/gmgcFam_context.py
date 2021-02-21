@@ -81,7 +81,7 @@ def formatContext(context, client):
                     'description' : p['description']
                 })
             taxonomy = orderTaxonomy(taxonomy)
-            if len(taxonomy) > membersTaxonomy[anchor]:
+            if len(taxonomy) > len(membersTaxonomy[anchor]):
                 membersTaxonomy[anchor] = taxonomy
             ks = neigh['KEGG']
             kegg = []
