@@ -88,6 +88,9 @@
         d3.select(selector) 
             .style('opacity', 1)
             .style('visibility', 'visible');
+        await new Promise(r => setTimeout(r, 1000));
+        c.nSide(2);
+
     }
 
     launchGeCoViz('.GeCoViz');
