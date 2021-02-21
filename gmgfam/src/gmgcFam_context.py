@@ -141,7 +141,6 @@ def get_newick(query, membersTaxonomy):
                                         tax['id'])
         node.name = str(name)
     newick = t.write()
-    print(newick)
     return newick
 
 def get_context(query):
