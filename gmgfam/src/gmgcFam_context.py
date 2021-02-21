@@ -50,7 +50,7 @@ def orderTaxonomy(taxonomy):
     ]
     def orderKey(t):
         return taxRanks.index(t['level'])
-    return sorted(taxonomy, key=orderKey, ascending=True)
+    return sorted(taxonomy, key=orderKey)
 
 def formatContext(context, client):
     """Format context to fit new format
