@@ -81,6 +81,7 @@ def formatContext(context, client):
                     'description' : p['description']
                 })
             taxonomy = orderTaxonomy(taxonomy)
+            print(taxonomy)
             if len(taxonomy) > len(membersTaxonomy[anchor]):
                 membersTaxonomy[anchor] = taxonomy
             ks = neigh['KEGG']
@@ -134,7 +135,7 @@ def get_newick(query, membersTaxonomy):
         taxonomy = membersTaxonomy[name]
         if len(taxonomy) > 0:
             for t in taxonomy:
-                name += '.{}:{}'.format(t['level'],
+                name += '/{}.{}'.format(t['level'],
                                         t['id'])
         print(name)
         node.name = name
