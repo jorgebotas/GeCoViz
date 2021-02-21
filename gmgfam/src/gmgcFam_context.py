@@ -96,9 +96,7 @@ def get_newick(query):
     fs = gridfs.GridFS(treedb)
     tfile = fs.find_one({"filename":query})
     treedata = fs.get(tfile._id)
-
     orig_newick = str(treedata.read(), "utf-8:")
-
     #Clean up newick
     t = Tree(orig_newick)
     for node in t:
@@ -107,9 +105,11 @@ def get_newick(query):
     return newick
 
 def get_context(query):
-    client,  gf, gmgcv1_neighs = mongoConnect()
-    gfam = query
-    # gfam = gf.find({"gfn" : int(query)})[0]["gf"]
+    client, gf, gmgcv1_neighs = mongoConnect()
+    if len(query.strip()) == 11:
+        gfam = query
+    else:
+        gfam = gf.find({"gfn" : int(query)})[0]["gf"]
     context = gmgcv1_neighs.find({"gf" : int(gfam)})[0]['neigh']
     context = formatContext(context, client)
     return context
