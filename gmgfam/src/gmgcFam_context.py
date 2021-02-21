@@ -39,14 +39,14 @@ def orderTaxonomy(taxonomy):
     """
     taxRanks = [
         'no rank',
-        'domain',
+        # 'domain',
         'superkingdom',
-        'kingdom',
+        # 'kingdom',
         'phylum',
         'class',
-        'superorder',
+        # 'superorder',
         'order',
-        'superfamily',
+        # 'superfamily',
         'family',
         'genus',
         'species',
@@ -138,7 +138,7 @@ def get_newick(query, membersTaxonomy):
         if len(taxonomy) > 0:
             for tax in taxonomy:
                 name += '.{}@{}'.format(tax['level'],
-                                        tax['id'])
+                                        tax['description'])
         node.name = str(name)
     newick = t.write()
     return newick

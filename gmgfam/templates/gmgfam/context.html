@@ -65,7 +65,16 @@
             newick = await get_newick(newick_url);
 
         } catch { newick = undefined; }
-        var fields = ['name'];
+        var fields = ['name',
+        'no rank',
+        'superkingdom',
+        'phylum',
+        'class',
+        'order',
+        'family',
+        'genus',
+        'species',
+    ]
         var c = GeCoViz(selector)
                     .data(data)
                     .nSide(2)
