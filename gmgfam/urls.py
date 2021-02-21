@@ -17,7 +17,7 @@ urlpatterns = [
     path('api/getcontext/<datatype>/<query>/<cutoff>/',
          api.get_context,
          name='get_context'),
-    path('api/tree/<cluster>/',
+    path('api/tree/<query>/',
          api.get_tree,
          name='get_tree'),
     path('api/egglevels/',
