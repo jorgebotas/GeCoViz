@@ -27,6 +27,31 @@ def getDomains(query, client):
         doms = False
     return doms
 
+def orderTaxonomy(taxonomy):
+    """Orders taxonomy array of dicts
+    by taxonomic rank
+
+    :taxonomy: array of dicts. {id:str, description...}
+    :returns: sorted array
+    """
+    taxRanks = [
+        'no rank',
+        'domain',
+        'superkingdom',
+        'kingdom',
+        'phylum',
+        'class',
+        'superorder',
+        'order',
+        'superfamily',
+        'family',
+        'genus',
+        'species',
+    ]
+    def orderKey(t):
+        return taxRanks.index(t['level'])
+    return sorted(taxonomy, key=orderKey, ascending=True)
+
 def formatContext(context, client):
     """Format context to fit new format
 
@@ -35,8 +60,10 @@ def formatContext(context, client):
 
     """
     newFormat = []
+    membersTaxonomy = {}
     for anchor, v in context.items():
         neighborhood = v['neighbourhood']
+        membersTaxonomy[anchor] = []
         for pos, neigh in neighborhood.items():
             gene = neigh['gene']
             geneName = neigh['code']
@@ -53,6 +80,9 @@ def formatContext(context, client):
                     'level' : p['rank'],
                     'description' : p['description']
                 })
+            taxonomy = orderTaxonomy(taxonomy)
+            if len(taxonomy) > membersTaxonomy[anchor]:
+                membersTaxonomy[anchor] = taxonomy
             ks = neigh['KEGG']
             kegg = []
             for id_, desc in ks.items():
@@ -88,9 +118,9 @@ def formatContext(context, client):
             if domains:
                 geneInfo['pfam'] = domains
             newFormat.append(geneInfo)
-    return newFormat
+    return newFormat, membersTaxonomy
 
-def get_newick(query):
+def get_newick(query, membersTaxonomy):
     client = mongoConnect()[0]
     treedb = client.trees
     fs = gridfs.GridFS(treedb)
@@ -100,7 +130,14 @@ def get_newick(query):
     #Clean up newick
     t = Tree(orig_newick)
     for node in t:
-        node.name = node.name.split('.')[1]
+        name = node.name.split('.')[1]
+        taxonomy = membersTaxonomy[name]
+        if len(taxonomy) > 0:
+            for t in taxonomy:
+                name += '.{}:{}'.format(t['level'],
+                                        t['id'])
+        print(name)
+        node.name = name
     newick = t.write()
     return newick
 
@@ -111,5 +148,6 @@ def get_context(query):
     else:
         gfam = gf.find({"gfn" : int(query)})[0]["gf"]
     context = gmgcv1_neighs.find({"gf" : int(gfam)})[0]['neigh']
-    context = formatContext(context, client)
+    context, membersTaxonomy = formatContext(context, client)
+    newick = get_newick(query, membersTaxonomy)
     return context
