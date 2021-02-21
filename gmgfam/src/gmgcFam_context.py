@@ -134,10 +134,14 @@ def get_newick(query, membersTaxonomy):
     t = Tree(orig_newick)
     for node in t:
         name = node.name.split('.')[1]
+        showName = name
         taxonomy = membersTaxonomy[name]
         if len(taxonomy) > 0:
             for tax in taxonomy:
                 name += '.' + tax['description'].strip()
+        if len(taxonomy) > 1:
+            showName = taxonomy[-1]['description']
+        name = showName + '.' + name
         node.name = str(name)
     newick = t.write()
     return newick
