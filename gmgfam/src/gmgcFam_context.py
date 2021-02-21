@@ -1,7 +1,10 @@
+from django.conf import settings
 from ete3 import Tree
 import gridfs
 
 from .mongoConnect import mongoConnect
+
+RESULTS_PATH = settings.BASE_DIR + '/gmgfam/tmp/'
 
 def getDomains(query, client):
     """Retrieve pfam domains
@@ -151,4 +154,6 @@ def get_context(query):
     context = gmgcv1_neighs.find({"gf" : int(gfam)})[0]['neigh']
     context, membersTaxonomy = formatContext(context, client)
     newick = get_newick(query, membersTaxonomy)
+    with open(RESULTS_PATH + str(query) + '_tree.nwx', "w") as handle:
+        handle.write(newick)
     return context
