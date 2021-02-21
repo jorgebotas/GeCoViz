@@ -149,9 +149,10 @@ def get_context(query):
         gfam = query
     else:
         gfam = gf.find({"gfn" : int(query)})[0]["gf"]
-    context = gmgcv1_neighs.find({"gf" : int(gfam)})[0]['neigh']
+    gfam = int(gfam)
+    context = gmgcv1_neighs.find({"gf" : gfam})[0]['neigh']
     context, membersTaxonomy = formatContext(context, client)
-    newick = get_newick(query, membersTaxonomy)
+    newick = get_newick(gfam, membersTaxonomy)
     with open(RESULTS_PATH + str(query) + '_tree.nwx', "w") as handle:
         handle.write(newick)
     return context
