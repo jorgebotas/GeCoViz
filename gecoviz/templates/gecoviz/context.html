@@ -1,6 +1,16 @@
 {% extends 'gecoviz/baseContext.html' %}
 {% block gecoviz-script %}
     <script charset="utf-8">
+        async function get_newick(url) {
+            var newick= await $.ajax({
+              url: url,
+              error: function() {
+                  console.log("No tree found")
+              }
+            })
+            return newick
+        }
+
       async function launchGeCoViz(selector) {
         var colors_file = "/static/gecoviz/txt/colors.txt";
         var colors;
@@ -9,6 +19,7 @@
             .then(hex => colors = eval(hex))
         var urlPath = window.location.pathname.split("/");
         let uploaded_url = String(urlPath[3]).replaceAll(",", "/");
+        let uploaded_newick = String(urlPath[4]).replaceAll(",", "/");
         let inputfile;
         await fetch(uploaded_url)
             .then(response => response.text())
@@ -25,6 +36,10 @@
         })
         // GET NEWICK IF PROVIDED IN URL...
         let newick;
+        await fetch(uploaded_url)
+            .then(response => response.text())
+            .then(nwx => fetch = nwx)
+            .catch(_ => console.log('No tree provided'))
         console.log(data)
         var fields = ['showName',
                         'tax_id', 
