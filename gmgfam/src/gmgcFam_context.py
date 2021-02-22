@@ -142,8 +142,6 @@ def get_newick(query, membersTaxonomy):
         if len(taxonomy) > 1:
             showName = taxonomy[-1]['description'].strip().replace('.', '')
         name = showName + '.' + name
-        print(showName)
-        print(name)
         node.name = str(name)
     newick = t.write()
     return newick
