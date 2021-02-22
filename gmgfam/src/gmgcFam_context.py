@@ -138,9 +138,9 @@ def get_newick(query, membersTaxonomy):
         taxonomy = membersTaxonomy[name]
         if len(taxonomy) > 0:
             for tax in taxonomy:
-                name += '.' + tax['description'].strip()
+                name += '.' + tax['description'].strip().replace('.', '')
         if len(taxonomy) > 1:
-            showName = taxonomy[-1]['description']
+            showName = taxonomy[-1]['description'].strip().replace('.', '')
         name = showName + '.' + name
         print(showName)
         print(name)
