@@ -14,22 +14,76 @@ def getDomains(query, client):
     :returns: array of dicts with domain description
 
     """
-    try:
-        dms = client.gmgc_unigenes.pfam.find({
-            'u' : query})[0]['pf']
-        doms = []
-        print(dms)
-        for d in dms:
-            doms.append({
-                     'id' : d['n'],
-                     'start' : d['s'],
-                     'end' : d['e'],
-                     'shape' : 'rect',
-                     'description' : ''
-                    })
-    except:
-        doms = False
-    return doms
+    dms  = client\
+        .novel_fam\
+        .gf_profile_gmgcv1\
+        .find({'gf' : query})[0]['domains']
+    domains = {}
+    for member, d in ds.items():
+        dms = []
+        sp_p = d['signalp_p']
+        sp_n = d['signalp_n']
+        if sp_p != "OTHER":
+            dms.append({
+                'c' : 0,
+                'id' : sp_p,
+                'shape' : 'circle',
+                'description' : ''
+            })
+        if sp_n != "OTHER":
+            dms.append({
+                'c' : 0,
+                'id' : sp_n,
+                'shape' : 'circle',
+                'description' : ''
+            })
+        doms = d['topo_h']
+        if len(doms) < 2:
+            dms.append({
+                    'start' : 0,
+                    'end' : 0,
+                    'shape' : 'rect',
+                    'description' : ''
+                })
+        else:
+            doms = str(doms).split('-')
+            for i in range(1, len(doms)):
+                p = str(doms[i-1])
+                c = str(doms[i])
+                try :
+                    start = int(p[-2:])
+                except:
+                    start = int(p[-1])
+                try:
+                    end = int(c[:2])
+                except:
+                    end = int(c[0])
+                dms.append({
+                    'start' : start,
+                    'end' : end,
+                    'id' : 'helix',
+                    'shape' : 'rect',
+                    'description' : ''
+                })
+        domains[member] = {
+            'doms' : dms,
+            'lenseq' : d['genel']
+        }
+    # try:
+        # dms = client.gmgc_unigenes.pfam.find({
+            # 'u' : query})[0]['pf']
+        # doms = []
+        # for d in dms:
+            # doms.append({
+                     # 'id' : d['n'],
+                     # 'start' : d['s'],
+                     # 'end' : d['e'],
+                     # 'shape' : 'rect',
+                     # 'description' : ''
+                    # })
+    # except:
+        # doms = False
+    return domains
 
 def orderTaxonomy(taxonomy):
     """Orders taxonomy array of dicts
@@ -66,6 +120,7 @@ def formatContext(context, client):
     newFormat = []
     membersTaxonomy = {}
     for anchor, v in context.items():
+        domains = getDomains(anchor, client)
         neighborhood = v['neighbourhood']
         membersTaxonomy[anchor] = []
         for pos, neigh in neighborhood.items():
@@ -118,9 +173,11 @@ def formatContext(context, client):
                 'eggnog' : eggnog,
                 'taxonomy' : taxonomy,
             }
-            domains = getDomains(gene, client)
-            if domains:
-                geneInfo['pfam'] = domains
+            try:
+                geneInfo['pfam'] = domains[gene]
+            except: pass
+            # if domains:
+                # geneInfo['pfam'] = domains
             newFormat.append(geneInfo)
     return newFormat, membersTaxonomy
 
