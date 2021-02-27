@@ -15,8 +15,7 @@ def getDomains(query, client):
 
     """
     try:
-        dms = client.gmgc_unigenes.pfam.find({
-            'u' : query})[0]['pf']
+        dms = client.gmgc_unigenes.pfam.find({'u' : query})[0]['pf']
         doms = []
         for d in dms:
             doms.append({
@@ -29,6 +28,19 @@ def getDomains(query, client):
     except:
         doms = False
     return doms
+
+def getSequence(query, client):
+    """Retrieve query sequence
+
+    :query: unigene
+    :client: MongoDB client
+    :returns: sequence
+    """
+    try:
+        seq = client.gmgc_unigenes.sequences.find({'u' : query})[0]['sq']
+    except:
+        seq = False
+    return seq
 
 def orderTaxonomy(taxonomy):
     """Orders taxonomy array of dicts
@@ -113,10 +125,14 @@ def formatContext(context, client):
                 'strand' : strand,
                 'start' : start,
                 'end' : end,
+                'length' : ''
                 'kegg' : kegg,
                 'eggnog' : eggnog,
                 'taxonomy' : taxonomy,
             }
+            seq = getSequence(gene, client)
+            if seq:
+                geneInfo['length'] = len(seq)
             domains = getDomains(gene, client)
             if domains:
                 geneInfo['pfam'] = domains
