@@ -125,7 +125,6 @@ def formatContext(context, client):
                 'strand' : strand,
                 'start' : start,
                 'end' : end,
-                'length' : '',
                 'kegg' : kegg,
                 'eggnog' : eggnog,
                 'taxonomy' : taxonomy,
