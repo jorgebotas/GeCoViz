@@ -19,7 +19,7 @@ def getDomains(query, client):
         .gf_profile_gmgcv1\
         .find({'gf' : query})[0]['domains']
     domains = {}
-    for member, d in ds.items():
+    for member, d in dms.items():
         dms = []
         sp_p = d['signalp_p']
         sp_n = d['signalp_n']
@@ -161,6 +161,7 @@ def formatContext(context, client):
                         })
                 except:
                     print(val)
+
             geneInfo = {
                 'anchor' : anchor,
                 'pos' : pos,
@@ -168,13 +169,16 @@ def formatContext(context, client):
                 'gene name' : geneName,
                 'strand' : strand,
                 'start' : start,
+                'length' : '',
                 'end' : end,
                 'kegg' : kegg,
                 'eggnog' : eggnog,
                 'taxonomy' : taxonomy,
             }
             try:
-                geneInfo['pfam'] = domains[gene]
+                doms = domains[gene]
+                geneInfo['length'] = doms['lenseq']
+                geneInfo['pfam'] = doms['doms']
             except: pass
             # if domains:
                 # geneInfo['pfam'] = domains
