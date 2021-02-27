@@ -18,6 +18,7 @@ def getDomains(query, client):
         dms = client.gmgc_unigenes.pfam.find({
             'u' : query})[0]['pf']
         doms = []
+        print(dms)
         for d in dms:
             doms.append({
                      'id' : d['n'],
