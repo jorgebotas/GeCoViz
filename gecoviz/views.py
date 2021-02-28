@@ -49,3 +49,6 @@ def file_context(request, uploaded_url):
     return render(request, 'gecoviz/context.html', {
                                             'uploaded_url' : uploaded_url,
                                                  })
+
+def documentation(request):
+    return render(request, 'gecoviz/documentation.html', {})

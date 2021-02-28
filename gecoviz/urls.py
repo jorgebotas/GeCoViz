@@ -13,5 +13,6 @@ urlpatterns = [
     path('custom/filecontext/<str:uploaded_url>/',
          views.file_context,
          name='file_context'),
+    path('documentation/', views.documentation, name='documentation'),
 ]
 
