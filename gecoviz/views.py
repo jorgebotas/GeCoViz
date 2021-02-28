@@ -51,4 +51,8 @@ def file_context(request, uploaded_url):
                                                  })
 
 def documentation(request):
+    try:
+        set_nightmode(request)
+    except:
+        pass
     return render(request, 'gecoviz/documentation.html', {})
