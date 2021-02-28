@@ -2,27 +2,27 @@
 {% block content %}
 {% load static %}
 <div class="card mt-4 col-md-10 mx-auto">
+<div class='card-header'>
+   Number of neighbors 
+</div>
 <div class="card-body">
-    <div class='card-header'>
-       Number of neighbors 
-    </div>
-    <p>Adjust gene neighbors up and dowstream with a slider</p>
+    <p class='ml-2'>Adjust gene neighbors up and dowstream with a slider</p>
     <img class="m-4"
          width=95%
          src="{% static 'gecoviz/img/nNeigh.gif' %}"/>
 </div>
 </div>
 <div class="card mt-2 col-md-10 mx-auto">
-    <div class="card-header">
-        Toggle subtrees
-    </div>
+<div class="card-header">
+    Toggle subtrees
+</div>
 <div class="card-body">
     <ul>
     <li>Collapse subtrees by clicking on inner nodes</li>
     <li>Recursive toggle subtrees by using Alt+Click</li>
     <li>Each leaf node gene neighborhood can be toggled by using Alt+Click</li>
     </ul>
-    <img class="m-4 mx-auto"
+    <img class="m-4"
          width=95%
          src="{% static 'gecoviz/img/treeSpan.gif' %}"/>
 </div>
