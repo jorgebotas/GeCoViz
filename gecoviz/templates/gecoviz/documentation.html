@@ -51,4 +51,76 @@
 </div>
 </div>
 
+<div class="row">
+  <div class="col-2">
+    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+      <a class="nav-link active" id="v-pills-nNeigh-tab" 
+          data-toggle="pill" href="#v-pills-nNeigh" 
+          role="tab" aria-controls="v-pills-nNeigh" 
+          aria-selected="true"
+        >Number of neighbors</a>
+      <a class="nav-link" id="v-pills-geneText-tab" 
+          data-toggle="pill" href="#v-pills-geneText" 
+          role="tab" aria-controls="v-pills-geneText" 
+          aria-selected="false"
+        >Text on gene</a>
+      <a class="nav-link" id="v-pills-color-tab" 
+          data-toggle="pill" href="#v-pills-color" 
+          role="tab" aria-controls="v-pills-color" 
+          aria-selected="false"
+        >Color</a>
+      <a class="nav-link" id="v-pills-subtree-tab" 
+          data-toggle="pill" href="#v-pills-subtree" 
+          role="tab" aria-controls="v-pills-subtree" 
+          aria-selected="false"
+        >Toggle subtrees</a>
+
+      <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</a>
+      <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+      <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+    </div>
+  </div>
+  <div class="col-10">
+    <div class="tab-content" id="v-pills-tabContent">
+      <div class="tab-pane fade show active" 
+          id="v-pills-nNeigh" role="tabpanel" 
+          aria-labelledby="v-pills-nNeigh-tab">
+            <p class='ml-2'>Adjust gene neighbors up and dowstream with a slider</p>
+            <img class="m-4"
+                 width=95%
+                 src="{% static "gecoviz/img/nNeigh.gif" %}"/>
+      </div>
+      <div class="tab-pane fade" 
+          id="v-pills-geneText" role="tabpanel" 
+          aria-labelledby="v-pills-geneText-tab">
+            <p class='ml-2'>Select text field to display on each gene arrow</p>
+            <img class="m-4"
+                 width=95%
+                 src="{% static "gecoviz/img/geneName.gif" %}"/>
+      </div>
+      <div class="tab-pane fade" 
+          id="v-pills-color" role="tabpanel" 
+          aria-labelledby="v-pills-color-tab">
+            <p class='ml-2'>Change the field by which genes are colored</p>
+            <img class="m-4"
+                 width=95%
+                 src="{% static "gecoviz/img/color.gif" %}"/>
+      </div>
+      <div class="tab-pane fade" 
+          id="v-pills-subtree" role="tabpanel" 
+          aria-labelledby="v-pills-subtree-tab">
+            <ul>
+            <li>Collapse subtrees by clicking on inner nodes</li>
+            <li>Recursive toggle subtrees by using Alt+Click</li>
+            <li>Each leaf node gene neighborhood can be toggled by using Alt+Click</li>
+            </ul>
+            <img class="m-4"
+                 width=95%
+                 src="{% static "gecoviz/img/treeSpan.gif" %}"/>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 {% endblock %}
