@@ -19,13 +19,13 @@ Upload a .json file containing genomic information in
                                        <th>Anchor</th>
                                        <th>Pos</th>
                                        <th>Gene</th>
-                                       <th>Gene name</th>
+                                       {% comment %}<th>Gene name</th>{% endcomment %}
                                        <th>Start</th>
                                        <th>End</th>
                                        <th>Strand</th>
                                        <th>Taxonomy</th>
                                        <th>KEGG</th>
-                                       <th>eggNOG</th>
+                                       {% comment %}<th>eggNOG</th>{% endcomment %}
                                    </tr>
                                </thead>
                                <tbody>
@@ -41,9 +41,9 @@ Upload a .json file containing genomic information in
                                        <th class="p-1">
                                            Gene identifier
                                        </th>
-                                       <th class="p-1">
-                                           Gene preferred name for display
-                                       </th>
+                                       {% comment %}<th class="p-1">{% endcomment %}
+                                           {% comment %}Gene preferred name for display{% endcomment %}
+                                       {% comment %}</th>{% endcomment %}
                                        <th class="p-1">
                                            Start position in genome (bp)
                                        </th>
@@ -60,10 +60,10 @@ Upload a .json file containing genomic information in
                                            Functional info example (00260,
                                            00630...)
                                        </th>
-                                       <th class="p-1">
-                                           Functional info example (COG404,
-                                           COG0665,...)
-                                       </th>
+                                       {% comment %}<th class="p-1">{% endcomment %}
+                                           {% comment %}Functional info example (COG404,{% endcomment %}
+                                           {% comment %}COG0665,...){% endcomment %}
+                                       {% comment %}</th>{% endcomment %}
                                    </tr>
                                </tbody>
                            </table>
@@ -115,7 +115,7 @@ Upload a .json file containing genomic information in
     <div class="card-header">
     <input type="radio" value="file" name="input_choice" id="input_choice"
            checked/>
-    <label for="input_choice" class="h4">Upload file</label>
+    <label for="input_choice" class="h4">Upload files</label>
     </div>
     <div class='input_file'>
     <label for='input_file' 
