@@ -145,6 +145,7 @@ def getDomains(query, db):
     :returns: TODO
 
     """
+    print(query)
     return ""
     domains = list(db.pfam.find({'g' : query}))
     if len(domains) < 1:
