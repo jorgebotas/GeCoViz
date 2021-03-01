@@ -1,10 +1,24 @@
 {% extends 'gecoviz/input.html' %}
 {% block steps %}
+<p>
+<a href="http://eggnog5.embl.de/#/app/home" target="_blank">
+   eggNOG</a>: one of the most comprehensive databases for
+    orthologs and their functional annotation
+</p>
+<p>
+<a href="http://eggnog5.embl.de/#/app/home" target="_blank">
+   ProGenomes</a>: 25,000 curated genomes. Annotated
+   through eggNOG-mapper and used to extract gene
+   neighborhood information
+</p>
+
+<p>
 Enter eggNOG identifier <em>e.g. </em><a
         href="/progenomes/context/1S6AH/" 
         target="_self">1S6A0H</a>, <a 
         href="/progenomes/context/247WS/" 
         target="_self">247WS</a> (large OG)
+</p>
 {% endblock %}
 {% block options %}
 <div class="card col-md-7 mx-auto">

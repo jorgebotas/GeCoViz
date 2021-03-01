@@ -1,9 +1,11 @@
 {% extends 'gecoviz/input.html' %}
 {% block steps %}
-<p>GMGFam is a metagenomic catalog containing more than 200,000
-uncharacterized gene families</p>
-<p>Enter a number from 1 to 200,000 
-(or GMGCv1 identifier XXX_XXX_XXX) to browse gene families. <em>E.g. <a
+<p>
+    GMGFam is a metagenomic catalog containing 225,000
+    curated novel gene families
+</p>
+<p>Enter a number from 1 to 225,000 
+(or GMGCv1 identifier XXX_XXX_XXX) to browse gene families, <em>e.g. <a
     href="/gmgfam/clustercontext/302_901_888/30/"
     target="_self">302_901_888</a>, <a 
     href="/gmgfam/clustercontext/261_607_067/30/" 
@@ -17,7 +19,7 @@ uncharacterized gene families</p>
         <div class="card-header">
         <input type="radio" value="cluster" name="input_choice" id="input_choice"
                checked/>
-        <label for="input_choice" class="h4 input_choice">GMGCFam cluster</label>
+        <label for="input_choice" class="h4 input_choice">GMGFam cluster</label>
         </div>
         <div class="card-body">
         {{ novelFam_form.as_p }}
