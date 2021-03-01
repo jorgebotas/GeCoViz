@@ -1,16 +1,20 @@
 {% extends 'gecoviz/input.html' %}
 {% block steps %}
-<p>
+Data source:
+<ul>
+<li>
 <a href="http://eggnog5.embl.de/#/app/home" target="_blank">
    eggNOG</a>: one of the most comprehensive databases for
-    orthologs and their functional annotation
-</p>
-<p>
+    orthologs and their functional annotation. Used to retrieve orthologous
+    relationships and phylogeny.
+</li>
+<li>
 <a href="http://eggnog5.embl.de/#/app/home" target="_blank">
    ProGenomes</a>: 25,000 curated genomes. Annotated
    through eggNOG-mapper and used to extract gene
    neighborhood information
-</p>
+</li>
+</ul>
 
 <p>
 Enter eggNOG identifier <em>e.g. </em><a
