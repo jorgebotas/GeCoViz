@@ -81,6 +81,11 @@
             annotation is associated to such entry's color</li>
             <li>Toggle legend entries to add/remove them from the graph</li>
             </ul>
+            <p class='ml-5 mt-2'>Legend entries are ordered by conservation
+            score</p>
+            <p><span class="math display">
+                \[\textrm{conservation score} = \frac{n_{annotation}}{(N_{total} - n_{unique})} &gt; 0.25\]
+            </span></p>
             <img class="m-4"
                  width=95%
                  src="{% static "gecoviz/img/legend.gif" %}"/>
