@@ -152,8 +152,10 @@ def getDomains(query, db):
         return ""
     else:
         for d in domains:
+            print(d)
             key = d['Pf']
             if key not in dom_keys:
+                print(d)
                 dom_keys.append(key)
                 doms.append({
                     'id' : d['Pf'],
