@@ -31,23 +31,27 @@
                             href="/documentation/"
                             target="_blank">documentation</a>
                     </p>
-                    <p>
-                        Choose data for gene context visualization:
+                    <p class='my-5'>
+                        Choose a data source for gene context visualization:
                     </p>
                     <div class='start-cards row justify-content-center'>
-                        <div class='card col-md-3 m-2 p-0'>
+                        <div class='card col-md-3 col-sm-11 m-2 p-0'>
                             <div class="card-header">
                                 Custom data
                             </div>
                            <div class='card-body p-4 text-left'>
-                               Custom: input custom data for
-                               visualization
+                               Input your own custom data for visualization
+                               <ul>
+                                   <li>Phylogeny: tree in newick format</li>
+                                   <li>Gene context: neighborhood in <em>tsv</em> or
+                                       <em>json</em> format</li>
+                               </ul>
                            </div> 
                            <div class='card-footer'>
                             <a class="btn btn-primary" href="/custom/input/">Custom</a>
                            </div>
                         </div>
-                        <div class='card col-md-3 m-2 p-0'>
+                        <div class='card col-md-3 col-sm-11 m-2 p-0'>
                             <div class="card-header">
                                 Genomic data
                             </div>
@@ -69,7 +73,7 @@
                                 href="/progenomes/input/">proGenomes</a>
                             </div>
                         </div>
-                        <div class='card col-md-3 m-2 p-0'>
+                        <div class='card col-md-3 col-sm-11 m-2 p-0'>
                             <div class="card-header">
                                 Metagenomic data
                             </div>
