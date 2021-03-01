@@ -145,22 +145,19 @@ def getDomains(query, db):
     :returns: TODO
 
     """
-    print(query)
     domains = db.pfam.find({'g' : query})
-    for d in domains:
-        print(d)
-    return ""
-    # if len(domains) < 1:
-        # print(query)
-        # return ""
-    # else:
-        # domains = domains[0]
-        # return {
-            # 'id' : domains['Pf'],
-            # 'start' : domains['s'],
-            # 'end' : domains['e'],
-            # 'shape' : 'rect',
-        # }
+    doms = []
+    if len(list(domains)) < 1:
+        return ""
+    else:
+        for d in domains:
+            doms.append({
+                'id' : d['Pf'],
+                'start' : d['s'],
+                'end' : d['e'],
+                'shape' : 'rect',
+            })
+    return doms
 
 def getGeneData(gene, client, db, taxDict, keggDict):
     """
