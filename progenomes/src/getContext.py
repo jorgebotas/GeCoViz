@@ -310,7 +310,7 @@ def launch_analysis(query, nNeigh, tmpDir=False):
     headers = ["gene", "anchor", "pos",
                "gene name",  "description",
                "strand", "start", "end",
-               "taxonomy",
+               "taxonomy", "pfam",
               "kegg", "eggnog"]
     with open(neighData_file, "w") as handle:
         handle.write("\t".join(headers) + "\n")
@@ -319,14 +319,14 @@ def launch_analysis(query, nNeigh, tmpDir=False):
                 pos = str(i - nNeigh)
                 n, geneName, geneDesc,\
                     strand, start, end,\
-                    taxonomy,\
+                    taxonomy, domains,\
                     keggJSON, eggJSON = neigh
                 # Only keep gene identifier
                 anchor = anchor.split('.')[-1]
                 line = [n, anchor, pos,
                         geneName, geneDesc,
                         strand, start, end,
-                        str(taxonomy),
+                        str(taxonomy), str(domains),
                         str(keggJSON), str(eggJSON)]
                 handle.write("\t".join(line) + "\n")
     return tsvToJson(neighData_file)
