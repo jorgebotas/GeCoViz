@@ -146,7 +146,6 @@ def getDomains(query, db):
 
     """
     print(query)
-    return ""
     domains = list(db.pfam.find({'g' : query}))
     if len(domains) < 1:
         print(query)
