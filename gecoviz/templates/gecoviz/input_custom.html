@@ -1,76 +1,76 @@
 {% extends 'gecoviz/input.html' %}
 {% block steps %}
-Upload a .json file containing genomic information in
-    <a class="" 
-                           data-toggle="collapse" 
-                           href="#inputFormat" 
-                           aria-expanded="false" 
-                           aria-controls="inputFormat"
-                           >this format</a>
-                   <div class="card p-0 m-2" 
-                        style="font-size:80%"
-                       {% comment %}style="background:var(--sand);"{% endcomment %}
-                       >
-                       <div class="table-responsive collapse" id='inputFormat'>
-                           <table class="table table-vcenter card-table
-                               text-center mb-0">
-                               <thead>
-                                   <tr>
-                                       <th>Anchor</th>
-                                       <th>Pos</th>
-                                       <th>Gene</th>
-                                       {% comment %}<th>Gene name</th>{% endcomment %}
-                                       <th>Start</th>
-                                       <th>End</th>
-                                       <th>Strand</th>
-                                       <th>Taxonomy</th>
-                                       <th>KEGG</th>
-                                       {% comment %}<th>eggNOG</th>{% endcomment %}
-                                   </tr>
-                               </thead>
-                               <tbody style="font-size:.8em;">
-                                   <tr>
-                                       <th class="p-1">
-                                           Anchor gene<br>
-                                           (member of studied gene
-                                           family)
-                                       </th>
-                                       <th class="p-1">
-                                           Position relative to anchor gene
-                                           <br>
-                                           (...,-1, 0, 1,...)
-                                       </th>
-                                       <th class="p-1">
-                                           Gene identifier
-                                       </th>
-                                       {% comment %}<th class="p-1">{% endcomment %}
-                                           {% comment %}Gene preferred name for display{% endcomment %}
-                                       {% comment %}</th>{% endcomment %}
-                                       <th class="p-1">
-                                           Start position in genome (bp)
-                                       </th>
-                                       <th class="p-1">
-                                           End position in genome (bp)
-                                       </th>
-                                       <th class="p-1">
-                                           + / -
-                                       </th>
-                                       <th class="p-1">
-                                           Taxonomic assignation
-                                       </th>
-                                       <th class="p-1">
-                                           Functional info example<br>
-                                           [{id : 00260, description : "..."}]
-                                       </th>
-                                       {% comment %}<th class="p-1">{% endcomment %}
-                                           {% comment %}Functional info example (COG404,{% endcomment %}
-                                           {% comment %}COG0665,...){% endcomment %}
-                                       {% comment %}</th>{% endcomment %}
-                                   </tr>
-                               </tbody>
-                           </table>
-                       </div>
-                   </div>
+Upload a .tsv file containing genomic information in
+<a class="" 
+   data-toggle="collapse" 
+   href="#inputFormat" 
+   aria-expanded="false" 
+   aria-controls="inputFormat"
+   >this format</a>
+<div class="card p-0 m-2" 
+    style="font-size:80%"
+   {% comment %}style="background:var(--sand);"{% endcomment %}
+   >
+   <div class="table-responsive collapse" id='inputFormat'>
+       <table class="table table-vcenter card-table
+           text-center mb-0">
+           <thead>
+               <tr>
+                   <th>Anchor</th>
+                   <th>Pos</th>
+                   <th>Gene</th>
+                   {% comment %}<th>Gene name</th>{% endcomment %}
+                   <th>Start</th>
+                   <th>End</th>
+                   <th>Strand</th>
+                   <th>Taxonomy</th>
+                   <th>KEGG</th>
+                   {% comment %}<th>eggNOG</th>{% endcomment %}
+               </tr>
+           </thead>
+           <tbody style="font-size:.8em;">
+               <tr>
+                   <th class="p-1">
+                       Anchor gene<br>
+                       (member of studied gene
+                       family)
+                   </th>
+                   <th class="p-1">
+                       Position relative to anchor gene
+                       <br>
+                       (...,-1, 0, 1,...)
+                   </th>
+                   <th class="p-1">
+                       Gene identifier
+                   </th>
+                   {% comment %}<th class="p-1">{% endcomment %}
+                       {% comment %}Gene preferred name for display{% endcomment %}
+                   {% comment %}</th>{% endcomment %}
+                   <th class="p-1">
+                       Start position in genome (bp)
+                   </th>
+                   <th class="p-1">
+                       End position in genome (bp)
+                   </th>
+                   <th class="p-1">
+                       + / -
+                   </th>
+                   <th class="p-1">
+                       Taxonomic assignation
+                   </th>
+                   <th class="p-1">
+                       Functional info example<br>
+                       [{id : 00260, description : "..."}]
+                   </th>
+                   {% comment %}<th class="p-1">{% endcomment %}
+                       {% comment %}Functional info example (COG404,{% endcomment %}
+                       {% comment %}COG0665,...){% endcomment %}
+                   {% comment %}</th>{% endcomment %}
+               </tr>
+           </tbody>
+       </table>
+   </div>
+</div>
 
         {% comment %}<div class="language-plaintext highlighter-rouge collapse" id="jsonFormat">{% endcomment %}
            {% comment %}<div class="highlight">{% endcomment %}

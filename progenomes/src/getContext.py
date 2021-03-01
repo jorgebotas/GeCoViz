@@ -137,6 +137,27 @@ def getNeighbors(members, nNeigh, db):
         neighDict[m] = ordered_genes
     return neighDict
 
+def getDomains(query, db):
+    """Retrieve query Pfam domains
+
+    :query: TODO
+    :client: TODO
+    :returns: TODO
+
+    """
+    domains = list(db.pfam.find({'g' : query}))
+    if len(domains) < 1:
+        print(query)
+        return ""
+    else:
+        domains = domains[0]
+        return {
+            'id' : domains['Pf'],
+            'start' : domains['s'],
+            'end' : domains['e'],
+            'shape' : 'rect',
+        }
+
 def getGeneData(gene, client, db, taxDict, keggDict):
     """
     Retrieve gene data
@@ -148,6 +169,7 @@ def getGeneData(gene, client, db, taxDict, keggDict):
     geneDesc = []
     if len(geneDesc) > 0: geneDesc = geneDesc[0]["d"]
     else: geneDesc = ""
+    domains = getDomains(gene, db)
     geneInfo_fromContigs = list(db.contigs.find({"o" : gene}))
     if len(geneInfo_fromContigs) > 0:
         strand = geneInfo_fromContigs[0]["str"]
@@ -195,19 +217,19 @@ def getGeneData(gene, client, db, taxDict, keggDict):
                     eggJSON.append(eggInfo)
         else:
             geneName, keggJSON, eggJSON = "", "", ""
-        taxonomy, gene = gene.split('.');
+        taxonomy, gene = gene.split('.')
         geneInfo = [gene, geneName, geneDesc,
                     strand, start, end,
-                    taxonomy,
+                    taxonomy, domains,
                     keggJSON, eggJSON]
     else:
         # Gene info not found
         geneSplit = gene.split('.')
         if len(geneSplit) > 1:
-            taxonomy, gene = gene.split('.');
+            taxonomy, gene = gene.split('.')
         else:
             taxonomy = ""
-        geneInfo = [gene, "", "", "", "", "", taxonomy,  "", ""]
+        geneInfo = [gene, "", "", "", "", "", taxonomy, domains,  "", ""]
     return geneInfo
 
 def getNeighData(neighDict, client, db):
