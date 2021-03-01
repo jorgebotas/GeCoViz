@@ -48,7 +48,11 @@
       <div class="tab-pane fade show active" 
           id="v-pills-nNeigh" role="tabpanel" 
           aria-labelledby="v-pills-nNeigh-tab">
-            <p class='ml-5 mt-2'>Adjust gene neighbors up and dowstream with a slider</p>
+            <p class='ml-5 mt-2'>
+                Adjust gene neighbors up and dowstream with a
+                slider. Cluster members (homologs), anchored at the central
+                position, are highlighted by black stroke.
+            </p>
             <img class="m-4"
                  width=95%
                  src="{% static "gecoviz/img/nNeigh.gif" %}"/>
@@ -64,7 +68,11 @@
       <div class="tab-pane fade" 
           id="v-pills-color" role="tabpanel" 
           aria-labelledby="v-pills-color-tab">
-            <p class='ml-5 mt-2'>Change the field by which genes are colored</p>
+            <p class='ml-5 mt-2'>
+                Change the field by which genes are colored. For eggNOG
+                orthologous groups, taxonomic level can be fine-grainedly
+                tuned.
+            </p>
             <img class="m-4"
                  width=95%
                  src="{% static "gecoviz/img/color.gif" %}"/>
@@ -72,7 +80,10 @@
       <div class="tab-pane fade" 
           id="v-pills-shuffle" role="tabpanel" 
           aria-labelledby="v-pills-shuffle-tab">
-            <p class='ml-5 mt-2'>Shuffle color palette to match user preference</p>
+            <p class='ml-5 mt-2'>
+                Shuffle color palette to match user
+                preference from over 270 colors!
+            </p>
             <img class="m-4"
                  width=95%
                  src="{% static "gecoviz/img/shuffle.gif" %}"/>
@@ -81,11 +92,17 @@
           id="v-pills-legend" role="tabpanel" 
           aria-labelledby="v-pills-legend-tab">
             <ul class='mt-2 ml-4'>
-            <li>Hover over a gene arrow to highlight entries whose color is
-                associated to the gene's (functional) annotation</li>
-            <li>Hover over a legend entry to highlight genes whose (functional)
-            annotation is associated to such entry's color</li>
-            <li>Toggle legend entries to add/remove them from the graph</li>
+            <li>
+                Hover over a gene arrow to highlight entries whose color is
+                associated to the gene's (functional) annotation
+            </li>
+            <li>
+                Hover over a legend entry to highlight genes whose (functional)
+                annotation is associated to such entry's color
+            </li>
+            <li>
+                Toggle legend entry checkboxes to add or remove them from the graph
+            </li>
             <li>
                 Legend entries are ordered by <em>conservation score</em>
             </li>
