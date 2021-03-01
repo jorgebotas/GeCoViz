@@ -85,8 +85,19 @@
             <p class='ml-5 mt-2'>Legend entries are ordered by conservation
             score</p>
             <p><span class="math display">
-                \[\textrm{conservation score} = \frac{n_{annotation}}{(N_{total} - n_{unique})} &gt; 0.25\]
+             \[
+              \textrm{conservation score} = \frac{n_{annotation}}{(N_{total} - n_{unique})}
+             \]
             </span></p>
+            <p class='ml-5 mt-2'>
+                This conservation score, although not conclusive, allows to
+                order annotations by their abundance in a gene neighborhood.
+                As a result, the user can inspect the most relevant entries at
+                first glance. 
+                Benchmark: Bacteria level eggNOG orthologous groups with
+                annotated with KEGG pathways. Accuracy higher than 80% when
+                conservation score &gt; 0.25.
+            </p>
             <img class="m-4"
                  width=95%
                  src="{% static "gecoviz/img/legend.gif" %}"/>
