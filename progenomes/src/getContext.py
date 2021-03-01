@@ -148,15 +148,15 @@ def getDomains(query, db):
     domains = db.pfam.find({'g' : query})
     doms = []
     dom_keys = []
-    print(list(domains))
     if len(list(domains)) < 1:
+        print(list(domains))
         return ""
     else:
         for d in domains:
-            print(d)
             key = d['Pf']
+            print(key)
             if key not in dom_keys:
-                print(d)
+                print(key)
                 dom_keys.append(key)
                 doms.append({
                     'id' : d['Pf'],
