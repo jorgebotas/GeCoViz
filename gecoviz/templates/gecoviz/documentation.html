@@ -34,7 +34,7 @@
           data-toggle="pill" href="#v-pills-subtree" 
           role="tab" aria-controls="v-pills-subtree" 
           aria-selected="false"
-        >Toggle subtrees</a>
+        >Phylogenetic tree</a>
     </div>
   </div>
   <div class="col-10">
@@ -72,18 +72,6 @@
                  src="{% static "gecoviz/img/shuffle.gif" %}"/>
       </div>
       <div class="tab-pane fade" 
-          id="v-pills-subtree" role="tabpanel" 
-          aria-labelledby="v-pills-subtree-tab">
-            <ul class='mt-2 ml-4'>
-            <li>Collapse subtrees by clicking on inner nodes</li>
-            <li>Recursive toggle subtrees by using Alt+Click</li>
-            <li>Each leaf node gene neighborhood can be toggled by using Alt+Click</li>
-            </ul>
-            <img class="m-4"
-                 width=95%
-                 src="{% static "gecoviz/img/treeSpan.gif" %}"/>
-      </div>
-      <div class="tab-pane fade" 
           id="v-pills-legend" role="tabpanel" 
           aria-labelledby="v-pills-legend-tab">
             <ul class='mt-2 ml-4'>
@@ -96,6 +84,20 @@
             <img class="m-4"
                  width=95%
                  src="{% static "gecoviz/img/legend.gif" %}"/>
+      </div>
+      <div class="tab-pane fade" 
+          id="v-pills-subtree" role="tabpanel" 
+          aria-labelledby="v-pills-subtree-tab">
+            <ul class='mt-2 ml-4'>
+            <li>Hover over node to highlight its descendants and their
+                corresponding neighborhoods</li>
+            <li>Collapse subtrees by clicking on inner nodes</li>
+            <li>Recursively toggle subtrees by using Alt+Click</li>
+            <li>Each leaf node gene neighborhood can be shown/hidden by using Alt+Click</li>
+            </ul>
+            <img class="m-4"
+                 width=95%
+                 src="{% static "gecoviz/img/treeSpan.gif" %}"/>
       </div>
     </div>
   </div>
