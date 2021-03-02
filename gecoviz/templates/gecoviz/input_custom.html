@@ -82,12 +82,14 @@ Upload a .json file containing genomic information in
             anchor : gene at central position,
             pos : number with relative position to central gene (..., -2, -1, 0, 1, 2,...),
             gene : gene identifier,
+            description : gene description,
             start : genomic start position (bp),
             end : genomic end position (bp),
             strand : + / -,
             taxonomy : taxonomic assignation,
-            // Example of functionall annotation (KEGG pathway)
+            // Example of functional annotation (KEGG pathway)
             kegg : [ { id : 00260, description : "..." }, ... ]
+            // Additional fields may be added if desired
           },
           ...
         ]
