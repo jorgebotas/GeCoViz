@@ -24,6 +24,7 @@ with open(BASE_DIR + '/.env/secretKey.txt') as f:
 DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1',
+                 'localhost',
                  '.gmgfam.compgenomics.org',
                  '138.4.139.12']
 
