@@ -54,11 +54,11 @@ input[type="file"] {
     display: none !important;
 }
 
-label.input_file ~ p {
+label.input-file ~ p {
     display: none !important;
 }
 
-div.input_file {
+div.input-file {
     text-align: center !important;
     padding: 10px !important;
     border-radius: 5px !important;

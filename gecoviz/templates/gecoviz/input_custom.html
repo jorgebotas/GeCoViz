@@ -107,10 +107,10 @@ Upload a .json file containing genomic information in
            checked/>
     <label for="input_choice" class="h4">Upload Newick tree (optional)</label>
     </div>
-    <div class='input_newick'>
+    <div class='input-file input_newick'>
     <label for='input_newick' 
-           class='input_newick btn btn-sm btn-secondary mx-2'>Browse</label>
-    {{ file_form.as_p }}
+           class='input-file btn btn-sm btn-secondary mx-2'>Browse</label>
+    {{ newick_form.as_p }}
     <div class='inputfilename'>No file selected.</div>
     </div>
 </div>
@@ -122,9 +122,9 @@ Upload a .json file containing genomic information in
            checked/>
     <label for="input_choice" class="h4">Upload genomic context data</label>
     </div>
-    <div class='input_file'>
+    <div class='input-file input_file'>
     <label for='input_file' 
-           class='input_file btn btn-sm btn-secondary mx-2'>Browse</label>
+           class='input-file btn btn-sm btn-secondary mx-2'>Browse</label>
     {{ file_form.as_p }}
     <div class='inputfilename'>No file selected.</div>
     </div>

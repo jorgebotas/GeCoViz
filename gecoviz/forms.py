@@ -37,3 +37,12 @@ class FileForm(forms.Form):
                                      'accept' : '.json',
                                      'id' : 'input_file'
                                  }))
+
+class NewickForm(forms.Form):
+    newick_file = forms.FileField(label="",
+                                 label_suffix="",
+                                 required=False,
+                                 widget=forms.FileInput(attrs={
+                                     'accept' : '.nwx',
+                                     'id' : 'input_newick'
+                                 }))

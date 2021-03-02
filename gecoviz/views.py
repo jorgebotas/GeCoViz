@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.core.files.storage import FileSystemStorage
 
-from .forms import FileForm
+from .forms import FileForm, NewickForm
 
 def set_nightmode(request):
     request.session['nightmode'] = request.session.get('nightmode', False)
@@ -38,7 +38,8 @@ def input_custom(request):
                     except:
                         pass
     context = {
-        'file_form' : FileForm()
+        'file_form' : FileForm(),
+        'newick_form' : NewickForm(),
     }
     return render(request, 'gecoviz/input_custom.html', context)
 
