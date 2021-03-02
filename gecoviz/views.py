@@ -39,7 +39,7 @@ def input_custom(request):
                         inputNewick = request.FILES['input_newick']
                         newick_url = getURL(fs, inputNewick)
                     except:
-                        newick_url = '()'
+                        newick_url = '_'
                     return redirect('file_context',
                                     file_url=file_url,
                                     newick_url=newick_url)

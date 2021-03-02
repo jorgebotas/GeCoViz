@@ -39,7 +39,7 @@
         await fetch(uploaded_newick)
             .then(response => response.text())
             .then(nwx => newick = nwx)
-            .catch(_ => console.log('No tree provided'))
+            .catch(_ => newick = undefined)
         console.log(newick)
         console.log(data)
         var fields = ['showName',
