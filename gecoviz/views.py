@@ -35,12 +35,11 @@ def input_custom(request):
                     fs = FileSystemStorage()
                     inputFile = request.FILES['input_file']
                     file_url = getURL(fs, inputFile)
-                    # try:
-                    print(request.FILES)
-                    inputNewick = request.FILES['input_newick']
-                    newick_url = getURL(fs, inputNewick)
-                    # except:
-                        # newick_url = '_'
+                    try:
+                        inputNewick = request.FILES['newick_file']
+                        newick_url = getURL(fs, inputNewick)
+                    except:
+                        newick_url = '_'
                     return redirect('file_context',
                                     file_url=file_url,
                                     newick_url=newick_url)
