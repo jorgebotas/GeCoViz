@@ -105,7 +105,22 @@ Upload a .json file containing genomic information in
     <div class="card-header">
     <input type="radio" value="file" name="input_choice" id="input_choice"
            checked/>
-    <label for="input_choice" class="h4">Upload files</label>
+    <label for="input_choice" class="h4">Upload Newick tree (optional)</label>
+    </div>
+    <div class='input_newick'>
+    <label for='input_newick' 
+           class='input_newick btn btn-sm btn-secondary mx-2'>Browse</label>
+    {{ file_form.as_p }}
+    <div class='inputfilename'>No file selected.</div>
+    </div>
+</div>
+</div>
+<div class="card col-md-8 mx-auto">
+<div class="col-md-12">
+    <div class="card-header">
+    <input type="radio" value="file" name="input_choice" id="input_choice"
+           checked/>
+    <label for="input_choice" class="h4">Upload genomic context data</label>
     </div>
     <div class='input_file'>
     <label for='input_file' 
@@ -118,15 +133,18 @@ Upload a .json file containing genomic information in
 {% endblock %}
 {% block scripts %}
 <script charset="utf-8">
-     let input = document.getElementById('input_file')
-     input.addEventListener('change', (e) => {
-     console.log(input.files[0].name)
-            // Display input file upon selection
-            d3.select("div.inputfilename")
-              .style("opacity", 0);
-            d3.select("div.inputfilename")
-              .html(input.files[0].name)
-              .style("opacity", 1);
-     });
+    inputFileListener = (selector) => {
+         let inputFile = document.getElementById(selector);
+         inputFile.addEventListener('change', (e) => {
+                // Display input file upon selection
+                let inputFileName = d3.select(`.${selector} .inputfilename`);
+                inputFileName
+                  .style("opacity", 0);
+                inputFileName
+                  .html(inputFile.files[0].name)
+                  .style("opacity", 1);
+         });
+    }
+    ['input_newick', 'input_file'].forEach(inputFileListener);
 </script>
 {% endblock %}

@@ -28,6 +28,7 @@ def input_custom(request):
                 if form.is_valid():
                     try:
                         inputfile = request.FILES['input_file']
+                        print(request.FILES)
                         fs = FileSystemStorage()
                         filename = fs.save(inputfile.name, inputfile)
                         uploaded_file_url = fs.url(filename)
