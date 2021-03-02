@@ -77,7 +77,6 @@ Upload a .json file containing genomic information in
                <pre class="p-0 m-3" style="background:var(--sand);">
                     <code>
         [ 
-          // For each gene in the gene neighborhood
           { 
             anchor : gene at central position,
             pos : number with relative position to central gene (..., -2, -1, 0, 1, 2,...),
@@ -92,7 +91,7 @@ Upload a .json file containing genomic information in
 
             // Additional fields may be added if desired
           },
-          ...
+          ... // Repeat for each gene in the gene neighborhood
         ]
                 </code>
                </pre>
