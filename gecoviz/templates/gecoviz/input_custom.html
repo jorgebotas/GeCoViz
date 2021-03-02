@@ -11,104 +11,88 @@ Upload a .tsv file containing genomic information in
     style="font-size:80%"
    {% comment %}style="background:var(--sand);"{% endcomment %}
    >
-   <div class="table-responsive collapse" id='inputFormat'>
-       <table class="table table-vcenter card-table
-           text-center mb-0">
-           <thead>
-               <tr>
-                   <th>Anchor</th>
-                   <th>Pos</th>
-                   <th>Gene</th>
-                   {% comment %}<th>Gene name</th>{% endcomment %}
-                   <th>Start</th>
-                   <th>End</th>
-                   <th>Strand</th>
-                   <th>Taxonomy</th>
-                   <th>KEGG</th>
-                   {% comment %}<th>eggNOG</th>{% endcomment %}
-               </tr>
-           </thead>
-           <tbody style="font-size:.8em;">
-               <tr>
-                   <th class="p-1">
-                       Anchor gene<br>
-                       (member of studied gene
-                       family)
-                   </th>
-                   <th class="p-1">
-                       Position relative to anchor gene
-                       <br>
-                       (...,-1, 0, 1,...)
-                   </th>
-                   <th class="p-1">
-                       Gene identifier
-                   </th>
+{% comment %}   <div class="table-responsive collapse" id='inputFormat'>{% endcomment %}
+       {% comment %}<table class="table table-vcenter card-table{% endcomment %}
+           {% comment %}text-center mb-0">{% endcomment %}
+           {% comment %}<thead>{% endcomment %}
+               {% comment %}<tr>{% endcomment %}
+                   {% comment %}<th>Anchor</th>{% endcomment %}
+                   {% comment %}<th>Pos</th>{% endcomment %}
+                   {% comment %}<th>Gene</th>{% endcomment %}
+                   {% comment %}[><th>Gene name</th><]{% endcomment %}
+                   {% comment %}<th>Start</th>{% endcomment %}
+                   {% comment %}<th>End</th>{% endcomment %}
+                   {% comment %}<th>Strand</th>{% endcomment %}
+                   {% comment %}<th>Taxonomy</th>{% endcomment %}
+                   {% comment %}<th>KEGG</th>{% endcomment %}
+                   {% comment %}[><th>eggNOG</th><]{% endcomment %}
+               {% comment %}</tr>{% endcomment %}
+           {% comment %}</thead>{% endcomment %}
+           {% comment %}<tbody style="font-size:.8em;">{% endcomment %}
+               {% comment %}<tr>{% endcomment %}
                    {% comment %}<th class="p-1">{% endcomment %}
-                       {% comment %}Gene preferred name for display{% endcomment %}
+                       {% comment %}Anchor gene<br>{% endcomment %}
+                       {% comment %}(member of studied gene{% endcomment %}
+                       {% comment %}family){% endcomment %}
                    {% comment %}</th>{% endcomment %}
-                   <th class="p-1">
-                       Start position in genome (bp)
-                   </th>
-                   <th class="p-1">
-                       End position in genome (bp)
-                   </th>
-                   <th class="p-1">
-                       + / -
-                   </th>
-                   <th class="p-1">
-                       Taxonomic assignation
-                   </th>
-                   <th class="p-1">
-                       Functional info example<br>
-                       [{id : 00260, description : "..."}]
-                   </th>
                    {% comment %}<th class="p-1">{% endcomment %}
-                       {% comment %}Functional info example (COG404,{% endcomment %}
-                       {% comment %}COG0665,...){% endcomment %}
+                       {% comment %}Position relative to anchor gene{% endcomment %}
+                       {% comment %}<br>{% endcomment %}
+                       {% comment %}(...,-1, 0, 1,...){% endcomment %}
                    {% comment %}</th>{% endcomment %}
-               </tr>
-           </tbody>
-       </table>
-   </div>
-</div>
+                   {% comment %}<th class="p-1">{% endcomment %}
+                       {% comment %}Gene identifier{% endcomment %}
+                   {% comment %}</th>{% endcomment %}
+                   {% comment %}[><th class="p-1"><]{% endcomment %}
+                       {% comment %}[>Gene preferred name for display<]{% endcomment %}
+                   {% comment %}[></th><]{% endcomment %}
+                   {% comment %}<th class="p-1">{% endcomment %}
+                       {% comment %}Start position in genome (bp){% endcomment %}
+                   {% comment %}</th>{% endcomment %}
+                   {% comment %}<th class="p-1">{% endcomment %}
+                       {% comment %}End position in genome (bp){% endcomment %}
+                   {% comment %}</th>{% endcomment %}
+                   {% comment %}<th class="p-1">{% endcomment %}
+                       {% comment %}+ / -{% endcomment %}
+                   {% comment %}</th>{% endcomment %}
+                   {% comment %}<th class="p-1">{% endcomment %}
+                       {% comment %}Taxonomic assignation{% endcomment %}
+                   {% comment %}</th>{% endcomment %}
+                   {% comment %}<th class="p-1">{% endcomment %}
+                       {% comment %}Functional info example<br>{% endcomment %}
+                       {% comment %}[{id : 00260, description : "..."}]{% endcomment %}
+                   {% comment %}</th>{% endcomment %}
+                   {% comment %}[><th class="p-1"><]{% endcomment %}
+                       {% comment %}[>Functional info example (COG404,<]{% endcomment %}
+                       {% comment %}[>COG0665,...)<]{% endcomment %}
+                   {% comment %}[></th><]{% endcomment %}
+               {% comment %}</tr>{% endcomment %}
+           {% comment %}</tbody>{% endcomment %}
+       {% comment %}</table>{% endcomment %}
+   {% comment %}</div>{% endcomment %}
+{% comment %}</div>{% endcomment %}
 
-        {% comment %}<div class="language-plaintext highlighter-rouge collapse" id="jsonFormat">{% endcomment %}
-           {% comment %}<div class="highlight">{% endcomment %}
-               {% comment %}<pre class="p-0 m-3" style="background:var(--sand);">{% endcomment %}
-                    {% comment %}<code>{% endcomment %}
-        {% comment %}cluster : { {% endcomment %}
-            {% comment %}gene : {{% endcomment %}
-                {% comment %}neighborhood : {{% endcomment %}
-                    {% comment %}[pos : int] : { // [-nLeft, nRight]{% endcomment %}
-                        {% comment %}gene : str,{% endcomment %}
-                        {% comment %}preferred_name : str,{% endcomment %}
-                        {% comment %}strand : ['+', '-'],{% endcomment %}
-                        {% comment %}start : int,{% endcomment %}
-                        {% comment %}end : int,{% endcomment %}
-                        {% comment %}size : int,{% endcomment %}
-                        {% comment %}frequency : int,{% endcomment %}
-                        {% comment %}n_contig : int,{% endcomment %}
-                        {% comment %}// Functional assignation{% endcomment %}
-                        {% comment %}KEGG : {{% endcomment %}
-                            {% comment %}id : {{% endcomment %}
-                                {% comment %}description : str,{% endcomment %}
-                            {% comment %}}{% endcomment %}
-                        {% comment %}}, {% endcomment %}
-                        {% comment %}eggNOG : {{% endcomment %}
-                            {% comment %}level : {{% endcomment %}
-                                {% comment %}id : {{% endcomment %}
-                                    {% comment %}description : str,{% endcomment %}
-                                {% comment %}}{% endcomment %}
-                            {% comment %}}{% endcomment %}
-                        {% comment %}},{% endcomment %}
-                    {% comment %}}, {% endcomment %}
-                {% comment %}}{% endcomment %}
-            {% comment %}}{% endcomment %}
-        {% comment %}}{% endcomment %}
-                {% comment %}</code>{% endcomment %}
-               {% comment %}</pre>{% endcomment %}
-           {% comment %}</div> {% endcomment %}
-        {% comment %}</div>{% endcomment %}
+        <div class="language-plaintext highlighter-rouge collapse" id="inputFormat">
+           <div class="highlight">
+               <pre class="p-0 m-3" style="background:var(--sand);">
+                    <code>
+        [ 
+          { 
+            anchor : gene at central position,
+            pos : number with relative position to central gene,
+            gene : gene identifier,
+            start : genomic start position (bp),
+            end : genomic end position (bp),
+            strand : + / -,
+            taxonomy : taxonomic assignation,
+            // Example of functionall annotation (KEGG pathway)
+            kegg : [ { id : 00260, description : "..." }, ... ]
+          }
+        ]
+                </code>
+               </pre>
+           </div> 
+        </div>
 
 {% endblock %}
 {% block options %}
