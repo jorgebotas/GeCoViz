@@ -36,12 +36,12 @@
         })
         // GET NEWICK IF PROVIDED IN URL...
         let newick;
-        await fetch(uploaded_newick)
-            .then(response => response.text())
-            .then(nwx => newick = nwx)
-            .catch(_ => newick = undefined)
-        console.log(newick)
-        console.log(data)
+        if (uploaded_newick != '_') {
+            await fetch(uploaded_newick)
+                .then(response => response.text())
+                .then(nwx => newick = nwx)
+                .catch(_ => newick = undefined)
+        }
         var fields = ['showName',
                         'tax_id', 
                         'tax_desc',
