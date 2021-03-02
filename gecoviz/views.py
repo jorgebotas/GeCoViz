@@ -19,6 +19,11 @@ def start(request):
     return render(request, 'gecoviz/start.html', {})
 
 def input_custom(request):
+    def getURL(fs, inputFile):
+        filename = fs.save(inputFile.name, inputFile)
+        uploaded_file_url = fs.url(filename)
+        url = ",".join(uploaded_file_url.strip().split("/"))
+        return url
     try:
         set_nightmode(request)
     except:
@@ -27,19 +32,22 @@ def input_custom(request):
                 form = FileForm(request.POST)
                 if form.is_valid():
                     try:
-                        inputfile = request.FILES['input_file']
-                        print(request.FILES)
                         fs = FileSystemStorage()
-                        filename = fs.save(inputfile.name, inputfile)
-                        uploaded_file_url = fs.url(filename)
-                        url = ",".join(uploaded_file_url.strip().split("/"))
+                        inputFile = request.FILES['input_file']
+                        file_url = getURL(fs, inputFile)
+                        try:
+                            inputNewick = request.FILES['input_newick']
+                            newick_url = getURL(fs, inputNewick)
+                        except:
+                            newick_url = ''
+                        url = file_url + '/' + newick_url
                         return redirect('file_context',
                                         uploaded_url=url)
                     except:
                         pass
     context = {
-        'file_form' : FileForm(),
         'newick_form' : NewickForm(),
+        'file_form' : FileForm(),
     }
     return render(request, 'gecoviz/input_custom.html', context)
 

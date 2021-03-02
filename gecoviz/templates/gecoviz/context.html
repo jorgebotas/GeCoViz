@@ -36,10 +36,11 @@
         })
         // GET NEWICK IF PROVIDED IN URL...
         let newick;
-        await fetch(uploaded_url)
+        await fetch(uploaded_newick)
             .then(response => response.text())
-            .then(nwx => fetch = nwx)
+            .then(nwx => newick = nwx)
             .catch(_ => console.log('No tree provided'))
+        console.log(newick)
         console.log(data)
         var fields = ['showName',
                         'tax_id', 
