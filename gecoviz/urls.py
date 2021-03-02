@@ -10,7 +10,7 @@ urlpatterns = [
     # path(r'api/context/<str:query>/<int:cutoff>/', api.context),
     # CUSTOM INPUT
     path('custom/input/', views.input_custom, name='input_custom'),
-    path('custom/filecontext/<str:uploaded_url>/',
+    path('custom/filecontext/<str:file_url>/<str:newick_url>/',
          views.file_context,
          name='file_context'),
     path('documentation/', views.documentation, name='documentation'),

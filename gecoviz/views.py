@@ -40,9 +40,9 @@ def input_custom(request):
                         newick_url = getURL(fs, inputNewick)
                     except:
                         newick_url = ''
-                    url = file_url + '/' + newick_url
                     return redirect('file_context',
-                                    uploaded_url=url)
+                                    file_url=file_url,
+                                    newick_url=newick_url)
                     # except:
                         # pass
     context = {
@@ -51,13 +51,14 @@ def input_custom(request):
     }
     return render(request, 'gecoviz/input_custom.html', context)
 
-def file_context(request, uploaded_url):
+def file_context(request, file_url , newick_url):
     try:
         set_nightmode(request)
     except:
         pass
     return render(request, 'gecoviz/context.html', {
-                                            'uploaded_url' : uploaded_url,
+                                            'file_url' : file_url,
+                                            'newick_url' : newick_url,
                                                  })
 
 def documentation(request):
