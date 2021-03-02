@@ -31,20 +31,20 @@ def input_custom(request):
             if request.POST['input_choice'] == "file":
                 form = FileForm(request.POST)
                 if form.is_valid():
+                    # try:
+                    fs = FileSystemStorage()
+                    inputFile = request.FILES['input_file']
+                    file_url = getURL(fs, inputFile)
                     try:
-                        fs = FileSystemStorage()
-                        inputFile = request.FILES['input_file']
-                        file_url = getURL(fs, inputFile)
-                        try:
-                            inputNewick = request.FILES['input_newick']
-                            newick_url = getURL(fs, inputNewick)
-                        except:
-                            newick_url = ''
-                        url = file_url + '/' + newick_url
-                        return redirect('file_context',
-                                        uploaded_url=url)
+                        inputNewick = request.FILES['input_newick']
+                        newick_url = getURL(fs, inputNewick)
                     except:
-                        pass
+                        newick_url = ''
+                    url = file_url + '/' + newick_url
+                    return redirect('file_context',
+                                    uploaded_url=url)
+                    # except:
+                        # pass
     context = {
         'newick_form' : NewickForm(),
         'file_form' : FileForm(),
