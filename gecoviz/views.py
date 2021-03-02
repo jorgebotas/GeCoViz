@@ -36,6 +36,7 @@ def input_custom(request):
                     inputFile = request.FILES['input_file']
                     file_url = getURL(fs, inputFile)
                     # try:
+                    print(request.FILES)
                     inputNewick = request.FILES['input_newick']
                     newick_url = getURL(fs, inputNewick)
                     # except:
