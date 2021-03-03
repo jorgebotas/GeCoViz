@@ -15056,10 +15056,6 @@ Antialiasing
     filter: brightness(0) invert(1);
   }
 }
-* {
-  transition: all 0.5s !important;
-}
-
 a {
   text-decoration: none !important;
   transition: opacity 0.5s;
