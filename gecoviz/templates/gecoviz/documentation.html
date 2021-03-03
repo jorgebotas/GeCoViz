@@ -6,12 +6,12 @@
   <div class='row card-body'>
   <div class="col-2">
     <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-      <a class="nav-link active" id="v-pills-webpage-tab" 
-          data-toggle="pill" href="#v-pills-webpage" 
-          role="tab" aria-controls="v-pills-webpage" 
-          aria-selected="true"
-        >Webpage</a>
-      <a class="nav-link" id="v-pills-nNeigh-tab" 
+      {% comment %}<a class="nav-link active" id="v-pills-webpage-tab" {% endcomment %}
+          {% comment %}data-toggle="pill" href="#v-pills-webpage" {% endcomment %}
+          {% comment %}role="tab" aria-controls="v-pills-webpage" {% endcomment %}
+          {% comment %}aria-selected="true"{% endcomment %}
+        {% comment %}>Webpage</a>{% endcomment %}
+      <a class="nav-link active" id="v-pills-nNeigh-tab" 
           data-toggle="pill" href="#v-pills-nNeigh" 
           role="tab" aria-controls="v-pills-nNeigh" 
           aria-selected="true"
@@ -50,17 +50,17 @@
   </div>
   <div class="col-10">
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade show active" 
+      <div class="tab-pane fade" 
           id="v-pills-webpage" role="tabpanel" 
           aria-labelledby="v-pills-webpage-tab">
             <p class='ml-5 mt-2'>
                 Toggle night mode on the top right corner
             </p>
-            <img class="m-4"
-                 width=95%
-                 src="{% static "gecoviz/img/nNeigh.gif" %}"/>
+            {% comment %}<img class="m-4"{% endcomment %}
+                 {% comment %}width=95%{% endcomment %}
+                 {% comment %}src="{% static "gecoviz/img/nNeigh.gif" %}"/>{% endcomment %}
       </div>
-      <div class="tab-pane fade" 
+      <div class="tab-pane fade show active" 
           id="v-pills-nNeigh" role="tabpanel" 
           aria-labelledby="v-pills-nNeigh-tab">
             <p class='ml-5 mt-2'>
