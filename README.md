@@ -1,3 +1,3 @@
 # GeCoViz
 
-Gene Context Visualizer
+Genomic Context Visualizer
