@@ -46,7 +46,7 @@ a {
 }
 
 .choices .dropdown-menu .dropdown-item.is-highlighted {
-  color: var(--dark-gray);
+  color: var(--dark-gray) !important;
 }
 
 /*# sourceMappingURL=darktheme.css.map */
