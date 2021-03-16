@@ -20,3 +20,28 @@ a {
 .link-secondary:hover {
   color: lightgray;
 }
+
+.form-selectgroup-label {
+  color: var(--dark-gray);
+  background-color: rgba(132, 144, 215, 0.25);
+}
+
+.form-selectgroup-input:checked + .form-selectgroup-label {
+  background: var(--indigo);
+  border-color: var(--dark-indigo);
+  box-shadow: 0 1px 1px 0 var(--dark-indigo);
+}
+
+.form-select {
+  color: var(--dark-gray);
+  background-color: #3f4c61;
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3e%3cpath fill='none' stroke='lightgray' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M2 5l6 6 6-6'/%3e%3c/svg%3e");
+  border-color: var(--dark-gray);
+}
+
+.choices__list {
+  background-color: #3f4c61;
+  color: var(--dark-gray);
+}
+
+/*# sourceMappingURL=darktheme.css.map */
