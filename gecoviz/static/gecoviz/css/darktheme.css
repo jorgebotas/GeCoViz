@@ -27,6 +27,7 @@ a {
 }
 
 .form-selectgroup-input:checked + .form-selectgroup-label {
+  color: var(--dark-gray);
   background: var(--indigo);
   border-color: var(--dark-indigo);
   box-shadow: 0 1px 1px 0 var(--dark-indigo);
@@ -41,6 +42,10 @@ a {
 
 .choices__list {
   background-color: #3f4c61;
+  color: var(--dark-gray);
+}
+
+.choices .dropdown-menu .dropdown-item.is-highlighted {
   color: var(--dark-gray);
 }
 
