@@ -176,66 +176,64 @@ def getGeneData(gene, client, db, taxDict, keggDict):
     else: geneDesc = ""
     domains = getDomains(gene, db)
     geneInfo_fromContigs = db.contigs.find_one({"o" : gene})
-    print(geneInfo_fromContigs)
-    if len(geneInfo_fromContigs) > 0:
-        strand = geneInfo_fromContigs[0]["str"]
-        start = geneInfo_fromContigs[0]["s"]
-        end = geneInfo_fromContigs[0]["e"]
-        orfID_forAnnotation = geneInfo_fromContigs[0]["o_i"]
-        geneInfo_fromAnnotation = list(db.annotation.find({"o" :
-                                        orfID_forAnnotation}))
-        if len(geneInfo_fromAnnotation) > 0:
-            geneName = geneInfo_fromAnnotation[0]["g_n"]
-            geneDesc = geneInfo_fromAnnotation[0]["d"]
-            kegg = geneInfo_fromAnnotation[0]["Kegg"]
-            keggJSON = []
-            if kegg != "":
-                keggList = kegg.split(",")
-                for k in keggList:
-                    if keggDict:
-                        try:
-                            desc = keggDict[k]
-                            keggJSON.append({
-                                'id' : k,
-                                'description' : desc
-                            })
-                        except:
-                            pass
-                    else:
+    strand = geneInfo_fromContigs[0]["str"]
+    start = geneInfo_fromContigs[0]["s"]
+    end = geneInfo_fromContigs[0]["e"]
+    orfID_forAnnotation = geneInfo_fromContigs[0]["o_i"]
+    geneInfo_fromAnnotation = list(db.annotation.find({"o" :
+                                    orfID_forAnnotation}))
+    if len(geneInfo_fromAnnotation) > 0:
+        geneName = geneInfo_fromAnnotation[0]["g_n"]
+        geneDesc = geneInfo_fromAnnotation[0]["d"]
+        kegg = geneInfo_fromAnnotation[0]["Kegg"]
+        keggJSON = []
+        if kegg != "":
+            keggList = kegg.split(",")
+            for k in keggList:
+                if keggDict:
+                    try:
+                        desc = keggDict[k]
                         keggJSON.append({
                             'id' : k,
+                            'description' : desc
                         })
-            eggnog = geneInfo_fromAnnotation[0]["enog"]
-            eggJSON = []
-            if eggnog != "":
-                eggList = eggnog.split(",")
-                for e in eggList:
-                    e = e.split('@')
-                    level = e[1]
-                    eggInfo = {
-                        'id' : e[0],
-                        'level' : level,
-                        'description' : get_eggDescription(e[0], client)
-                    }
-                    if taxDict:
-                        levelDesc = get_taxLevel(e[1], taxDict)
-                        if levelDesc != '': eggInfo['levelDesc'] = levelDesc
-                    eggJSON.append(eggInfo)
-        else:
-            geneName, keggJSON, eggJSON = "", "", ""
-        taxonomy, gene = gene.split('.')
-        geneInfo = [gene, geneName, geneDesc,
-                    strand, start, end,
-                    taxonomy, domains,
-                    keggJSON, eggJSON]
+                    except:
+                        pass
+                else:
+                    keggJSON.append({
+                        'id' : k,
+                    })
+        eggnog = geneInfo_fromAnnotation[0]["enog"]
+        eggJSON = []
+        if eggnog != "":
+            eggList = eggnog.split(",")
+            for e in eggList:
+                e = e.split('@')
+                level = e[1]
+                eggInfo = {
+                    'id' : e[0],
+                    'level' : level,
+                    'description' : get_eggDescription(e[0], client)
+                }
+                if taxDict:
+                    levelDesc = get_taxLevel(e[1], taxDict)
+                    if levelDesc != '': eggInfo['levelDesc'] = levelDesc
+                eggJSON.append(eggInfo)
     else:
-        # Gene info not found
-        geneSplit = gene.split('.')
-        if len(geneSplit) > 1:
-            taxonomy, gene = gene.split('.')
-        else:
-            taxonomy = ""
-        geneInfo = [gene, "", "", "", "", "", taxonomy, domains,  "", ""]
+        geneName, keggJSON, eggJSON = "", "", ""
+    taxonomy, gene = gene.split('.')
+    geneInfo = [gene, geneName, geneDesc,
+                strand, start, end,
+                taxonomy, domains,
+                keggJSON, eggJSON]
+    # else:
+        # # Gene info not found
+        # geneSplit = gene.split('.')
+        # if len(geneSplit) > 1:
+            # taxonomy, gene = gene.split('.')
+        # else:
+            # taxonomy = ""
+        # geneInfo = [gene, "", "", "", "", "", taxonomy, domains,  "", ""]
     return geneInfo
 
 def getNeighData(neighDict, client, db):
