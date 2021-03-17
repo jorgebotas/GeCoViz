@@ -175,7 +175,7 @@ def getGeneData(gene, client, db, taxDict, keggDict):
     if len(geneDesc) > 0: geneDesc = geneDesc[0]["d"]
     else: geneDesc = ""
     domains = getDomains(gene, db)
-    geneInfo_fromContigs = db.contigs.findOne({"o" : gene})
+    geneInfo_fromContigs = db.contigs.find_one({"o" : gene})
     print(geneInfo_fromContigs)
     if len(geneInfo_fromContigs) > 0:
         strand = geneInfo_fromContigs[0]["str"]
