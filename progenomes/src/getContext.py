@@ -176,10 +176,10 @@ def getGeneData(gene, client, db, taxDict, keggDict):
     else: geneDesc = ""
     domains = getDomains(gene, db)
     geneInfo_fromContigs = db.contigs.find_one({"o" : gene})
-    strand = geneInfo_fromContigs[0]["str"]
-    start = geneInfo_fromContigs[0]["s"]
-    end = geneInfo_fromContigs[0]["e"]
-    orfID_forAnnotation = geneInfo_fromContigs[0]["o_i"]
+    strand = geneInfo_fromContigs.get("str", "+")
+    start = geneInfo_fromContigs.get("s", "error")
+    end = geneInfo_fromContigs.get("e", "error")
+    orfID_forAnnotation = geneInfo_fromContigs.get("o_i", "error")
     geneInfo_fromAnnotation = list(db.annotation.find({"o" :
                                     orfID_forAnnotation}))
     if len(geneInfo_fromAnnotation) > 0:
