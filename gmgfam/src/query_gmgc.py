@@ -272,7 +272,7 @@ def neighbor_analysis(unigenes):
             # Order gene info by neighbor position
             gene_info_list = [gene_info.get(n, {'gene': n, 'strand': '+'})
                               for n in neigh_list]
-            neighborhoods[unigene_list] = gene_info_list
+            neighborhoods[tuple(unigene_list)] = gene_info_list
         # Most common neighborhood (by unigene assignation)
         n_keys = list(neighborhoods.keys())
         most_common = max(n_keys, key=n_keys.count)
