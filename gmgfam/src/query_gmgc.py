@@ -24,7 +24,7 @@ def mongo_connect():
         coll_e5 = db.eggnog_v5
         coll_taxa = db.taxo_map
 
-    return [client, db, coll_unigene, coll_clusters, coll_taxa, coll_e5]
+    return [client, db, coll_unigene, coll_clusters, coll_e5, coll_taxa]
 
 
 def get_pickle(filepath):
