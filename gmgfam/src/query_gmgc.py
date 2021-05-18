@@ -319,7 +319,8 @@ def query_fam(query, n_range=2, cutoff=0):
     member_list = get_members(unigene_to_cl(query))
     unigene_list = [clean_unigene(cl_to_unigene(m)) for m in member_list]
 
-    print(len(unigene_list)
+    print(len(unigene_list))
+
     analysis = neighbor_analysis(unigene_list)
     print(analysis)
     return analysis
