@@ -39,8 +39,10 @@ def get_pickle(filepath):
 def clean_unigene(gmgc):
         '''in case GMGC nomeclature was used in the input example,
          GMGC.100_000_123.UNKNOWN words after/before . are removed'''
-        gmgc_clean = gmgc.split(".")[1]
-        return gmgc_clean
+        gmgc_clean = gmgc.split(".")
+        if len(gmgc_clean) > 1:
+            return gmgc_clean[1]
+        return gmgc
 
 
 def cl_to_unigene(cl):
