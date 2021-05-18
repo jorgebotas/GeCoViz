@@ -140,7 +140,7 @@ def write_newick(query_cluster, results_dir):
         node.name = node.name.split('.')[1]
         cluster_unigenes.append(node.name)
     newick = t.write()
-    with open(results_dir + query_cluster + "_newick.txt", "w") as outputfile:
+    with open(results_dir + query_cluster + "_tree.nwx", "w") as outputfile:
         outputfile.write(newick)
     return
 
