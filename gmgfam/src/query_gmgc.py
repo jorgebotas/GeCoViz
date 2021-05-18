@@ -153,7 +153,12 @@ def swap_strand(s, reference_s):
             return "-"
         elif s == "-":
             return "+"
-    return "NA"
+    return "+"
+
+
+def swap_strands(gene_info, reference_s):
+    for gene in gene_info.values():
+        gene['strand'] = swap_strand(gene['strand'], reference_s)
 
 
 def get_members(cl):
@@ -215,32 +220,32 @@ def get_gene_info(genes):
     """ Retrieve start, end and strand data from gene name """
     matches = coll_unigenes.find({ 'o.g': {'$in': genes} })
     info = {}
-    all_genes = set()
     for m in matches:
         for gene_info in m.get('o', []):
             gene = gene_info['g']
             if gene not in genes:
                 continue
-            all_genes.add(gene)
             start, end, strand = gene_info['s']
             info[gene] = {
+                'unigene': m['u'],
                 'gene': gene, 
                 'strand': strand, 
                 'start': start,
                 'end': end,
                 'size': abs(int(end) - int(start)),
             }
-    all_genes = list(all_genes)
-    functional_info = get_functional_info(all_genes)
-    tax_preds = get_taxonomic_prediction(all_genes)
-    for gene, gene_info in info.items():
-        unigene_info = {
-                'tax_prediction': tax_preds.get(gene, ''),
-                'domains': tax_preds.get(gene, ''),
-        }
-        fn_info = functional_info.get(gene, {})
-        info[gene] = {**gene_info, **unigene_info, **fn_info}
+    return info
 
+
+def get_unigene_info(unigenes):
+    functional_info = get_functional_info(unigenes)
+    tax_preds = get_taxonomic_prediction(unigenes)
+    info = {}
+    info = { 
+            unigene: {
+                'tax_prediction': tax_preds.get(unigene, ''),
+                **functional_info.get(unigene, {})
+            } for unigene in unigenes }
     return info
 
 
@@ -249,37 +254,46 @@ def neighbor_analysis(unigenes):
     cluster_neighbors = { unigene: get_neighbors(orfs)
                   for unigene, orfs in cluster_orfs.items() }
     cluster_neighborhoods = {} 
-    all_genes = []
+    all_unigenes = set()
 
     # First obtain most common contigs for each unigene in the cluster
     for unigene, orfs in cluster_neighbors.items():
-        neighborhoods = []
+        neighborhoods = {}
         for v in orfs.values():
             central_strand, neigh_list = v.values()
             # Swap neighborhood order if central gene in negative strand
             # All central genes must be positively oriented
             if central_strand == '-':
                 neigh_list.reverse()
-            neighborhoods.append(neigh_list)
-        # Most common neighborhood
-        print(neighborhoods)
-        most_common = max(neighborhoods, key=neighborhoods.count)
-        cluster_neighborhoods[unigene] = most_common
-        all_genes += most_common
+            gene_info = get_gene_info(neigh_list)
+            # Swap strands if central_strand is negative
+            swap_strands(gene_info, central_strand)
+            unigene_list = [g['unigene'] for g in gene_info]
+            # Order gene info by neighbor position
+            gene_info_list = [gene_info[n] for n in neigh_list]
+            neighborhoods[unigene_list] = gene_info_list
+        # Most common neighborhood (by unigene assignation)
+        n_keys = list(neighborhoods.keys())
+        most_common = max(n_keys, key=n_keys.count)
+        most_common_unigenes = most_common
+        most_common_genes = neighborhoods[most_common]
 
-    # Time gene info query
+        all_unigenes.add(most_common_unigenes)
+        cluster_neighborhoods[unigene] = most_common_genes
+
+    # Time unigene info query
     t0 = time.time()
-    gene_info = get_gene_info(all_genes)
-    print(f'\n{time.time()-t0}s to query gene info\n')
+    unigene_info = get_unigene_info(all_unigenes)
+    print(f'\n{round(time.time()-t0, 3)}s to query gene info\n')
 
     cluster_neighborhood_info = []
     for unigene, neighborhood in cluster_neighborhoods.items():
-        for i, neighbor in enumerate(neighborhood):
+        for i, neighbor_info in enumerate(neighborhood):
             n_info = {
                     'anchor': unigene, 
                     'pos': int(i - neighbor_range),
-                    'gene': neighbor, 
-                    **gene_info.get(neighbor, {}),
+                    **neighbor_info,
+                    **unigene_info.get(neighbor_info['unigene'], {}),
             }
             cluster_neighborhood_info.append(n_info)
     return cluster_neighborhood_info
@@ -322,17 +336,13 @@ def query_fam(query, n_range=2, cutoff=0):
     ### Analysis
     analysis = {}
 
-    print('prenewick')
     write_newick(query, RESULTS_PATH)
-    print('members')
     member_list = get_members(unigene_to_cl(query))
-    print('unigenes')
     unigene_list = [clean_unigene(m) for m in member_list]
     # unigene_list = [clean_unigene(cl_to_unigene(m)) for m in member_list]
 
-    print(len(unigene_list))
+    print(f'\nNumber of members: {len(unigene_list)}\n')
 
     analysis = neighbor_analysis(unigene_list)
-    print(analysis)
     return analysis
 
