@@ -294,7 +294,7 @@ def neighbor_analysis(unigenes):
                     'anchor': unigene, 
                     'pos': int(i - neighbor_range),
                     **neighbor_info,
-                    **unigene_info.get(neighbor_info['unigene'], {}),
+                    **unigene_info.get(neighbor_info.get('unigene', ''), {}),
             }
             cluster_neighborhood_info.append(n_info)
     return cluster_neighborhood_info
