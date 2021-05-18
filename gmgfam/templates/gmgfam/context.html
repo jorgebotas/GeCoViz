@@ -81,7 +81,7 @@
         const gecoviz = GeCoViz(selector)
             .treeData(newick, fields)
             .contextData(data)
-            .nSide(5)
+            .nSide(4)
             .geneText("Gene name")
             .annotation("Orthologous groups", 2)
             .draw();
@@ -94,7 +94,7 @@
             .style('visibility', 'visible');
 
         setTimeout(() => {
-            gecoviz.nSide(5);
+            gecoviz.nSide(4);
         }, 10)
 
     }
