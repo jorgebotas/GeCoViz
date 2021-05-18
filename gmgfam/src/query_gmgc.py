@@ -258,6 +258,7 @@ def neighbor_analysis(unigenes):
                 neigh_list.reverse()
             neighborhoods.append(neigh_list)
         # Most common neighborhood
+        print(neighborhoods)
         most_common = max(neighborhoods, key=neighborhoods.count())
         cluster_neighborhoods[unigene] = most_common
         all_genes += most_common
