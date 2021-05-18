@@ -216,19 +216,20 @@ def get_gene_info(genes):
     info = {}
     all_genes = set()
     for m in matches:
-        gene_info = next(g for g in m.get('o', []) if g['g'] in genes)
-
-        print(gene_info)
-        gene = gene_info['g']
-        all_genes.add(gene)
-        start, end, strand = gene_info['s']
-        info[gene] = {
-            'gene': gene, 
-            'strand': strand, 
-            'start': start,
-            'end': end,
-            'size': abs(int(end) - int(start)),
-        }
+        for gene_info in m.get('o', []):
+            gene = gene_info['g']
+            if gene not in genes:
+                continue
+            print(gene_info)
+            all_genes.add(gene)
+            start, end, strand = gene_info['s']
+            info[gene] = {
+                'gene': gene, 
+                'strand': strand, 
+                'start': start,
+                'end': end,
+                'size': abs(int(end) - int(start)),
+            }
     all_genes = list(all_genes)
     functional_info = get_functional_info(all_genes)
     prefered_names = get_preferred_name(all_genes)
