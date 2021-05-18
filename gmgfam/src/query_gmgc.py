@@ -245,6 +245,7 @@ def neighbor_analysis(unigenes):
     cluster_orfs = get_orfs(unigenes)
     cluster_neighbors = { unigene: get_neighbors(orfs)
                   for unigene, orfs in cluster_orfs.items() }
+    cluster_neighborhoods = {} 
     all_genes = []
 
     # First obtain most common contigs for each unigene in the cluster
