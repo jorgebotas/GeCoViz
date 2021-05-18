@@ -123,7 +123,6 @@ def retrieve_gene_info(gene, coll_unigenes):
 def retrieve_neighbors(gmgc_cluster,neighbor_range):
         """ get a dict containing -2-1+1+2 neighbor genes list surrounding
         the unigenes in every contig and strand orientation """
-
         neigh_dict = {}
         for k,v in gmgc_cluster.items():
                 gene_ordered =[]
@@ -642,7 +641,6 @@ def get_taxonomic_prediction(unigene, db, ncbi):
                         "id" : tid,
                         "description" : desc
                     }}
-
     except: pass
     return tax_pred
 

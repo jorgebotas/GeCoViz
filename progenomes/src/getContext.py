@@ -113,16 +113,18 @@ def getNeighbors(members, nNeigh, db):
             contig, orf, *_ = m.split("_")
             contig, orf = str(contig), str(orf)
         except: continue
+        try:
+            # Split letters and numbers
+            prefix, number = re.search(r'([^0-9]+)(\d+)$', orf).groups()
+        except:
+            prefix, number = '', orf
         if "gene" in m:
-            seqs = db.contig_clusters.find({"contig" : contig})[0]["o"]
+            seqs = db.contig_clusters.find_one({"contig" : contig})
+            if seqs != 'None': seqs = seqs['o']
+            else: seqs = ''
         for pos in range(-nNeigh, nNeigh + 1):
-            try:
-                # Split letters and numbers
-                prefix, number = re.search('([^0-9]+)(\d+)$', orf).groups()
-                gene = prefix + str(int(number) + int(pos))
-            except:
-                try: gene = str(int(orf) + int(pos))
-                except: continue
+            try: gene = prefix + str(int(number) + int(pos))
+            except: continue
             if "gene" in m:
                 if gene in seqs:
                     gene = "_".join([contig, gene])
