@@ -320,7 +320,8 @@ def query_fam(query, n_range=2, cutoff=0):
     print('members')
     member_list = get_members(unigene_to_cl(query))
     print('unigenes')
-    unigene_list = [clean_unigene(cl_to_unigene(m)) for m in member_list]
+    unigene_list = [clean_unigene(m) for m in member_list]
+    # unigene_list = [clean_unigene(cl_to_unigene(m)) for m in member_list]
 
     print(len(unigene_list))
 
