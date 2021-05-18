@@ -202,7 +202,7 @@ def get_neighbors(orfs):
 
 def get_gene_info(genes):
     """ Retrieve start, end and strand data from gene name """
-    matches = coll_unigenes.find({'o.g': '$in': genes})
+    matches = coll_unigenes.find({ 'o.g': {'$in': genes} })
     info = {}
     all_genes = set()
     for m in matches:
