@@ -25,6 +25,7 @@ def get_context(request, datatype, query, cutoff):
 
 def get_tree(request, query):
     try:
+        a['a']
         with open(RESULTS_PATH + query + "_tree.nwx") as handle:
             newick = str(handle.read())
         return HttpResponse(newick, content_type='text/plain')
