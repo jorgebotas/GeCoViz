@@ -91,6 +91,7 @@ def get_functional_info(unigenes):
     clusters = { c['u']: c for c in clusters }
 
     all_ogs = set() # Save all OGs to later get their description
+    info = {}
 
     for unigene, cl in clusters.items():
         kpaths = []
@@ -220,7 +221,6 @@ def get_gene_info(genes):
             gene = gene_info['g']
             if gene not in genes:
                 continue
-            print(gene_info)
             all_genes.add(gene)
             start, end, strand = gene_info['s']
             info[gene] = {
