@@ -272,7 +272,7 @@ def neighbor_analysis(unigenes):
     gene_info = get_gene_info(all_genes)
     print(f'\n{time.time()-t0}s to query gene info\n')
 
-    cluster_neighborhood_info = {}
+    cluster_neighborhood_info = []
     for unigene, neighborhood in cluster_neighborhoods.items():
         for i, neighbor in enumerate(neighborhood):
             n_info = {
