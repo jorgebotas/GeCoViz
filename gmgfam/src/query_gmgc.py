@@ -217,6 +217,7 @@ def get_gene_info(genes):
     all_genes = set()
     for m in matches:
         gene_info = m.get('o', {})
+        print(gene_info)
         gene = gene_info['g']
         all_genes.add(gene)
         start, end, strand = gene_info['s']
