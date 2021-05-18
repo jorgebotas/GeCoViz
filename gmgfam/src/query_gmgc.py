@@ -276,7 +276,7 @@ def neighbor_analysis(unigenes):
         # Most common neighborhood (by unigene assignation)
         n_keys = list(neighborhoods.keys())
         most_common = max(n_keys, key=n_keys.count)
-        most_common_unigenes = list(most_common)
+        most_common_unigenes = set(most_common)
         most_common_genes = neighborhoods[most_common]
 
         all_unigenes.add(most_common_unigenes)
@@ -284,7 +284,7 @@ def neighbor_analysis(unigenes):
 
     # Time unigene info query
     t0 = time.time()
-    unigene_info = get_unigene_info(all_unigenes)
+    unigene_info = get_unigene_info(list(all_unigenes))
     print(f'\n{round(time.time()-t0, 3)}s to query gene info\n')
 
     cluster_neighborhood_info = []
