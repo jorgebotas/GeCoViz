@@ -216,7 +216,8 @@ def get_gene_info(genes):
     info = {}
     all_genes = set()
     for m in matches:
-        gene_info = m.get('o', {})
+        gene_info = next(g for g in m.get('o', []) if g['g'] in genes)
+
         print(gene_info)
         gene = gene_info['g']
         all_genes.add(gene)
