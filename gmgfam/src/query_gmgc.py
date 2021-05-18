@@ -279,7 +279,7 @@ def neighbor_analysis(unigenes):
         most_common_unigenes = set(most_common)
         most_common_genes = neighborhoods[most_common]
 
-        all_unigenes.add(most_common_unigenes)
+        all_unigenes.update(most_common_unigenes)
         cluster_neighborhoods[unigene] = most_common_genes
 
     # Time unigene info query
