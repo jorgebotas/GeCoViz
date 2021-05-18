@@ -2,6 +2,7 @@ from collections import defaultdict
 from ete3 import Tree, NCBITaxa
 import gridfs
 from os import makedirs
+from pymongo import MongoClient
 from shutil import rmtree
 
 from django.conf import settings
