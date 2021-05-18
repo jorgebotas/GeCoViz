@@ -44,13 +44,13 @@ def clean_unigene(gmgc):
 
 
 def cl_to_unigene(cl):
-    u = coll_clusters.find_one({'cl' : cl}).get('u', cl)
-    return u
+    u = coll_clusters.find_one({'cl' : cl}) or {}
+    return u.get('u', cl)
 
 
 def unigene_to_cl(unigene):
-    cl = coll_clusters.find_one({'u' : unigene}).get('cl', '')
-    return cl
+    cl = coll_clusters.find_one({'u' : unigene}) or {}
+    return cl.get('cl', unigene)
 
 
 def get_taxonomic_prediction(unigenes):
@@ -153,7 +153,7 @@ def swap_strand(s, reference_s):
 
 
 def get_members(cl):
-    members = client.gmgc_clusters.members.find_one({'cl' : cl})
+    members = client.gmgc_clusters.members.find_one({'cl' : cl}) or {}
     return members.get('clm', [])
 
 
