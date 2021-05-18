@@ -272,7 +272,7 @@ def neighbor_analysis(unigenes):
     return cluster_neighborhood_info
 
 
-def query_fam(query, n_range, cutoff):
+def query_fam(query, n_range=2, cutoff=0):
     
     global client, db, coll_unigenes, coll_clusters, coll_e5
     client,\
@@ -314,5 +314,4 @@ def query_fam(query, n_range, cutoff):
     unigene_list = [clean_unigene(cl_to_unigene(m)) for m in member_list]
 
     analysis = neighbor_analysis(unigene_list)
-    return analysis
 
