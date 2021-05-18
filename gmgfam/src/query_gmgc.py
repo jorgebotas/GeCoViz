@@ -270,7 +270,8 @@ def neighbor_analysis(unigenes):
             swap_strands(gene_info, central_strand)
             unigene_list = [g['unigene'] for g in gene_info.values()]
             # Order gene info by neighbor position
-            gene_info_list = [gene_info[n] for n in neigh_list]
+            gene_info_list = [gene_info.get(n, {'gene': n, 'strand': '+'})
+                              for n in neigh_list]
             neighborhoods[unigene_list] = gene_info_list
         # Most common neighborhood (by unigene assignation)
         n_keys = list(neighborhoods.keys())
