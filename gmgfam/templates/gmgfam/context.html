@@ -58,6 +58,7 @@
         // ASYNC CALL TO MONGO SERVER
         var data;
         data = await get_context(query, true, cutoff);
+        console.log(data)
         // Get tree in Newick format
         var newick;
         try {
