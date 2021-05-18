@@ -276,7 +276,7 @@ def neighbor_analysis(unigenes):
         # Most common neighborhood (by unigene assignation)
         n_keys = list(neighborhoods.keys())
         most_common = max(n_keys, key=n_keys.count)
-        most_common_unigenes = most_common
+        most_common_unigenes = list(most_common)
         most_common_genes = neighborhoods[most_common]
 
         all_unigenes.add(most_common_unigenes)
