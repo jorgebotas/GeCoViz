@@ -104,7 +104,7 @@ def get_functional_info(unigenes):
                     'level': level,
                 })
         info[unigene] = {
-                'prefered_name': cl.get('p_n', '')
+                'prefered_name': cl.get('p_n', ''),
                 'Orthologous groups': ogs,
                 'KEGG pathway': kpaths,
                 'GMGFam': cl.get('cl', ''),
