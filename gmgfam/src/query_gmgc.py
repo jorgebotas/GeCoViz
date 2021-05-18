@@ -110,7 +110,7 @@ def get_functional_info(unigenes):
                     'level': level,
                 })
         info[unigene] = {
-                'prefered_name': cl.get('p_n', ''),
+                'Gene name': cl.get('p_n', ''),
                 'Orthologous groups': ogs,
                 'KEGG pathway': kpaths,
                 'GMGFam': cl.get('cl', ''),
@@ -300,7 +300,7 @@ def neighbor_analysis(unigenes):
     return cluster_neighborhood_info
 
 
-def query_fam(query, n_range=2, cutoff=0):
+def query_fam(query, n_range=10, cutoff=0):
     
     global client, db, coll_unigenes, coll_clusters, coll_e5, coll_taxa
     client,\

@@ -50,7 +50,6 @@
     }
 
     async function launchGeCoViz(selector) {
-        var nenv = 41;
         var urlPath  = window.location.pathname.split("/");
         var context  = urlPath[2]
         var query  = urlPath[3];
@@ -84,7 +83,7 @@
             .contextData(data)
             .nSide(2)
             .geneText("Gene name")
-            .annotation("Orthologous groups", 1)
+            .annotation("Orthologous groups", 2)
             .draw();
 
         d3.select('ul.navbar')
