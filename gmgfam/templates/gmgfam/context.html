@@ -56,7 +56,6 @@
         var cutoff  = +urlPath[4];
         // ASYNC CALL TO MONGO SERVER
         var data;
-        console.log('hi')
         data = await get_context(query, true, cutoff);
         console.log(data)
         // Get tree in Newick format
@@ -66,16 +65,17 @@
             newick = await get_newick(newick_url);
 
         } catch { newick = undefined; }
-        var fields = ['showName',
+        var fields = [
         'name',
-        'no rank',
-        'superkingdom',
-        'phylum',
-        'class',
-        'order',
-        'family',
-        'genus',
-        'species',
+        {% comment %}'showName',{% endcomment %}
+        {% comment %}'no rank',{% endcomment %}
+        {% comment %}'superkingdom',{% endcomment %}
+        {% comment %}'phylum',{% endcomment %}
+        {% comment %}'class',{% endcomment %}
+        {% comment %}'order',{% endcomment %}
+        {% comment %}'family',{% endcomment %}
+        {% comment %}'genus',{% endcomment %}
+        {% comment %}'species',{% endcomment %}
         ]
 
         const gecoviz = GeCoViz(selector)

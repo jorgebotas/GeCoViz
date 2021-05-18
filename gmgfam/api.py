@@ -15,17 +15,8 @@ def get_context(request, datatype, query, cutoff):
     analysis = query_gmgc(query)
     return JsonResponse(analysis, safe=False)
 
-# def get_tree(request, cluster):
-    # try:
-        # tree = gmgcFam_tree(cluster)
-        # return HttpResponse(tree, content_type='text/plain')
-    # except:
-        # print("NO TREE for specified cluster: " + str(cluster))
-    # return HttpResponseNotFound()
-
 def get_tree(request, query):
     try:
-        a['a']
         with open(RESULTS_PATH + query + "_tree.nwx") as handle:
             newick = str(handle.read())
         return HttpResponse(newick, content_type='text/plain')
