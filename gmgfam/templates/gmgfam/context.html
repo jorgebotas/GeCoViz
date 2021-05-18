@@ -77,13 +77,16 @@
         'family',
         'genus',
         'species',
-    ]
-        var c = GeCoViz(selector)
-                    .data(data)
-                    .nSide(2)
-                    .tree(newick, fields);
-        d3.select(selector)
-                 .call(c);
+        ]
+
+        GeCoViz(selector)
+            .treeData(newick, fields)
+            .contextData(data)
+            .nSide(2)
+            .geneText("Gene name")
+            .annotation("Orthologous groups", 1)
+            .draw();
+
         d3.select('ul.navbar')
             .style('visibility', 'visible')
             .style('opacity', 1);
