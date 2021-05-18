@@ -232,7 +232,6 @@ def get_gene_info(genes):
             }
     all_genes = list(all_genes)
     functional_info = get_functional_info(all_genes)
-    prefered_names = get_preferred_name(all_genes)
     tax_preds = get_taxonomic_prediction(unigenes)
     for gene, gene_info in info.items():
         unigene_info = {
