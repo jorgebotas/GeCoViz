@@ -152,6 +152,11 @@ def swap_strand(s, reference_s):
     return "NA"
 
 
+def get_members(cl):
+    members = client.gmgc_clusters.members.find_one({'cl' : cl})
+    return members.get('clm', [])
+
+
 def get_orfs(unigenes):
     """ Retrieve orf genomic information
     Returns dict(unigene: dict(central_gene: info))
