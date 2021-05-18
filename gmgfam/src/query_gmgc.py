@@ -8,7 +8,7 @@ from shutil import rmtree
 
 from django.conf import settings
 
-RESULTS_PATH = settings.BASE_DIR + '/gmgfam/results.tmp/'
+RESULTS_PATH = settings.BASE_DIR + '/gmgfam/tmp/'
 STATIC_PATH = settings.BASE_DIR + '/static/gecoviz/'
 
 
