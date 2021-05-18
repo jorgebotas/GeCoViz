@@ -268,7 +268,7 @@ def neighbor_analysis(unigenes):
             gene_info = get_gene_info(neigh_list)
             # Swap strands if central_strand is negative
             swap_strands(gene_info, central_strand)
-            unigene_list = [g['unigene'] for g in gene_info]
+            unigene_list = [g['unigene'] for g in gene_info.values()]
             # Order gene info by neighbor position
             gene_info_list = [gene_info[n] for n in neigh_list]
             neighborhoods[unigene_list] = gene_info_list
