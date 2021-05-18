@@ -285,7 +285,7 @@ def neighbor_analysis(unigenes):
     # Time unigene info query
     t0 = time.time()
     unigene_info = get_unigene_info(list(all_unigenes))
-    print(f'\n{round(time.time()-t0, 3)}s to query gene info\n')
+    print(f'\n{round(time.time()-t0, 3)}s to query unigene info\n')
 
     cluster_neighborhood_info = []
     for unigene, neighborhood in cluster_neighborhoods.items():
@@ -300,7 +300,7 @@ def neighbor_analysis(unigenes):
     return cluster_neighborhood_info
 
 
-def query_fam(query, n_range=10, cutoff=0):
+def query_fam(query, n_range=2, cutoff=0):
     
     global client, db, coll_unigenes, coll_clusters, coll_e5, coll_taxa
     client,\
@@ -344,6 +344,9 @@ def query_fam(query, n_range=10, cutoff=0):
 
     print(f'\nNumber of members: {len(unigene_list)}\n')
 
+    t0 = time.time()
     analysis = neighbor_analysis(unigene_list)
+    print(f'\n{round(time.time()-t0, 3)}s to complete neighborhood analysis\n')
+
     return analysis
 
