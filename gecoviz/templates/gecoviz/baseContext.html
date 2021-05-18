@@ -3,16 +3,16 @@
 {% load static %}
     <link rel="stylesheet" type="text/css" 
         href="{% static "gecoviz/assets/tabler/css/tabler-vendors.min.css" %}"/>
-    <link rel="stylesheet" type="text/css" 
-        href="{% static "gecoviz/GeCoVizjs/static/css/scrollbar.css" %}"/>
-    <link rel="stylesheet" type="text/css" 
-        href="{% static "gecoviz/GeCoVizjs/static/css/selectBox.css" %}"/>
-    <link rel="stylesheet" type="text/css" 
-        href="{% static "gecoviz/GeCoVizjs/static/css/customBar.css" %}"/>
-    <link rel="stylesheet" type="text/css" 
-        href="{% static "gecoviz/GeCoVizjs/static/css/popper.css" %}"/>
-    <link rel="stylesheet" type="text/css" 
-        href="{% static "gecoviz/GeCoVizjs/static/css/gecoviz.css" %}"/>
+{% comment %}    <link rel="stylesheet" type="text/css" {% endcomment %}
+        {% comment %}href="{% static "gecoviz/GeCoVizjs/static/css/scrollbar.css" %}"/>{% endcomment %}
+    {% comment %}<link rel="stylesheet" type="text/css" {% endcomment %}
+        {% comment %}href="{% static "gecoviz/GeCoVizjs/static/css/selectBox.css" %}"/>{% endcomment %}
+    {% comment %}<link rel="stylesheet" type="text/css" {% endcomment %}
+        {% comment %}href="{% static "gecoviz/GeCoVizjs/static/css/customBar.css" %}"/>{% endcomment %}
+    {% comment %}<link rel="stylesheet" type="text/css" {% endcomment %}
+        {% comment %}href="{% static "gecoviz/GeCoVizjs/static/css/popper.css" %}"/>{% endcomment %}
+    {% comment %}<link rel="stylesheet" type="text/css" {% endcomment %}
+        {% comment %}href="{% static "gecoviz/GeCoVizjs/static/css/gecoviz.css" %}"/>{% endcomment %}
   <div class="h2 my-4 text-center font-weight-bold">
       {% block gecoviz-title %}
       {% endblock %}
@@ -29,19 +29,7 @@
     <script src = "https://d3js.org/d3.v6.min.js"></script>
     <script src = "https://unpkg.com/@popperjs/core@2"></script>
     <script src="{% static "gecoviz/assets/tabler/libs/nouislider/distribute/nouislider.min.js" %}"></script>
-    <script src="{% static "gecoviz/GeCoVizjs/src/html2canvas.min.js" %}"></script>
-    <script src="{% static "gecoviz/GeCoVizjs/src/FileSaver.min.js" %}"></script>
-    <script src="{% static "gecoviz/GeCoVizjs/src/colors269.js" %}"></script>
-    <script src="{% static "gecoviz/GeCoVizjs/src/palette.js" %}"></script>
-    <script src="{% static "gecoviz/GeCoVizjs/src/helpers.js" %}"></script>
-    <script src="{% static "gecoviz/GeCoVizjs/src/selectBox.js" %}"></script>
-    <script src="{% static "gecoviz/GeCoVizjs/src/slider.js" %}"></script>
-    <script src="{% static "gecoviz/GeCoVizjs/src/customBar.js" %}"></script>
-    <script src="{% static "gecoviz/GeCoVizjs/src/domains.js" %}"></script>
-    <script src="{% static "gecoviz/GeCoVizjs/src/popper.js" %}"></script>
-    <script src="{% static "gecoviz/GeCoVizjs/src/newick.js" %}"></script>
-    <script src="{% static "gecoviz/GeCoVizjs/src/tree.js" %}"></script>
-    <script src="{% static "gecoviz/GeCoVizjs/src/gecoviz.js" %}"></script>
+    <script src="{% static "gecoviz/GeCoVizjs/dist/gecoviz.js" %}"></script>
     {% block gecoviz-script %}
     {% endblock %}
 {% endblock %}
