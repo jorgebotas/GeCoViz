@@ -5,6 +5,7 @@ from os import makedirs
 import pickle
 from pymongo import MongoClient
 from shutil import rmtree
+import time
 
 from django.conf import settings
 
