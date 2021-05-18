@@ -236,6 +236,7 @@ def neighbor_analysis(unigenes):
     cluster_orfs = get_orfs(unigene)
     cluster_neighbors = { unigene: get_neighbors(orfs)
                   for unigene, orfs in cluster_orfs.items() }
+    all_genes = []
 
     # First obtain most common contigs for each unigene in the cluster
     for unigene, orfs in cluster_neighbors.items():
@@ -250,9 +251,7 @@ def neighbor_analysis(unigenes):
         # Most common neighborhood
         most_common = max(neighborhoods, key=neighborhoods.count())
         cluster_neighborhoods[unigene] = most_common
-
-    all_genes = []
-    all_genes = all_genes + v for v in cluster_neighborhoods.values()
+        all_genes += most_common
 
     # Time gene info query
     t0 = time.time()
