@@ -313,7 +313,7 @@ def query_fam(query, n_range=10, cutoff=0):
     global ncbi
     ncbi = NCBITaxa()
 
-    global max_gmgc_genes, percentage_cutoff, neighbor_range
+    global max_gmgc_genes, percentage_cutoff, neighbor_range, max_orfs
     # maximun number of unigene allowed by gmgc cluster to be computed,
     # smaller the number smaller computing time
     max_gmgc_genes = int(400)
