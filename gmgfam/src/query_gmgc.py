@@ -221,12 +221,12 @@ def get_gene_info(genes):
     info = {}
     for gene in genes:
         match = coll_unigenes.find_one({ 'o.g': gene }) or {}
-        for gene_info in m.get('o', []):
+        for gene_info in match.get('o', []):
             if gene != gene_info['g']:
                 continue
             start, end, strand = gene_info['s']
             info[gene] = {
-                'unigene': m['u'],
+                'unigene': match['u'],
                 'gene': gene, 
                 'strand': strand, 
                 'start': start,
