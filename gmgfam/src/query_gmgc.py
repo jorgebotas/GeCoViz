@@ -284,7 +284,7 @@ def neighbor_analysis(unigenes):
     # First obtain most common contigs for each unigene in the cluster
     for unigene, orfs in cluster_neighbors.items():
         printProgressBar(progress_idx, len(cluster_neighbors.keys()), 
-                prefix = 'Progress:', suffix = 'Complete', length = 50)
+                prefix = 'Progress:', length = 50)
         progress_idx += 1
         neighborhoods = {}
         for v in orfs.values():
