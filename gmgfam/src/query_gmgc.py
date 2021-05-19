@@ -35,6 +35,7 @@ def printProgressBar (iteration, total, prefix = '', suffix = '',
     if iteration == total: 
         print()
 
+
 def mongo_connect():
     """
     Connection to MongoDB
@@ -164,7 +165,7 @@ def write_newick(query_cluster, results_dir):
     newick = t.write()
     with open(results_dir + query_cluster + "_tree.nwx", "w") as outputfile:
         outputfile.write(newick)
-    return
+    return cluster_unigenes
 
 
 def swap_strand(s, reference_s):
@@ -283,9 +284,12 @@ def neighbor_analysis(unigenes):
     progress_idx = 0
     # First obtain most common contigs for each unigene in the cluster
     for unigene, orfs in cluster_neighbors.items():
+
+        # progress
         printProgressBar(progress_idx, len(cluster_neighbors.keys()), 
                 prefix = 'Progress:', length = 50)
         progress_idx += 1
+
         neighborhoods = {}
         for v in orfs.values():
             central_strand, neigh_list = v.values()
@@ -367,10 +371,9 @@ def query_fam(query, n_range=10, cutoff=0):
     ### Analysis
     analysis = {}
 
-    write_newick(query, RESULTS_PATH)
-    member_list = get_members(unigene_to_cl(query))
+    member_list = write_newick(query, RESULTS_PATH)
+    print(sorted(member_list) == sorted(get_members(unigene_to_cl(query))))
     unigene_list = [clean_unigene(m) for m in member_list]
-    # unigene_list = [clean_unigene(cl_to_unigene(m)) for m in member_list]
 
     print(f'\nNumber of members: {len(unigene_list)}\n')
 
