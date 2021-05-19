@@ -12,6 +12,28 @@ from django.conf import settings
 RESULTS_PATH = settings.BASE_DIR + '/gmgfam/tmp/'
 STATIC_PATH = settings.BASE_DIR + '/static/gecoviz/'
 
+# Print iterations progress
+def printProgressBar (iteration, total, prefix = '', suffix = '', 
+        decimals = 1, length = 100, fill = '█', printEnd = "\r"):
+    """
+    Call in a loop to create terminal progress bar
+    @params:
+        iteration   - Required  : current iteration (Int)
+        total       - Required  : total iterations (Int)
+        prefix      - Optional  : prefix string (Str)
+        suffix      - Optional  : suffix string (Str)
+        decimals    - Optional  : positive number of decimals in percent complete (Int)
+        length      - Optional  : character length of bar (Int)
+        fill        - Optional  : bar fill character (Str)
+        printEnd    - Optional  : end character (e.g. "\r", "\r\n") (Str)
+    """
+    percent = ("{0:." + str(decimals) + "f}").format(100 * (iteration / float(total)))
+    filledLength = int(length * iteration // total)
+    bar = fill * filledLength + '-' * (length - filledLength)
+    print(f'\r{prefix} |{bar}| {percent}% {suffix}', end = printEnd)
+    # Print New Line on Complete
+    if iteration == total: 
+        print()
 
 def mongo_connect():
     """
@@ -251,13 +273,18 @@ def get_unigene_info(unigenes):
 
 def neighbor_analysis(unigenes):
     cluster_orfs = get_orfs(unigenes)
+    print("\nObtaining neighbors\n")
     cluster_neighbors = { unigene: get_neighbors(orfs)
                   for unigene, orfs in cluster_orfs.items() }
     cluster_neighborhoods = {} 
     all_unigenes = set()
 
+    print("\nComputing neighborhoods...\n")
+    progress_idx = 0
     # First obtain most common contigs for each unigene in the cluster
     for unigene, orfs in cluster_neighbors.items():
+        printProgressBar(progress_idx, len(cluster_neighbors.keys()), 
+                prefix = 'Progress:', suffix = 'Complete', length = 50)
         neighborhoods = {}
         for v in orfs.values():
             central_strand, neigh_list = v.values()
