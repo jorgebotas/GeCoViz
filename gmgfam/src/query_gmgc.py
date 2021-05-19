@@ -285,10 +285,11 @@ def neighbor_analysis(unigenes):
     # First obtain most common contigs for each unigene in the cluster
     for unigene, orfs in cluster_neighbors.items():
 
-        # progress
+        # PROGRESS
         printProgressBar(progress_idx, len(cluster_neighbors.keys()), 
                 prefix = 'Progress:', length = 50)
         progress_idx += 1
+        # PROGRESS
 
         neighborhoods = {}
         for v in orfs.values():
@@ -372,7 +373,8 @@ def query_fam(query, n_range=10, cutoff=0):
     analysis = {}
 
     member_list = write_newick(query, RESULTS_PATH)
-    print(sorted(member_list) == sorted(get_members(unigene_to_cl(query))))
+    print(f'\nSame members in mongodb and tree: \
+    {sorted(member_list) == sorted(get_members(unigene_to_cl(query))))}')
     unigene_list = [clean_unigene(m) for m in member_list]
 
     print(f'\nNumber of members: {len(unigene_list)}\n')
