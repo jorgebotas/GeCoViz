@@ -14,7 +14,7 @@ STATIC_PATH = settings.BASE_DIR + '/static/gecoviz/'
 
 # Print iterations progress
 def printProgressBar (iteration, total, prefix = '', suffix = '', 
-        decimals = 1, length = 100, fill ='◊', printEnd = "\r"):
+        decimals = 1, length = 100, fill ='#', printEnd = "\r"):
     """
     Call in a loop to create terminal progress bar
     @params:
