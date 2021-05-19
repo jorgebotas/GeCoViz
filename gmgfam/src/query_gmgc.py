@@ -321,6 +321,8 @@ def query_fam(query, n_range=10, cutoff=0):
     percentage_cutoff = float(cutoff)
     # number of neighbors genes to analyze around each unigene
     neighbor_range = n_range
+    # max orfs per unigene to summarize neighborhood
+    max_orfs = 10
 
     ### KEGG pathways
     global kegg_dict, eggNOG_DICT, egg_levels
