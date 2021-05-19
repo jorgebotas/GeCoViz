@@ -285,6 +285,7 @@ def neighbor_analysis(unigenes):
     for unigene, orfs in cluster_neighbors.items():
         printProgressBar(progress_idx, len(cluster_neighbors.keys()), 
                 prefix = 'Progress:', suffix = 'Complete', length = 50)
+        progress_idx += 1
         neighborhoods = {}
         for v in orfs.values():
             central_strand, neigh_list = v.values()
