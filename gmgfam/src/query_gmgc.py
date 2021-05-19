@@ -218,12 +218,11 @@ def get_neighbors(orfs):
 
 def get_gene_info(genes):
     """ Retrieve start, end and strand data from gene name """
-    matches = coll_unigenes.find({ 'o.g': {'$in': genes} })
     info = {}
-    for m in matches:
+    for gene in genes:
+        match = coll_unigenes.find_one({ 'o.g': gene }) or {}
         for gene_info in m.get('o', []):
-            gene = gene_info['g']
-            if gene not in genes:
+            if gene != gene_info['g']:
                 continue
             start, end, strand = gene_info['s']
             info[gene] = {
@@ -349,4 +348,3 @@ def query_fam(query, n_range=10, cutoff=0):
     print(f'\n{round(time.time()-t0, 3)}s to complete neighborhood analysis\n')
 
     return analysis
-
