@@ -218,15 +218,16 @@ def get_neighbors(orfs):
 
 def get_gene_info(genes):
     """ Retrieve start, end and strand data from gene name """
+    matches = coll_unigenes.find({ 'o.g': {'$in': genes} })
     info = {}
-    for gene in genes:
-        match = coll_unigenes.find_one({ 'o.g': gene }) or {}
-        for gene_info in match.get('o', []):
-            if gene != gene_info['g']:
+    for m in matches:
+        for gene_info in m.get('o', []):
+            gene = gene_info['g']
+            if gene not in genes:
                 continue
             start, end, strand = gene_info['s']
             info[gene] = {
-                'unigene': match['u'],
+                'unigene': m['u'],
                 'gene': gene, 
                 'strand': strand, 
                 'start': start,
@@ -312,7 +313,7 @@ def query_fam(query, n_range=10, cutoff=0):
     global ncbi
     ncbi = NCBITaxa()
 
-    global max_gmgc_genes, percentage_cutoff, neighbor_range, max_orfs
+    global max_gmgc_genes, percentage_cutoff, neighbor_range
     # maximun number of unigene allowed by gmgc cluster to be computed,
     # smaller the number smaller computing time
     max_gmgc_genes = int(400)
@@ -320,8 +321,6 @@ def query_fam(query, n_range=10, cutoff=0):
     percentage_cutoff = float(cutoff)
     # number of neighbors genes to analyze around each unigene
     neighbor_range = n_range
-    # maximum number of orfs per unigene
-    max_orfs = 10
 
     ### KEGG pathways
     global kegg_dict, eggNOG_DICT, egg_levels
