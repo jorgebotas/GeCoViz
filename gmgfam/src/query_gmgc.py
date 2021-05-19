@@ -374,7 +374,8 @@ def query_fam(query, n_range=10, cutoff=0):
 
     member_list = write_newick(query, RESULTS_PATH)
     print(f'\nSame members in mongodb and tree: \
-    {sorted(member_list) == sorted(get_members(unigene_to_cl(query))))}')
+    {sorted(member_list) == sorted(get_members(unigene_to_cl(query))))
+     and len(member_list) == len(get_members(unigene_to_cl(query)))}')
     unigene_list = [clean_unigene(m) for m in member_list]
 
     print(f'\nNumber of members: {len(unigene_list)}\n')
