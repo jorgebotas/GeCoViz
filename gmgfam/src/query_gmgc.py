@@ -81,11 +81,6 @@ def unigene_to_cl(unigene):
     return cl.get('cl', unigene)
 
 
-def get_seqs(unigenes):
-    seqs = coll_seqs.find('u': {'$in': unigenes}, {'sq': 1})
-    return {u['u']: u['sq'] for u in seqs}
-
-
 def get_taxonomic_prediction(unigenes):
     tax_pred = defaultdict(list)
 
