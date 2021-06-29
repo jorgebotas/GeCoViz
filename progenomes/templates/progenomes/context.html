@@ -61,20 +61,18 @@
                         'tax_desc',
                         'name'];
             let graph = GeCoViz(selector)
-                        .data(data)
-                        .nSide(2)
-                        .tree(newick, fields);
-            d3.select(selector)
-                     .call(graph);
+                        .treeData(newick, fields[0], fields);
+                        .contextData(data)
+                        .geneText("Gene name")
+                        .annotation("Orthologous groups", 2)
+                        .draw();
+            
             d3.select('ul.navbar')
                 .style('visibility', 'visible')
                 .style('opacity', 1);
             d3.select(selector) 
                 .style('opacity', 1)
                 .style('visibility', 'visible');
-            await new Promise(r => setTimeout(r, 1000));
-            graph.nSide(2);
-
         }
         launchGeCoViz('.GeCoViz');
   </script>
