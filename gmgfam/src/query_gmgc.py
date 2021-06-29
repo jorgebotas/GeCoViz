@@ -48,8 +48,10 @@ def mongo_connect():
         coll_clusters = db.emapper_v2
         coll_e5 = db.eggnog_v5
         coll_taxa = db.taxo_map
+        coll_seqs = db.sequences
 
-    return [client, db, coll_unigene, coll_clusters, coll_e5, coll_taxa]
+    return [client, db, coll_unigene, coll_clusters, 
+            coll_e5, coll_taxa, coll_seqs]
 
 
 def get_pickle(filepath):
@@ -77,6 +79,11 @@ def cl_to_unigene(cl):
 def unigene_to_cl(unigene):
     cl = coll_clusters.find_one({'u' : unigene}) or {}
     return cl.get('cl', unigene)
+
+
+def get_seqs(unigenes):
+    seqs = coll_seqs.find('u': {'$in': unigenes}, {'sq': 1})
+    return {u['u']: u['sq'] for u in seqs}
 
 
 def get_taxonomic_prediction(unigenes):
@@ -341,7 +348,8 @@ def query_fam(query, n_range=10, cutoff=0):
         coll_unigenes,\
         coll_clusters,\
         coll_e5,\
-        coll_taxa = mongo_connect()
+        coll_taxa,\
+        coll_seqs = mongo_connect()
 
     global ncbi
     ncbi = NCBITaxa()
