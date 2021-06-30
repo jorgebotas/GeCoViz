@@ -7,6 +7,7 @@
 {% endblock %}
 {% block gecoviz-script %}
   <script charset="utf-8">
+
     async function get_context(query,
                             isCluster,
                             cutoff,
@@ -25,14 +26,14 @@
         } else {
             url_path  = url_root + query + "/" + cutoff + "/";
         }
-        $('.gecoviz-progress').show();
+        $('#spinner').modal('show');
         data = await $.ajax({
           url: url_path,
           complete: function(){
-            $('.gecoviz-progress').hide();
+            setTimeout(() => $('#spinner').modal('hide'), 1000);
           },
           error: function() {
-              $('.gecoviz-progress').hide();
+              setTimeout(() => $('#spinner').modal('hide'), 1000);
               alert("Incorrect cluster identifier")
           }
         })

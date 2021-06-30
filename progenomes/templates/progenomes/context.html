@@ -10,14 +10,14 @@
         async function get_context(query) {
             var url_path = API_URL + "getcontext/" + query + "/";
             let data;
-            $('.gecoviz-progress').show();
+            $('#spinner').modal('show');
             data = await $.ajax({
               url: url_path,
               complete: function(){
-                $('.gecoviz-progress').hide();
+                setTimeout(() => $('#spinner').modal('hide'), 1000);
               },
               error: function() {
-                  $('.gecoviz-progress').hide();
+                  setTimeout(() => $('#spinner').modal('hide'), 1000);
                   alert("Incorrect eggNOG identifier")
               }
             })

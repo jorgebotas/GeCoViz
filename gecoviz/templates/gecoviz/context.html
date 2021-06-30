@@ -60,6 +60,6 @@
                 .style('visibility', 'visible');
     }
     launchGeCoViz('.GeCoViz');
-    $('.gecoviz-progress').hide();
+    setTimeout(() => $('#spinner').modal('hide'), 1000);
   </script>
 {% endblock %}
