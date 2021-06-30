@@ -4,94 +4,89 @@
     <link rel="stylesheet" type="text/css" href="{% static '/gecoviz/css/start.css' %}"/>
         <div class="card mt-4 col-md-11 mx-auto">
         <div class="card-body text-center">
-            <img class="m-4"
-                 width="30%"
-                 style="min-width:200px;"
-                 src="{% static 'gecoviz/img/gecoviz.png' %}"/>
-            <div class="pt-3">
             <div class="pb-3">
-            <div class="h1">
-                <em class="gecoviz-title">Ge</em>nomic 
-                <em class="gecoviz-title">Co</em>ntext 
-                <em class="gecoviz-title">Viz</em>ualizer
-            </div>
-            <div>
-                <em>GeCoViz</em> is an interactive tool that visualizes genomic
-                and metagenomic context across phylogeny. 
-                <p> Code for gene context visualization  is available in GitHub at 
-                <code class="language-plaintext highlighter-rouge">
-                    <a href="https://github.com/jorgebotas/gecoviz.js"
-                       target="_blank">
-                        https://github.com/jorgebotas/GeCoViz.js</a>
-                </code>
-                </p>
+                <img class="m-4"
+                     width="20%"
+                     style="min-width:300px;"
+                     src="{% static 'gecoviz/img/gecoviz.png' %}"/>
+                <div class="my-auto justify-content-center">
+                    <div class="h1">
+                        <em class="gecoviz-title">Ge</em>nomic 
+                        <em class="gecoviz-title">Co</em>ntext 
+                        <em class="gecoviz-title">Viz</em>ualizer
+                    </div>
+                    <em>GeCoViz</em> is an interactive tool that visualizes genomic
+                    and metagenomic context across phylogeny. 
+                    <p> Code for gene context visualization  is available in GitHub at 
+                    <code class="language-plaintext highlighter-rouge">
+                        <a href="https://github.com/jorgebotas/gecoviz.js"
+                           target="_blank">
+                            https://github.com/jorgebotas/GeCoViz.js</a>
+                    </code>
+                    </p>
                     <p class='my-5'>
                         First time around? Please take a quick
                         look at the <a class="btn btn-primary btn-sm ml-2 mb-1"
                             href="/documentation/"
                             target="_blank">documentation</a>
                     </p>
-                    <p class='my-5'>
+                    <p class='mt-5'>
                         Choose a data source for gene context visualization:
                     </p>
-                    <div class='start-cards row justify-content-center'>
-                        <div class='card col-md-3 col-sm-11 m-3 p-0'>
-                            <div class="card-header">
-                                Custom data
-                            </div>
-                           <div class='card-body p-4 text-left'>
-                               Input your own custom data for visualization
-                               <ul>
-                                   <li>Phylogeny: tree in newick format</li>
-                                   <li>Gene context: neighborhood in <em>tsv</em> or
-                                       <em>json</em> format
-                                   </li>
-                               </ul>
-                           </div> 
-                           <div class='card-footer'>
-                            <a class="btn btn-primary" href="/custom/input/">Custom</a>
-                           </div>
-                        </div>
-                        <div class='card col-md-3 col-sm-11 m-3 p-0'>
-                            <div class="card-header">
-                                Genomic data
-                            </div>
-                           <div class='card-body p-4 text-left'>
-                               <p>
-                               <a href="http://eggnog5.embl.de/#/app/home" target="_blank">
-                                   eggNOG</a>: one of the most comprehensive databases for
-                                    orthologs and their functional annotation
-                               </p>
-                               <p>
-                               <a href="http://progenomes.embl.de" target="_blank">
-                                   ProGenomes</a>: 25,000 curated genomes. Annotated
-                                   through eggNOG-mapper and used to extract gene
-                                   neighborhood information
-                               </p>
-                           </div> 
-                           <div class='card-footer'>
-                            <a class="btn btn-primary"
-                                href="/progenomes/input/">proGenomes</a>
-                            </div>
-                        </div>
-                        <div class='card col-md-3 col-sm-11 m-3 p-0'>
-                            <div class="card-header">
-                                Metagenomic data
-                            </div>
-                           <div class='card-body p-4 text-left'>
-                               GMGFam: 225,000 curated novel gene families from
-                               the Global Microbial Gene Catalogue (GMGCv1)
-                           </div> 
-                           <div class='card-footer'>
-                            <a class="btn btn-primary" href="/gmgfam/input/">GMGFam</a>
-                           </div>
-                        </div>
-                    
                 </div>
-
             </div>
-            </div>
-
+            <div class='start-cards row justify-content-center'>
+                <div class='card col-lg-3 col-md-11 m-3 p-0'>
+                    <div class="card-header">
+                        Custom data
+                    </div>
+                   <div class='card-body p-4 text-left'>
+                       Input your own custom data for visualization
+                       <ul>
+                           <li>Phylogeny: tree in newick format</li>
+                           <li>Gene context: neighborhood in <em>tsv</em> or
+                               <em>json</em> format
+                           </li>
+                       </ul>
+                   </div> 
+                   <div class='card-footer'>
+                    <a class="btn btn-primary" href="/custom/input/">Custom</a>
+                   </div>
+                </div>
+                <div class='card col-lg-3 col-md-11 m-3 p-0'>
+                    <div class="card-header">
+                        Genomic data
+                    </div>
+                   <div class='card-body p-4 text-left'>
+                       <p>
+                       <a href="http://eggnog5.embl.de/#/app/home" target="_blank">
+                           eggNOG</a>: one of the most comprehensive databases for
+                            orthologs and their functional annotation
+                       </p>
+                       <p>
+                       <a href="http://progenomes.embl.de" target="_blank">
+                           ProGenomes</a>: 25,000 curated genomes. Annotated
+                           through eggNOG-mapper and used to extract gene
+                           neighborhood information
+                       </p>
+                   </div> 
+                   <div class='card-footer'>
+                    <a class="btn btn-primary"
+                        href="/progenomes/input/">proGenomes</a>
+                    </div>
+                </div>
+                <div class='card col-lg-3 col-md-11 m-3 p-0'>
+                    <div class="card-header">
+                        Metagenomic data
+                    </div>
+                   <div class='card-body p-4 text-left'>
+                       GMGFam: 225,000 curated novel gene families from
+                       the Global Microbial Gene Catalogue (GMGCv1)
+                   </div> 
+                   <div class='card-footer'>
+                    <a class="btn btn-primary" href="/gmgfam/input/">GMGFam</a>
+                   </div>
+                </div>
             </div>
         </div>
         </div>
