@@ -1,9 +1,10 @@
 from collections import defaultdict
 from ete3 import Tree, NCBITaxa
 import gridfs
-from os import makedirs
+from os import makedirs, path
 import pickle
 from pymongo import MongoClient
+from json import load, dump
 from shutil import rmtree
 import time
 
@@ -368,8 +369,13 @@ def query_fam(query, n_range=10, cutoff=0):
     eggNOG_DICT = get_pickle(egg_path)
     # egg_levels = {}
 
+    analysis_path = RESULTS_PATH + query + ".json"
+    if path.exists(analysis_path):
+        with open(analysis_path, "r") as infile:
+            return load(infile)
+
     # Clean results tmp
-    rmtree(RESULTS_PATH)
+    # rmtree(RESULTS_PATH)
     makedirs(RESULTS_PATH, exist_ok = True)
 
     ### Analysis
@@ -389,5 +395,8 @@ def query_fam(query, n_range=10, cutoff=0):
     t0 = time.time()
     analysis = neighbor_analysis(unigene_list)
     print(f'\n{round(time.time()-t0, 3)}s to complete neighborhood analysis\n')
+
+    with open(analysis_path, "w") as outfile:
+        dump(analysis, outfile)
 
     return analysis
