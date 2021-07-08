@@ -12,10 +12,7 @@ from .src.query_fam import get_neighborhood
 RESULTS_PATH = settings.BASE_DIR + '/gmgfam/tmp/'
 
 def get_context(request, datatype, query, cutoff):
-    if datatype == 'list':
-        analysis = get_neighborhood("", query.split(','))
-    else:
-        analysis = query_gmgc(query)
+    analysis = get_neighborhood("", query.split(','))
     return JsonResponse(analysis, safe=False)
 
 def get_tree(request, query):
