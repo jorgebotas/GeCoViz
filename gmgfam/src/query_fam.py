@@ -24,7 +24,7 @@ col_tm = db.tm
 
 DOCS_PER_PAGE = 10
 
-STATIC_PATH = settings.BASE_DIR + '/static/nmgfams_app/'
+STATIC_PATH = settings.BASE_DIR + '/static/gecoviz/'
 
 def get_pickle(filePath):
     """
