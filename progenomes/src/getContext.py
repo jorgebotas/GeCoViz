@@ -223,7 +223,10 @@ def getGeneData(gene, client, db, taxDict, keggDict):
                 eggJSON.append(eggInfo)
     else:
         geneName, keggJSON, eggJSON = "", "", ""
-    taxonomy, gene = gene.split('.')
+    try:
+        taxonomy, gene = gene.split('.')
+    except:
+        taxonomy = ""
     geneInfo = [gene, geneName, geneDesc,
                 strand, start, end,
                 taxonomy, domains,
