@@ -64,7 +64,8 @@
                         .treeData(newick, fields[0], fields)
                         .contextData(data)
                         .geneText("Gene name")
-                        .annotation("Orthologous groups", 2)
+                        .annotation("Eggnog", 2)
+                        .collapseHeight(true)
                         .draw();
             
             d3.select('ul.navbar')
