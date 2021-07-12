@@ -45,7 +45,7 @@ def input(request):
                         return redirect('list_context', genelist=genelist)
     context = {
         # 'cluster_form' : ClusterForm(),
-        # 'list_form' : ListForm(),
+        'list_form' : ListForm(),
         'novelFam_form' : NovelFamForm(),
     }
     return render(request, 'gmgfam/input.html', context)
